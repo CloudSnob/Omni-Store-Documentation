@@ -4,7 +4,7 @@
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/products/[prodToken||slug] \
+  --url https://storeapi.csomni.com/products/[prodToken||slug] \
   --header 'token: 123'
 ```
 
@@ -12,8 +12,8 @@ curl --request GET \
 
 ```json
 {
-  "prodToken": "prod_123456",
-  "companyToken": "comp_123456",
+  "prodToken": "prod_CopF1h0dqzc9mR61",
+  "companyToken": "comp_sfgb50s0dsdgsfh5g",
   "prodName": "No moref",
   "prodImage": {
     "file": "11-24-2020/1606237454516__1133421__1605838189835__12153371__ad_-_11X17_-_Copy.jpg"
@@ -39,22 +39,22 @@ curl --request GET \
   "shippingProduct": 0,
   "prodMetaTitle": "",
   "prodMetaDescription": "",
-  "prodBrand": "brnd_123456",
+  "prodBrand": "brnd_dNX2r7qA7GRw8smMRrHI",
   "prodType": "",
   "prodTemplate": "fdsa",
   "prodAccessories": [
-    "prod_123456",
-    "prod_123456"
+    "prod_dgHZuXkYjXsTF7ZB",
+    "prod_lkg9GfQ1PSS1QvLF"
   ],
   "google_prodCategory": "",
   "google_prodType": "",
   "google_prodCondition": "",
   "backOrderWarning": 0,
   "prodCollections": [
-    "clcs_123456",
-    "clcs_123456",
-    "clcs_123456",
-    "clcs_123456"
+    "clcs_vFPTXp7oQu0XcV7S",
+    "clcs_B216qbvH9CNBbJyr",
+    "clcs_B216qbvH9CNBbJyr",
+    "clcs_pLae516pzjDsAndI"
   ],
   "variantInfo": {
     "priceTo": 0,
@@ -63,12 +63,12 @@ curl --request GET \
   },
   "prodOptions": [
     {
-      "optionToken": "optn_123456",
+      "optionToken": "optn_IoKsm82SMC5ImEg9jmOe",
       "optionName": "size",
       "optionOrder": ""
     },
     {
-      "optionToken": "optn_123456",
+      "optionToken": "optn_4ICF2Y9Iz1eqEYEXxbmc",
       "optionName": "color",
       "optionOrder": "1"
     }
@@ -80,7 +80,7 @@ This endpoint retrieves a Specific Product.
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/products/[prodToken||slug]`
+`GET https://storeapi.csomni.com/products/[prodToken||slug]`
 
 ### URL Parameters
 
@@ -93,7 +93,7 @@ This endpoint retrieves a Specific Product.
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/products/[prodToken||slug]/full \
+  --url https://storeapi.csomni.com/products/[prodToken||slug]/full \
   --header 'token: 123'
 ```
 
@@ -101,8 +101,8 @@ curl --request GET \
 
 ```json
        {
-  "prodToken": "prod_123456",
-  "companyToken": "comp_123456",
+  "prodToken": "prod_CopF1h0dqzc9mR61",
+  "companyToken": "comp_sfgb50s0dsdgsfh5g",
   "prodName": "No moref",
   "prodImage": {
     "file": "11-24-2020/1606237454516__1133421__1605838189835__12153371__ad_-_11X17_-_Copy.jpg"
@@ -128,22 +128,22 @@ curl --request GET \
   "shippingProduct": 0,
   "prodMetaTitle": "",
   "prodMetaDescription": "",
-  "prodBrand": "brnd_123456",
+  "prodBrand": "brnd_dNX2r7qA7GRw8smMRrHI",
   "prodType": "",
   "prodTemplate": "fdsa",
   "prodAccessories": [
-    "prod_123456",
-    "prod_123456"
+    "prod_dgHZuXkYjXsTF7ZB",
+    "prod_lkg9GfQ1PSS1QvLF"
   ],
   "google_prodCategory": "",
   "google_prodType": "",
   "google_prodCondition": "",
   "backOrderWarning": 0,
   "prodCollections": [
-    "clcs_123456",
-    "clcs_123456",
-    "clcs_123456",
-    "clcs_123456"
+    "clcs_vFPTXp7oQu0XcV7S",
+    "clcs_B216qbvH9CNBbJyr",
+    "clcs_B216qbvH9CNBbJyr",
+    "clcs_pLae516pzjDsAndI"
   ],
   "variantInfo": {
     "priceTo": 0,
@@ -152,7 +152,7 @@ curl --request GET \
   },
   "prodOptions": [
     {
-      "optionToken": "optn_123456",
+      "optionToken": "optn_IoKsm82SMC5ImEg9jmOe",
       "optionName": "size",
       "optionOrder": "",
       "values": [
@@ -161,7 +161,7 @@ curl --request GET \
       ]
     },
     {
-      "optionToken": "optn_123456",
+      "optionToken": "optn_4ICF2Y9Iz1eqEYEXxbmc",
       "optionName": "color",
       "optionOrder": "1",
       "values": [
@@ -171,9 +171,9 @@ curl --request GET \
   ],
   "variants": [
     {
-      "prodToken": "prod_123456",
-      "variantToken": "vrnt_123456",
-      "companyToken": "comp_123456",
+      "prodToken": "prod_CopF1h0dqzc9mR61",
+      "variantToken": "vrnt_0IeDlg6B0RchCren",
+      "companyToken": "comp_sfgb50s0dsdgsfh5g",
       "variantName": "ffffff",
       "variantImage": {
         "file": ""
@@ -220,21 +220,21 @@ curl --request GET \
       "variantInStock": true,
       "variantOptions": [
         {
-          "optionToken": "optn_123456",
+          "optionToken": "optn_IoKsm82SMC5ImEg9jmOe",
           "optionValue": "sm",
           "optionName": "size"
         },
         {
-          "optionToken": "optn_123456",
+          "optionToken": "optn_4ICF2Y9Iz1eqEYEXxbmc",
           "optionValue": "red",
           "optionName": "color"
         }
       ]
     },
     {
-      "prodToken": "prod_123456",
-      "variantToken": "vrnt_123456",
-      "companyToken": "comp_123456",
+      "prodToken": "prod_CopF1h0dqzc9mR61",
+      "variantToken": "vrnt_qmrYL7X1JnIfSfls",
+      "companyToken": "comp_sfgb50s0dsdgsfh5g",
       "variantName": "ffffff",
       "variantImage": {
         "file": ""
@@ -281,21 +281,21 @@ curl --request GET \
       "variantInStock": true,
       "variantOptions": [
         {
-          "optionToken": "optn_123456",
+          "optionToken": "optn_IoKsm82SMC5ImEg9jmOe",
           "optionValue": "lg",
           "optionName": "size"
         },
         {
-          "optionToken": "optn_123456",
+          "optionToken": "optn_4ICF2Y9Iz1eqEYEXxbmc",
           "optionValue": "red",
           "optionName": "color"
         }
       ]
     },
     {
-      "prodToken": "prod_123456",
-      "variantToken": "vrnt_123456",
-      "companyToken": "comp_123456",
+      "prodToken": "prod_CopF1h0dqzc9mR61",
+      "variantToken": "vrnt_WSBp0UD2QJMrObF0",
+      "companyToken": "comp_sfgb50s0dsdgsfh5g",
       "variantName": "",
       "variantImage": {
         "file": ""
@@ -338,9 +338,9 @@ curl --request GET \
       "variantInStock": true
     },
     {
-      "prodToken": "prod_123456",
-      "variantToken": "vrnt_123456",
-      "companyToken": "comp_123456",
+      "prodToken": "prod_CopF1h0dqzc9mR61",
+      "variantToken": "vrnt_Z6fkKd8YqK5MImsU",
+      "companyToken": "comp_sfgb50s0dsdgsfh5g",
       "variantName": "",
       "variantImage": {
         "file": ""
@@ -390,7 +390,7 @@ This endpoint retrieves a Specific Product And all its information.
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/products/[prodToken||slug]/full`
+`GET https://storeapi.csomni.com/products/[prodToken||slug]/full`
 
 ### URL Parameters
 
@@ -417,15 +417,14 @@ This endpoint retrieves all products
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/products`
+`GET https://storeapi.csomni.com/products/solr?parsedQ=&rows=20`
 
 ### Query Parameters
 
 | Parameter                                                                                                                                                                                                 | Required | Default | Description                                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| q                                                                                                                                                                                                         | false    | -       | If empty will bring in all values (basic syntax is {"fieldname":"value"} for example to search product name do q={"prodName":"mo"}  |
 | parsedQ                                                                                                                                                                                                   | false    | -       | If empty will bring in all values this will                                                                                         |
-| do a search in catch all and in prodNumber and prodUpc if itll match upc or prodNumber fully it'll return those items first else it'll only check in catchAll for partial matches. Example: parsedQ=hello |
+| do a search in catch all and in prodName,prodNumber,prodDescription,variantName,variantNumber,variantToken,variantUpc and prodUpc if it will match prodName or prodNumber etc. fully it'll return those items first else it'll only check in catchAll for partial matches. Example: parsedQ=laptop |
 | start                                                                                                                                                                                                     | false    | 0       | At which field to start                                                                                                             |
 | rows                                                                                                                                                                                                      | false    | 10      | Amount of rows to returns                                                                                                           |
 | sort                                                                                                                                                                                                      | false    | -       | Any field to sort by                                                                                                                |
@@ -451,259 +450,478 @@ variantPrice":"[* TO 500]"} where \* is anything.
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/products \
+  --url https://storeapi.csomni.com/products/solr?parsedQ=flap&rows=6 \
   --header 'token: 123'
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns the response JSON structured like this:
 
 ```json
-[
-  {
-    "prodToken": "prod_abcdefgABCDEFG123",
-    "companyToken": "comp_123456",
-    "prodName": "Not a Highlander",
-    "prodImage": {
-      "file": "12-17-2020/1608227079221__15192__image.png",
-      "name": "main-image-item",
-      "type": ""
-    },
-    "prodImages": [
-      {
-        "file": "9-14-2021/1631634128386__40977__gabe-rebra-j7b8-kN3Dgc-unsplash.jpg",
-        "name": "front",
-        "type": ""
-      },
-      {
-        "file": "Xjv2-F6Quls",
-        "name": "back",
-        "type": "youtube"
-      },
-      {
-        "file": "sO65YihyZac",
-        "name": "close-up",
-        "type": "youtube"
-      }
-    ],
-    "prodWeight": "",
-    "prodDimW": "",
-    "prodDimL": "",
-    "prodDimH": "",
-    "prodUpc": "",
-    "prodNumber": "",
-    "prodPrice": 0,
-    "prodDescription": "",
-    "prodHighlights": "",
-    "prodAlert": "",
-    "prodLowlevel": "",
-    "prodSlug": "not-a-highlander",
-    "prodVisible": 1,
-    "prodAllowCheckout": 0,
-    "prodCheckInvetory": 0,
-    "prodTrackInventory": 0,
-    "shippingProduct": 0,
-    "prodMetaTitle": "",
-    "prodMetaDescription": "",
-    "prodBrand": "brnd_123456",
-    "prodType": "",
-    "prodTemplate": "",
-    "prodAccessories": [
-      "prod_123456",
-      "prod_123456",
-      "prod_123456"
-    ],
-    "google_prodCategory": "",
-    "google_prodType": "",
-    "google_prodCondition": "",
-    "backOrderWarning": 0,
-    "prodCollections": [
-      "clcs_123456",
-      "clcs_123456"
-    ],
-    "prodOptions": [
-      {
-        "optionToken": "optn_123456",
-        "optionName": "size",
-        "optionOrder": "0"
-      },
-      {
-        "optionToken": "optn_123456",
-        "optionName": "material",
-        "optionOrder": "1"
-      },
-      {
-        "optionToken": "optn_123456",
-        "optionName": "color",
-        "optionOrder": "blue"
-      }
-    ]
-  },
-  {
-    "prodToken": "prod_123456",
-    "companyToken": "comp_123456",
-    "prodName": "Not a Highlander",
-    "prodImage": {
-      "file": "12-17-2020/1608227079221__15192__image.png",
-      "name": "main-image-item",
-      "type": ""
-    },
-    "prodImages": [
-      {
-        "file": "9-14-2021/1631634128386__40977__gabe-rebra-j7b8-kN3Dgc-unsplash.jpg",
-        "name": "front",
-        "type": ""
-      },
-      {
-        "file": "Xjv2-F6Quls",
-        "name": "back",
-        "type": "youtube"
-      },
-      {
-        "file": "sO65YihyZac",
-        "name": "close-up",
-        "type": "youtube"
-      }
-    ],
-    "prodWeight": "",
-    "prodDimW": "",
-    "prodDimL": "",
-    "prodDimH": "",
-    "prodUpc": "",
-    "prodNumber": "",
-    "prodPrice": 0,
-    "prodDescription": "",
-    "prodHighlights": "",
-    "prodAlert": "",
-    "prodLowlevel": "",
-    "prodSlug": "not-a-highlander",
-    "prodVisible": 1,
-    "prodAllowCheckout": 0,
-    "prodCheckInvetory": 0,
-    "prodTrackInventory": 0,
-    "shippingProduct": 0,
-    "prodMetaTitle": "",
-    "prodMetaDescription": "",
-    "prodBrand": "brnd_123456",
-    "prodType": "",
-    "prodTemplate": "",
-    "prodAccessories": [
-      "prod_123456",
-      "prod_123456",
-      "prod_123456"
-    ],
-    "google_prodCategory": "",
-    "google_prodType": "",
-    "google_prodCondition": "",
-    "backOrderWarning": 0,
-    "prodCollections": [
-      "clcs_123456",
-      "clcs_123456"
-    ],
-    "prodOptions": [
-      {
-        "optionToken": "optn_123456",
-        "optionName": "size",
-        "optionOrder": "0"
-      },
-      {
-        "optionToken": "optn_123456",
-        "optionName": "material",
-        "optionOrder": "1"
-      },
-      {
-        "optionToken": "optn_123456",
-        "optionName": "color",
-        "optionOrder": "blue"
-      }
-    ]
-  },
-  {
-    "prodToken": "prod_abcdefgABCDEFG123",
-    "companyToken": "comp_abcdefgABCDEFG123",
-    "prodName": "Not a Highlander",
-    "prodImage": {
-      "file": "12-17-2020/1608227079221__15192__image.png",
-      "name": "main-image-item",
-      "type": ""
-    },
-    "prodImages": [
-      {
-        "file": "9-14-2021/1631634128386__40977__gabe-rebra-j7b8-kN3Dgc-unsplash.jpg",
-        "name": "front",
-        "type": ""
-      },
-      {
-        "file": "Xjv2-F6Quls",
-        "name": "back",
-        "type": "youtube"
-      },
-      {123456
-        "file": "sO65YihyZac",
-        "name": "close-up",
-        "type": "youtube"
-      }
-    ],
-    "prodWeight": "",
-    "prodDimW": "",
-    "prodDimL": "",
-    "prodDimH": "",
-    "prodUpc": "",
-    "prodNumber": "",
-    "prodPrice": 0,
-    "prodDescription": "",
-    "prodHighlights": "",
-    "prodAlert": "",
-    "prodLowlevel": "",
-    "prodSlug": "not-a-highlander",
-    "prodVisible": 1,
-    "prodAllowCheckout": 0,
-    "prodCheckInvetory": 0,
-    "prodTrackInventory": 0,
-    "shippingProduct": 0,
-    "prodMetaTitle": "",
-    "prodMetaDescription": "",
-    "prodBrand": "brnd_123456",
-    "prodType": "",
-    "prodTemplate": "",
-    "prodAccessories": [
-      "prod_123456",
-      "prod_123456",
-      "prod_123456"
-    ],
-    "google_prodCategory": "",
-    "google_prodType": "",
-    "google_prodCondition": "",
-    "backOrderWarning": 0,
-    "prodCollections": [
-      "clcs_123456",
-      "clcs_123456"
-    ],
-    "prodOptions": [
-      {
-        "optionToken": "optn_123456",
-        "optionName": "size",
-        "optionOrder": "0"
-      },
-      {
-        "optionToken": "optn_123456",
-        "optionName": "material",
-        "optionOrder": "1"
-      },
-      {
-        "optionToken": "optn_123456",
-        "optionName": "color",
-        "optionOrder": "blue"
-      }
-    ]
-  }
-]
+{
+  "numFound": 19,
+  "start": 0,
+  "numFoundExact": true,
+  "docs":[
+            {
+                      "prodToken": "prod_Ar890Yysu525DowM",
+                      "companyToken": "comp_fxJJZhdcNMfRF9m",
+                      "prodName": "KORKY 525BP UNIVERSAL TOILET FLAPPER BLUE",
+                      "prodImage": {
+                          "file": "1-19-2023\/1674146138554__133110__NS-525.jpg",
+                          "type": ""
+                      },
+                      "prodImages": [],
+                      "prodWeight": 0,
+                      "prodDimW": "0",
+                      "prodDimL": "",
+                      "prodDimH": "",
+                      "prodUpc": "",
+                      "prodNumber": "",
+                      "prodPrice": ".00",
+                      "prodDescription": "",
+                      "prodHighlights": "",
+                      "prodAlert": "",
+                      "prodLowlevel": "",
+                      "prodSlug": "korky-525bp-universal-toilet-flapper-blue",
+                      "prodVisible": 1,
+                      "prodAllowCheckout": 0,
+                      "prodCheckInvetory": 0,
+                      "prodTrackInventory": 0,
+                      "inventoryCount": 0,
+                      "shippingProduct": 0,
+                      "prodMetaTitle": "",
+                      "prodMetaDescription": "",
+                      "prodBrand": "",
+                      "prodType": "",
+                      "prodTemplate": "",
+                      "prodAccessories": [],
+                      "google_prodCategory": "",
+                      "google_prodType": "",
+                      "google_prodCondition": "",
+                      "backOrderWarning": 0,
+                      "createdAt": "2023-06-21 21:20:33",
+                      "editedAt": "2023-06-21 21:20:33",
+                      "prodCollections": [
+                          "clcs_IdT3XKUXXIqBybaN"
+                      ],
+                      "variantInfo": {
+                          "priceTo": 2.7,
+                          "priceFrom": 2.7,
+                          "variantCount": 1
+                      }
+                  },
+                  {
+                      "prodToken": "prod_kp1eGuTl4MHaeove",
+                      "companyToken": "comp_fxJJZhdcNMfRF9m",
+                      "prodName": "KORKY TOILET FLAPPER, RUBBER, BLACK #50BP",
+                      "prodImage": {
+                          "file": "1-11-2023\/1673480469634__70901__50BP.jpg",
+                          "type": ""
+                      },
+                      "prodImages": [],
+                      "prodWeight": 0,
+                      "prodDimW": "0",
+                      "prodDimL": "",
+                      "prodDimH": "",
+                      "prodUpc": "",
+                      "prodNumber": "",
+                      "prodPrice": ".00",
+                      "prodDescription": "",
+                      "prodHighlights": "",
+                      "prodAlert": "",
+                      "prodLowlevel": "",
+                      "prodSlug": "korky-toilet-flapper-rubber-black-50bp",
+                      "prodVisible": 1,
+                      "prodAllowCheckout": 0,
+                      "prodCheckInvetory": 0,
+                      "prodTrackInventory": 0,
+                      "inventoryCount": 0,
+                      "shippingProduct": 0,
+                      "prodMetaTitle": "",
+                      "prodMetaDescription": "",
+                      "prodBrand": "",
+                      "prodType": "",
+                      "prodTemplate": "",
+                      "prodAccessories": [],
+                      "google_prodCategory": "",
+                      "google_prodType": "",
+                      "google_prodCondition": "",
+                      "backOrderWarning": 0,
+                      "createdAt": "2023-06-21 21:20:33",
+                      "editedAt": "2023-06-21 21:20:33",
+                      "prodCollections": [
+                          "clcs_IdT3XKUXXIqBybaN"
+                      ],
+                      "variantInfo": {
+                          "priceTo": 3.24,
+                          "priceFrom": 3.24,
+                          "variantCount": 1
+                      }
+                  },
+          ]
+}
 ```
 
+```shell
+curl --request GET \
+  --url https://storeapi.csomni.com/products/solr?parsedQ=flapper&fq={}&rows=20&start=0&responseData=firstVariant,variantAggregates&facets=1 \
+  --header 'token: 123'
+```
+
+> The above command returns the response  JSON structured like this:
+
+
+```json
+{
+    "numFound": 18,
+    "start": 0,
+    "numFoundExact": true,
+    "docs": [
+        {
+            "prodToken": "prod_Ar890Yysu525DowM",
+            "companyToken": "comp_fxJJZhdcNMfRF9m",
+            "prodName": "KORKY 525BP UNIVERSAL TOILET FLAPPER BLUE",
+            "prodImage": {
+                "file": "1-19-2023\/1674146138554__133110__NS-525.jpg",
+                "type": ""
+            },
+            "prodImages": [],
+            "prodWeight": 0,
+            "prodDimW": "0",
+            "prodDimL": "",
+            "prodDimH": "",
+            "prodUpc": "",
+            "prodNumber": "",
+            "prodPrice": ".00",
+            "prodDescription": "",
+            "prodHighlights": "",
+            "prodAlert": "",
+            "prodLowlevel": "",
+            "prodSlug": "korky-525bp-universal-toilet-flapper-blue",
+            "prodVisible": 1,
+            "prodAllowCheckout": 0,
+            "prodCheckInvetory": 0,
+            "prodTrackInventory": 0,
+            "inventoryCount": 0,
+            "shippingProduct": 0,
+            "prodMetaTitle": "",
+            "prodMetaDescription": "",
+            "prodBrand": "",
+            "prodType": "",
+            "prodTemplate": "",
+            "prodAccessories": [],
+            "google_prodCategory": "",
+            "google_prodType": "",
+            "google_prodCondition": "",
+            "backOrderWarning": 0,
+            "createdAt": "2023-06-21 21:20:33",
+            "editedAt": "2023-06-21 21:20:33",
+            "prodCollections": [
+                "clcs_IdT3XKUXXIqBybaN"
+            ],
+            "variantInfo": {
+                "priceTo": 2.7,
+                "priceFrom": 2.7,
+                "variantCount": 1
+            },
+            "firstVariant": {
+                "prodToken": "prod_Ar890Yysu525DowM",
+                "variantToken": "vrnt_LlDZqIJNEfvVAAwT",
+                "companyToken": "comp_fxJJZhdcNMfRF9m",
+                "variantName": "",
+                "variantImage": {
+                    "file": "1-19-2023\/1674146138554__133110__NS-525.jpg",
+                    "type": ""
+                },
+                "variantImages": [],
+                "variantWeight": "0",
+                "variantDimW": "0",
+                "variantDimL": "0",
+                "variantDimH": "0",
+                "variantUpc": "",
+                "variantNumber": "NS-525",
+                "manufacturerPartNumber": "",
+                "variantPrice": 2.7,
+                "variantMapPrice": 0,
+                "variantMsrpPrice": 0,
+                "variantDisplayPrice": 0,
+                "variantDescription": "",
+                "variantAlert": "",
+                "variantLowlevel": "",
+                "variantSlug": "",
+                "variantVisible": 1,
+                "taxType": "",
+                "hideGoogleData": 0,
+                "google_variantCategory": null,
+                "google_variantType": null,
+                "google_variantCondition": null,
+                "taxable": 1,
+                "variantAllowCheckout": 0,
+                "variantCheckInvetory": 0,
+                "variantTrackInventory": 0,
+                "inventoryCount": 10000,
+                "shippingProduct": 0,
+                "variantMetaTitle": "",
+                "variantMetaDescription": "",
+                "variantBrand": "",
+                "sortOrder": 0,
+                "dateCreated": "1674146144",
+                "deleted": 0,
+                "backOrderWarning": 0,
+                "createdAt": "2023-06-21 21:20:36",
+                "editedAt": "2023-08-21 20:21:30",
+                "variantInStock": true
+            }
+        },
+        {
+            "prodToken": "prod_kp1eGuTl4MHaeove",
+            "companyToken": "comp_fxJJZhdcNMfRF9m",
+            "prodName": "KORKY TOILET FLAPPER, RUBBER, BLACK #50BP",
+            "prodImage": {
+                "file": "1-11-2023\/1673480469634__70901__50BP.jpg",
+                "type": ""
+            },
+            "prodImages": [],
+            "prodWeight": 0,
+            "prodDimW": "0",
+            "prodDimL": "",
+            "prodDimH": "",
+            "prodUpc": "",
+            "prodNumber": "",
+            "prodPrice": ".00",
+            "prodDescription": "",
+            "prodHighlights": "",
+            "prodAlert": "",
+            "prodLowlevel": "",
+            "prodSlug": "korky-toilet-flapper-rubber-black-50bp",
+            "prodVisible": 1,
+            "prodAllowCheckout": 0,
+            "prodCheckInvetory": 0,
+            "prodTrackInventory": 0,
+            "inventoryCount": 0,
+            "shippingProduct": 0,
+            "prodMetaTitle": "",
+            "prodMetaDescription": "",
+            "prodBrand": "",
+            "prodType": "",
+            "prodTemplate": "",
+            "prodAccessories": [],
+            "google_prodCategory": "",
+            "google_prodType": "",
+            "google_prodCondition": "",
+            "backOrderWarning": 0,
+            "createdAt": "2023-06-21 21:20:33",
+            "editedAt": "2023-06-21 21:20:33",
+            "prodCollections": [
+                "clcs_IdT3XKUXXIqBybaN"
+            ],
+            "variantInfo": {
+                "priceTo": 3.24,
+                "priceFrom": 3.24,
+                "variantCount": 1
+            },
+            "firstVariant": {
+                "prodToken": "prod_kp1eGuTl4MHaeove",
+                "variantToken": "vrnt_siVUJmd5Ihw2OnQL",
+                "companyToken": "comp_fxJJZhdcNMfRF9m",
+                "variantName": "",
+                "variantImage": {
+                    "file": "1-11-2023\/1673480469634__70901__50BP.jpg",
+                    "type": ""
+                },
+                "variantImages": [],
+                "variantWeight": "0",
+                "variantDimW": "0",
+                "variantDimL": "0",
+                "variantDimH": "0",
+                "variantUpc": "",
+                "variantNumber": "50BP",
+                "manufacturerPartNumber": "",
+                "variantPrice": 3.24,
+                "variantMapPrice": 0,
+                "variantMsrpPrice": 0,
+                "variantDisplayPrice": 0,
+                "variantDescription": "",
+                "variantAlert": "",
+                "variantLowlevel": "",
+                "variantSlug": "",
+                "variantVisible": 1,
+                "taxType": "",
+                "hideGoogleData": 0,
+                "google_variantCategory": null,
+                "google_variantType": null,
+                "google_variantCondition": null,
+                "taxable": 1,
+                "variantAllowCheckout": 0,
+                "variantCheckInvetory": 0,
+                "variantTrackInventory": 0,
+                "inventoryCount": 10000,
+                "shippingProduct": 0,
+                "variantMetaTitle": "",
+                "variantMetaDescription": "",
+                "variantBrand": "",
+                "sortOrder": 0,
+                "dateCreated": "1673480474",
+                "deleted": 0,
+                "backOrderWarning": 0,
+                "createdAt": "2023-06-21 21:20:36",
+                "editedAt": "2023-08-21 20:18:23",
+                "variantInStock": true
+            }
+        },
+        {
+            "prodToken": "prod_3juVe2E7nCeI3vIU",
+            "companyToken": "comp_fxJJZhdcNMfRF9m",
+            "prodName": "TOILET TANK FLAPPER FIT ALL",
+            "prodImage": {
+                "file": "1-16-2023\/1673905838358__14183__89385.jpg",
+                "type": ""
+            },
+            "prodImages": [],
+            "prodWeight": 0,
+            "prodDimW": "0",
+            "prodDimL": "",
+            "prodDimH": "",
+            "prodUpc": "",
+            "prodNumber": "",
+            "prodPrice": ".00",
+            "prodDescription": "",
+            "prodHighlights": "",
+            "prodAlert": "",
+            "prodLowlevel": "",
+            "prodSlug": "toilet-tank-flapper-fit-all",
+            "prodVisible": 1,
+            "prodAllowCheckout": 0,
+            "prodCheckInvetory": 0,
+            "prodTrackInventory": 0,
+            "inventoryCount": 0,
+            "shippingProduct": 0,
+            "prodMetaTitle": "",
+            "prodMetaDescription": "",
+            "prodBrand": "",
+            "prodType": "",
+            "prodTemplate": "",
+            "prodAccessories": [],
+            "google_prodCategory": "",
+            "google_prodType": "",
+            "google_prodCondition": "",
+            "backOrderWarning": 0,
+            "createdAt": "2023-06-21 21:20:33",
+            "editedAt": "2023-06-21 21:20:33",
+            "prodCollections": [
+                "clcs_IdT3XKUXXIqBybaN"
+            ],
+            "variantInfo": {
+                "priceTo": 3.79,
+                "priceFrom": 3.79,
+                "variantCount": 1
+            },
+            "firstVariant": {
+                "prodToken": "prod_3juVe2E7nCeI3vIU",
+                "variantToken": "vrnt_FJaPr75CHmuN4i34",
+                "companyToken": "comp_fxJJZhdcNMfRF9m",
+                "variantName": "",
+                "variantImage": {
+                    "file": "1-16-2023\/1673905838358__14183__89385.jpg",
+                    "type": ""
+                },
+                "variantImages": [],
+                "variantWeight": "0",
+                "variantDimW": "0",
+                "variantDimL": "0",
+                "variantDimH": "0",
+                "variantUpc": "",
+                "variantNumber": "89385",
+                "manufacturerPartNumber": "",
+                "variantPrice": 3.79,
+                "variantMapPrice": 0,
+                "variantMsrpPrice": 0,
+                "variantDisplayPrice": 0,
+                "variantDescription": "",
+                "variantAlert": "",
+                "variantLowlevel": "",
+                "variantSlug": "",
+                "variantVisible": 1,
+                "taxType": "",
+                "hideGoogleData": 0,
+                "google_variantCategory": null,
+                "google_variantType": null,
+                "google_variantCondition": null,
+                "taxable": 1,
+                "variantAllowCheckout": 0,
+                "variantCheckInvetory": 0,
+                "variantTrackInventory": 0,
+                "inventoryCount": 10000,
+                "shippingProduct": 0,
+                "variantMetaTitle": "",
+                "variantMetaDescription": "",
+                "variantBrand": "",
+                "sortOrder": 0,
+                "dateCreated": "1673905841",
+                "deleted": 0,
+                "backOrderWarning": 0,
+                "createdAt": "2023-06-21 21:20:36",
+                "editedAt": "2023-08-21 20:20:38",
+                "variantInStock": true
+            }
+        }
+    ],
+    "facets": {
+        "count": 18,
+        "prodBrand": {
+            "buckets": []
+        },
+        "prodCollectionSlugs": {
+            "buckets": [
+                {
+                    "val": "flappers",
+                    "count": 15,
+                    "productsCount": 15
+                },
+                {
+                    "val": "toilet-tank-repair-parts",
+                    "count": 4,
+                    "productsCount": 4
+                }
+            ]
+        },
+        "variantPrice": {
+            "buckets": [
+                {
+                    "val": "[*, 100]",
+                    "count": 18,
+                    "productsCount": 18
+                },
+                {
+                    "val": "[100, 250]",
+                    "count": 0
+                },
+                {
+                    "val": "[250, 500]",
+                    "count": 0
+                },
+                {
+                    "val": "[500, 1000]",
+                    "count": 0
+                },
+                {
+                    "val": "[1000, 2000]",
+                    "count": 0
+                },
+                {
+                    "val": "[2000, *]",
+                    "count": 0
+                }
+            ]
+        }
+    }
+}
+```
 ## Update Inventory Count
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/products/{token}`
+`POST https://storeapi.csomni.com/products/{token}`
 
 ### QUERY Parameters
 
@@ -713,11 +931,11 @@ curl --request GET \
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/products/{token} \
+  --url https://api.omnifront.cloudsnob.com/products/{token} \
   --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
+  --header 'postman-token: e0dee5b6-94b0-0dd3-f67d-b88804ec5b74' \
     --header 'token: 123'\
-  --header 'customerToken: cs_123456' \
+  --header 'customerToken: cs_DWCQeqvYAIeWYYzJ1MgAZbXUdUW76Xav4paw' \
   --data '{ "count" :3"  }'
 
 ```
