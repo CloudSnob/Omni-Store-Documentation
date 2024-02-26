@@ -492,8 +492,8 @@ Response:
 }
 ```
 
-## Process Payment 
-### Option 1: Including new billing card details
+## Process Quote
+### Option 1: Pay Now: Submit new payment card
 
 ### HTTP Request
 
@@ -519,7 +519,7 @@ curl --location --request POST 'https://storeapi.csomni.com//checkout/payment/{q
 }'
 ```
 
-### Option 2: Refference a saved payment card
+### Option 2: Pay Now: Refference a saved payment card
 
 ### HTTP Request
 
@@ -531,6 +531,27 @@ curl --location --request POST 'https://storeapi.csomni.com//checkout/payment/{q
 --header 'customerToken: cs_123'
 --data '{
     "cardToken": "cc_#########"
+}'
+```
+
+### Option 3: Pay Later: Process as PO
+
+### HTTP Request
+
+```shell
+curl --location --request POST 'https://storeapi.csomni.com//checkout/po/{quoteToken}' \
+--header 'token: site_123' \
+--header 'customerToken: cs_123'
+--data '{
+     "po": "123-P9ojd",
+    "billingName": "Lay & Lay Partners",
+    "billingAddress": "10 Branding Drive",
+    "billingCity": "Airmont",
+    "billingState": "NY",
+    "billingZip": "10952",
+    "billingCountry": "United States",
+    "billingPhone": "000000",
+    "orderNotePublic": ""
 }'
 ```
 
