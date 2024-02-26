@@ -4,7 +4,7 @@
 
 ### HTTP Request
 
-`POST https://adminapi.csomni.com/quotes`
+`POST https://storeapi.csomni.com/quotes`
 
 ### URL Parameters
 
@@ -15,7 +15,7 @@
 
 ```shell
 
-curl --location --request POST 'https://adminapidev.csomni.com/quotes' \
+curl --location --request POST 'https://storeapi.csomni.com/quotes' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123' \
 --header 'Content-Type: application/json' \
@@ -151,7 +151,7 @@ Response:
 
 ### HTTP Request
 
-`GET https://adminapidev.csomni.com/quotes`
+`GET https://storeapi.csomni.com/quotes`
 
 ### URL Parameters
 
@@ -162,7 +162,7 @@ Response:
 
 ```shell
 
-curl --location --request GET 'https://adminapi.csomni.com/quotes/' \
+curl --location --request GET 'https://storeapi.csomni.com/quotes/' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 
@@ -306,7 +306,7 @@ Response:
 
 ### HTTP Request
 
-`GET https://adminapi.csomni.com/quotes/[quoteToken]`
+`GET https://storeapi.csomni.com/quotes/[quoteToken]`
 
 ### URL Parameters
 
@@ -317,7 +317,7 @@ Response:
 | quoteToken(GET)   | Token of the Quote to retrieve.   |
 
 ```shell
-curl --location --request GET 'https://adminapidev.csomni.com/quotes/quote_bWFkhPpaL56P' \
+curl --location --request GET 'https://storeapidev.csomni.com/quotes/quote_bWFkhPpaL56P' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 ```
@@ -458,7 +458,7 @@ Response:
 
 ### HTTP Request
 
-`POST https://adminapi.csomni.com/quotes/shippingQuoteToken_123/approve-shipping`
+`POST https://storeapi.csomni.com/quotes/shippingQuoteToken_3yw8DHZYCYvk/approve-shipping`
 
 ### URL Parameters
 
@@ -472,7 +472,7 @@ Response:
 | approvedBy (POST)             | Customer Name who is approving quote                                  |
 
 ```shell
-curl --location --request POST 'http://azzyomnifrontendapi.com//quotes/shippingQuoteToken_3yw8DHZYCYvk/approve-shipping' \
+curl --location --request POST 'https://storeapi.csomni.com/quotes/shippingQuoteToken_3yw8DHZYCYvk/approve-shipping' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 --header 'Content-Type: application/json' \
@@ -492,241 +492,33 @@ Response:
 }
 ```
 
-## Quote Checkout | Step 1 - Checkout Review
+## Process Payment 
 
 ### HTTP Request
 
-`POST https://adminapi.csomni.com/checkout/review-checkout/quote_bWFkhPpaL56P`
-
-### URL Parameters
-
-| Parameter                     | Description                                                           |
-| -------------------------     | --------------------------------------------------------------------- |
-| token                         | site Token (header)                                                   |
-| customerToken                 | customer Token (header)                                               |
-| quoteToken(GET)               | Token of the Quote to retrieve.                                       |
-| addressToken (POST)           | address token                                                         |
-| shippingMethodId (POST)       | shiping Quote Token                                                   |
+`POST https://storeapi.csomni.com//checkout/payment/{quoteToken}`
 
 ```shell
-curl --location --request POST 'https://adminapi.csomni.com/checkout/review-checkout/quote_bWFkhPpaL56P' \
+curl --location --request POST 'https://storeapi.csomni.com//checkout/payment/{quoteToken}' \
 --header 'token: site_123' \
---header 'customerToken: cs_123' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "addressToken": "adrs_OaIIoAsl1eJVYIVxAO5n0ETE",
-    "quoteToken": "quote_bWFkhPpaL56P",
-    "shippingMethodId" : "shippingQuoteToken_3yw8DHZYCYvk"
-}
-```
-
-Response: 
-
-```json
-{
-    "id": 30921,
-    "cartToken": "quoteCart_9oIkF6fedNUOH6K8MBgHhmCV",
-    "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-    "couponCodes": null,
-    "addressToken": "",
-    "shippingMethod": "{\"id\":\"shippingQuoteToken_ILwH778I1HNj\",\"quote_shippingQuoteToken\":\"shippingQuoteToken_ILwH778I1HNj\",\"quoteToken\":\"quote_bWFkhPpaL56P\",\"carrier\":\"TCS\",\"methodName\":\"TCS\",\"origRate\":\"\",\"rate\":\"0.00\",\"deliveryDateTime\":\"\",\"deliveryDays\":\"2\",\"description\":\"\",\"approved\":1,\"approvedBy\":null}",
-    "shippingMethodId": "shippingQuoteToken_3yw8DHZYCYvk",
-    "shippingAddressLabel": "",
-    "shippingAddress": {
-        "quote_shippingQuoteToken": "shippingQuoteToken_3yw8DHZYCYvk",
-        "carrier": "Fdex",
-        "methodName": "Fdex",
-        "origRate": "",
-        "rate": "50.00",
-        "deliveryDateTime": "2023-10-29T12:00:00.000Z",
-        "deliveryDays": "1",
-        "description": "",
-        "approved": 0,
-        "approvedBy": null
-    },
-    "contactEmail": "awais+111t@evelt.com",
-    "contactPhone": "123456789",
-    "shippingMethodsJson": [
-        {
-            "quote_shippingQuoteToken": "shippingQuoteToken_ILwH778I1HNj",
-            "carrier": "TCS",
-            "methodName": "TCS",
-            "origRate": "",
-            "rate": "0.00",
-            "deliveryDateTime": "",
-            "deliveryDays": "2",
-            "description": "",
-            "approved": 0,
-            "approvedBy": null
-        },
-        {
-            "quote_shippingQuoteToken": "shippingQuoteToken_3yw8DHZYCYvk",
-            "carrier": "Fdex",
-            "methodName": "Fdex",
-            "origRate": "",
-            "rate": "50.00",
-            "deliveryDateTime": "2023-10-29T12:00:00.000Z",
-            "deliveryDays": "1",
-            "description": "",
-            "approved": 0,
-            "approvedBy": null
-        }
-    ],
-    "contactFirstName": "Awais",
-    "contactLastName": "Zafar",
-    "companyName": "STYLE",
-    "createdAt": "2023-11-08 16:11:30",
-    "editedAt": "2023-11-08 16:11:30",
-    "pricing": {
-        "productsTotal": 74.85,
-        "origTotal": 74.85,
-        "subTotal": 74.85,
-        "totalCouponDiscount": 0,
-        "totalAfterCoupon": 74.85,
-        "shipping": 50,
-        "tax": 0.75,
-        "total": 125.75
-    },
-    "couponCodesInfo": []
-}
-```
-
-## Quote Checkout | Step 2 - Apply Coupon
-
-### HTTP Request
-
-`POST https://adminapi.csomni.com/checkout/applycoupon/quote_bWFkhPpaL56P`
-
-### URL Parameters
-
-| Parameter                     | Description                                                           |
-| -------------------------     | --------------------------------------------------------------------- |
-| token                         | site Token (header)                                                   |
-| customerToken                 | customer Token (header)                                               |
-| quoteToken(GET)               | Token of the Quote to retrieve.                                       |
-| couponCode (POST)             | couponCode                                                            |
-
-```shell
-curl --location --request POST 'https://adminapidev.csomni.com/checkout/applycoupon/quote_bWFkhPpaL56P' \
---header 'token: site_123' \
---header 'customerToken: cs_123' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "couponCode": "caltmann"
-}'
-```
-
-Response: 
-
-```json
-{
-    "id": 30921,
-    "cartToken": "quoteCart_9oIkF6fedNUOH6K8MBgHhmCV",
-    "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-    "couponCodes": [
-        "caltmann"
-    ],
-    "addressToken": "",
-    "shippingMethod": "{\"id\":\"shippingQuoteToken_ILwH778I1HNj\",\"quote_shippingQuoteToken\":\"shippingQuoteToken_ILwH778I1HNj\",\"quoteToken\":\"quote_bWFkhPpaL56P\",\"carrier\":\"TCS\",\"methodName\":\"TCS\",\"origRate\":\"\",\"rate\":\"0.00\",\"deliveryDateTime\":\"\",\"deliveryDays\":\"2\",\"description\":\"\",\"approved\":1,\"approvedBy\":null}",
-    "shippingMethodId": "shippingQuoteToken_3yw8DHZYCYvk",
-    "shippingAddressLabel": "",
-    "shippingAddress": {
-        "quote_shippingQuoteToken": "shippingQuoteToken_3yw8DHZYCYvk",
-        "carrier": "Fdex",
-        "methodName": "Fdex",
-        "origRate": "",
-        "rate": "50.00",
-        "deliveryDateTime": "2023-10-29T12:00:00.000Z",
-        "deliveryDays": "1",
-        "description": "",
-        "approved": 0,
-        "approvedBy": null
-    },
-    "contactEmail": "awais+111t@evelt.com",
-    "contactPhone": "123456789",
-    "shippingMethodsJson": [
-        {
-            "quote_shippingQuoteToken": "shippingQuoteToken_ILwH778I1HNj",
-            "carrier": "TCS",
-            "methodName": "TCS",
-            "origRate": "",
-            "rate": "0.00",
-            "deliveryDateTime": "",
-            "deliveryDays": "2",
-            "description": "",
-            "approved": 0,
-            "approvedBy": null
-        },
-        {
-            "quote_shippingQuoteToken": "shippingQuoteToken_3yw8DHZYCYvk",
-            "carrier": "Fdex",
-            "methodName": "Fdex",
-            "origRate": "",
-            "rate": "50.00",
-            "deliveryDateTime": "2023-10-29T12:00:00.000Z",
-            "deliveryDays": "1",
-            "description": "",
-            "approved": 0,
-            "approvedBy": null
-        }
-    ],
-    "contactFirstName": "Awais",
-    "contactLastName": "Zafar",
-    "companyName": "STYLE",
-    "createdAt": "2023-11-08 16:11:30",
-    "editedAt": "2023-11-08 16:11:30",
-    "pricing": {
-        "productsTotal": 74.85,
-        "origTotal": 74.85,
-        "subTotal": 74.85,
-        "totalCouponDiscount": 74.78,
-        "totalAfterCoupon": 0.07,
-        "shipping": 50,
-        "tax": 0,
-        "total": 50.07
-    },
-    "couponCodesInfo": [
-        {
-            "name": "caltmann",
-            "msg": "Successfully applied",
-            "discountAmount": 74.78,
-            "status": "valid"
-        }
-    ]
-}
-```
-
-
-
-## Quote Checkout | Step 3 - Pay by CC
-
-### HTTP Request
-
-`POST https://adminapi.csomni.com/checkout/payment/quote_bWFkhPpaL56P`
-
-```shell
-curl --location --request POST 'https://adminapi.csomni.com/checkout/payment/quote_bWFkhPpaL56P' \
---header 'token: site_123' \
---header 'customerToken: cs_123' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "nameOnCard": "name on card",
-    "cardNumbers": "1233213213232321",
-    "expMonth": "01",
-    "expYear": "26",
-    "cvv": "732",
-    "billingAddress": "10 Eros Drive",
+--header 'customerToken: cs_123'
+--data '{
+    "nameOnCard": "Jay Kuptez",
+    "cardNumbers": "000000000000000000",
+    "expMonth": "00",
+    "expYear": "00",
+    "cvv": "000",
+    "billingAddress": "25 Eros Gardens",
     "billingCity": "Airmont",
-    "billingState": "NY",
-    "billingZip": "10952",
+    "billingState": "NJ",
+    "billingZip": "1234567",
     "billingCountry": "United States",
     "billingPhone": "000000",
-    "orderNotePublic": "this is a public note I wrote and submited through payment checkout api call",
     "po": "1234"
 }'
 ```
 
-Response: 
+Response:
 
 ```json
 {
@@ -734,35 +526,35 @@ Response:
     "order": {
         "orderProducts": [
             {
-                "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "cartProdToken": "cp_G7E7KZdkrcXOVHpdlx5SBCPN",
-                "cartProdQuantity": 55,
-                "prodToken": "vrnt_80zIBJ85QSyj7n04",
-                "created_at": "2023-11-08 16:53:54",
-                "updated_at": "2023-11-08 16:53:54",
+                "cartToken": "cart_cQyaclM8aCNwyefF7SW0OPhd",
+                "cartProdToken": "cp_ereMDhbYG4xZH8BGmXrr1EXn",
+                "cartProdQuantity": 5,
+                "addOnToProdToken": "",
+                "addOnProdTokens": null,
+                "prodToken": "vrnt_K15iWEvzzrxoDnZZ",
                 "deleted": 0,
-                "deleted_at": null,
+                "createdAt": "2024-02-26 11:05:37",
+                "editedAt": "2024-02-26 11:05:37",
                 "companyToken": "comp_fxJJZhdcNMfRF9m",
-                "siteToken": "site_63Vdsmr9Qsq0",
-                "quoteToken": "quote_bWFkhPpaL56P",
-                "quoteCartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-                "addOnProdTokens": "",
+                "siteToken": "site_###################",
+                "customerToken": "cs_X8LvwuKFfxOwnKrVZM7YNuaMwxsJNdLYpv4m",
+                "cartCreated": null,
+                "cartLastTouched": null,
                 "prodStaticCollections": [],
                 "specialValues": [],
                 "product": {
-                    "prodToken": "prod_MdSn0NBeds35AnsE",
-                    "variantToken": "vrnt_80zIBJ85QSyj7n04",
+                    "prodToken": "prod_tBukFGyCun5nBthb",
+                    "variantToken": "vrnt_K15iWEvzzrxoDnZZ",
                     "companyToken": "comp_fxJJZhdcNMfRF9m",
-                    "variantName": "Solomon",
+                    "variantName": "Costa",
                     "variantImage": [],
                     "variantImages": [],
                     "variantWeight": "1",
                     "variantDimW": "",
                     "variantDimL": "",
                     "variantDimH": "",
-                    "variantUpc": "KZ475588342L48902468",
-                    "variantNumber": "BE35711026406049",
+                    "variantUpc": "",
+                    "variantNumber": "XSS v",
                     "manufacturerPartNumber": "",
                     "variantPrice": 0.1,
                     "variantMapPrice": 0,
@@ -782,575 +574,120 @@ Response:
                     "variantAllowCheckout": 0,
                     "variantCheckInvetory": 0,
                     "variantTrackInventory": 0,
-                    "inventoryCount": -91582,
+                    "inventoryCount": 84,
                     "shippingProduct": 0,
                     "variantMetaTitle": "",
                     "variantMetaDescription": "",
                     "variantBrand": "",
                     "sortOrder": 2,
-                    "dateCreated": "1675165175",
+                    "dateCreated": "1708595142",
                     "deleted": 0,
                     "backOrderWarning": 0,
-                    "createdAt": "2023-01-31 11:39:35",
-                    "editedAt": "2023-10-29 19:45:12",
+                    "createdAt": "2024-02-22 09:45:42",
+                    "editedAt": "2024-02-26 10:44:23",
                     "variantInStock": true,
-                    "prodName": "Generic Rubber Hat primary",
+                    "prodName": "Licensed Granite KeyboardBall",
                     "prodImage": {
-                        "file": "vel-sint-qui"
+                        "file": ""
                     }
                 },
                 "addOnProducts": [],
                 "pricing": {
-                    "total": 5.5
+                    "total": 0.5
                 },
                 "shipping": {
-                    "totalWeight": 55
-                }
-            },
-            {
-                "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "cartProdToken": "cp_pZs6BC43xbHCSE0JUHB8RskT",
-                "cartProdQuantity": 55,
-                "prodToken": "vrnt_80zIBJ85QSyj7n04",
-                "created_at": "2023-11-08 16:53:54",
-                "updated_at": "2023-11-08 16:53:54",
-                "deleted": 0,
-                "deleted_at": null,
-                "companyToken": "comp_fxJJZhdcNMfRF9m",
-                "siteToken": "site_63Vdsmr9Qsq0",
-                "quoteToken": "quote_bWFkhPpaL56P",
-                "quoteCartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-                "addOnProdTokens": "",
-                "prodStaticCollections": [],
-                "specialValues": [],
-                "product": {
-                    "prodToken": "prod_MdSn0NBeds35AnsE",
-                    "variantToken": "vrnt_80zIBJ85QSyj7n04",
-                    "companyToken": "comp_fxJJZhdcNMfRF9m",
-                    "variantName": "Solomon",
-                    "variantImage": [],
-                    "variantImages": [],
-                    "variantWeight": "1",
-                    "variantDimW": "",
-                    "variantDimL": "",
-                    "variantDimH": "",
-                    "variantUpc": "KZ475588342L48902468",
-                    "variantNumber": "BE35711026406049",
-                    "manufacturerPartNumber": "",
-                    "variantPrice": 0.1,
-                    "variantMapPrice": 0,
-                    "variantMsrpPrice": 0,
-                    "variantDisplayPrice": 0,
-                    "variantDescription": "",
-                    "variantAlert": "",
-                    "variantLowlevel": "",
-                    "variantSlug": "",
-                    "variantVisible": 1,
-                    "taxType": "",
-                    "hideGoogleData": 0,
-                    "google_variantCategory": null,
-                    "google_variantType": null,
-                    "google_variantCondition": null,
-                    "taxable": 1,
-                    "variantAllowCheckout": 0,
-                    "variantCheckInvetory": 0,
-                    "variantTrackInventory": 0,
-                    "inventoryCount": -91582,
-                    "shippingProduct": 0,
-                    "variantMetaTitle": "",
-                    "variantMetaDescription": "",
-                    "variantBrand": "",
-                    "sortOrder": 2,
-                    "dateCreated": "1675165175",
-                    "deleted": 0,
-                    "backOrderWarning": 0,
-                    "createdAt": "2023-01-31 11:39:35",
-                    "editedAt": "2023-10-29 19:45:12",
-                    "variantInStock": true,
-                    "prodName": "Generic Rubber Hat primary",
-                    "prodImage": {
-                        "file": "vel-sint-qui"
-                    }
-                },
-                "addOnProducts": [],
-                "pricing": {
-                    "total": 5.5
-                },
-                "shipping": {
-                    "totalWeight": 55
-                }
-            },
-            {
-                "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "cartProdToken": "cp_uiRR3Dn7EVK69Tq3d2zzhMAo",
-                "cartProdQuantity": 55,
-                "prodToken": "vrnt_80zIBJ85QSyj7n04",
-                "created_at": "2023-11-08 16:53:54",
-                "updated_at": "2023-11-08 16:53:54",
-                "deleted": 0,
-                "deleted_at": null,
-                "companyToken": "comp_fxJJZhdcNMfRF9m",
-                "siteToken": "site_63Vdsmr9Qsq0",
-                "quoteToken": "quote_bWFkhPpaL56P",
-                "quoteCartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-                "addOnProdTokens": "",
-                "prodStaticCollections": [],
-                "specialValues": [],
-                "product": {
-                    "prodToken": "prod_MdSn0NBeds35AnsE",
-                    "variantToken": "vrnt_80zIBJ85QSyj7n04",
-                    "companyToken": "comp_fxJJZhdcNMfRF9m",
-                    "variantName": "Solomon",
-                    "variantImage": [],
-                    "variantImages": [],
-                    "variantWeight": "1",
-                    "variantDimW": "",
-                    "variantDimL": "",
-                    "variantDimH": "",
-                    "variantUpc": "KZ475588342L48902468",
-                    "variantNumber": "BE35711026406049",
-                    "manufacturerPartNumber": "",
-                    "variantPrice": 0.1,
-                    "variantMapPrice": 0,
-                    "variantMsrpPrice": 0,
-                    "variantDisplayPrice": 0,
-                    "variantDescription": "",
-                    "variantAlert": "",
-                    "variantLowlevel": "",
-                    "variantSlug": "",
-                    "variantVisible": 1,
-                    "taxType": "",
-                    "hideGoogleData": 0,
-                    "google_variantCategory": null,
-                    "google_variantType": null,
-                    "google_variantCondition": null,
-                    "taxable": 1,
-                    "variantAllowCheckout": 0,
-                    "variantCheckInvetory": 0,
-                    "variantTrackInventory": 0,
-                    "inventoryCount": -91582,
-                    "shippingProduct": 0,
-                    "variantMetaTitle": "",
-                    "variantMetaDescription": "",
-                    "variantBrand": "",
-                    "sortOrder": 2,
-                    "dateCreated": "1675165175",
-                    "deleted": 0,
-                    "backOrderWarning": 0,
-                    "createdAt": "2023-01-31 11:39:35",
-                    "editedAt": "2023-10-29 19:45:12",
-                    "variantInStock": true,
-                    "prodName": "Generic Rubber Hat primary",
-                    "prodImage": {
-                        "file": "vel-sint-qui"
-                    }
-                },
-                "addOnProducts": [],
-                "pricing": {
-                    "total": 5.5
-                },
-                "shipping": {
-                    "totalWeight": 55
+                    "totalWeight": 5
                 }
             }
         ],
-        "orderEmail": "awais+111t@evelt.com",
-        "orderShippingMethod": "{\"id\":\"shippingQuoteToken_ILwH778I1HNj\",\"quote_shippingQuoteToken\":\"shippingQuoteToken_ILwH778I1HNj\",\"quoteToken\":\"quote_bWFkhPpaL56P\",\"carrier\":\"TCS\",\"methodName\":\"TCS\",\"origRate\":\"\",\"rate\":\"0.00\",\"deliveryDateTime\":\"\",\"deliveryDays\":\"2\",\"description\":\"\",\"approved\":1,\"approvedBy\":null}",
-        "orderTotal": 0.07,
-        "orderTax": 0,
-        "orderTotalPaid": "0.07",
-        "orderShipping": 0,
-        "orderWeight": 165,
-        "orderShippingAddress": "{\"address\":\"12354 Main Street\",\"address2\":\"dont ship\",\"city\":\"Monsey\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":null}",
+        "orderEmail": "saraph@los.com",
+        "orderShippingMethod": {
+            "quoteToken": "quote_ce8VcOopzQBt",
+            "carrier": "UPS",
+            "methodName": "Next Day Air",
+            "origRate": null,
+            "rate": "0.01",
+            "deliveryDateTime": null,
+            "deliveryDays": "1",
+            "description": null,
+            "approved": 1,
+            "approvedBy": "Kim Casper",
+            "id": "shippingQuoteToken_nkZNemaRZbie"
+        },
+        "orderTotal": 0.56,
+        "orderTax": 0.05,
+        "orderTotalPaid": "0.56",
+        "orderShipping": "0.01",
+        "orderWeight": 5,
+        "orderShippingAddress": "{\"address\":\"10 high\",\"address2\":\"Unit 6\",\"city\":\"Port Jorge\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"United States\",\"phone\":\"797-530-6639\",\"mobile\":\"\",\"specialValues\":[]}",
         "orderPaymentMethod": {
             "xResult": "A",
             "xStatus": "Approved",
             "xError": "",
             "xErrorCode": "00000",
-            "xRefNum": "1181967971",
+            "xRefNum": "10146212864",
             "xExp": "0126",
-            "xAuthCode": "56263A",
-            "xBatch": "5150840",
+            "xAuthCode": "46613A",
+            "xBatch": "5152789",
             "xAvsResultCode": "NNN",
             "xAvsResult": "Address: No Match & 5 Digit Zip: No Match",
             "xCvvResultCode": "",
             "xCvvResult": "No CVV data available",
-            "xAuthAmount": "0.07",
-            "xMaskedCardNumber": "4xxxxxxxxxxx2438",
+            "xAuthAmount": "0.56",
+            "xMaskedCardNumber": "4xxxxxxxxxxx7896",
             "xCardType": "Visa",
-            "xName": "Jay Klein",
-            "xToken": "gn7947h075pgh5h8g5743609p6g6552p",
+            "xName": "Jay Klark",
+            "xToken": "814147871n898568hm1q2g8985qp67gm",
             "xMID": "xxxxxxxxxx9999",
             "xTID": "xxxxx6789",
             "xCurrency": "USD",
-            "xDate": "11/8/2023 7:19:43 AM",
+            "xDate": "2/26/2024 6:05:43 AM",
             "xEntryMethod": "Keyed",
-            "cardToken": "cc_ph4FGz1wiFQx"
+            "cardToken": "cc_#########"
         },
-        "contactLastName": "Zafar",
-        "contactFirstName": "Awais",
-        "orderProdQuantity": 165,
-        "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"1181967971\",\"xExp\":\"0126\",\"xAuthCode\":\"56263A\",\"xBatch\":\"5150840\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.07\",\"xMaskedCardNumber\":\"4xxxxxxxxxxx2438\",\"xCardType\":\"Visa\",\"xName\":\"Jay Klein\",\"xToken\":\"gn7947h075pgh5h8g5743609p6g6552p\",\"xMID\":\"xxxxxxxxxx9999\",\"xTID\":\"xxxxx6789\",\"xCurrency\":\"USD\",\"xDate\":\"11\\/8\\/2023 7:19:43 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_ph4FGz1wiFQx\"}",
-        "cardToken": "cc_ph4FGz1wiFQx",
-        "orderIP": "127.0.0.1",
-        "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
+        "contactLastName": "Doe",
+        "contactFirstName": "Sharon",
+        "orderProdQuantity": 5,
+        "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"10146212864\",\"xExp\":\"0126\",\"xAuthCode\":\"46613A\",\"xBatch\":\"5150840\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.56\",\"xMaskedCardNumber\":\"#xxxxxxxxxxx####\",\"xCardType\":\"Visa\",\"xName\":\"Jay Klark\",\"xToken\":\"814147871n898568hm1q2g89857gm\",\"xMID\":\"xxxxxxxxxx9979\",\"xTID\":\"xxxxx6799\",\"xCurrency\":\"USD\",\"xDate\":\"2\\/26\\/2024 6:05:43 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_#######\"}",
+        "cardToken": "cc_2NIigpQQnrpX",
+        "orderIP": "81.151.212.137",
+        "cartToken": "cart_cQyaclM8aCNwyefF7SW0OPhd",
         "PO": "1234",
-        "BillToName": "Jay Klein",
+        "BillToName": "Jay Klark",
         "BillToAddress": "{\"name\":\"Jay Klein\",\"address\":\"10 Eros Drive\",\"address2\":\"\",\"zip\":\"10952\",\"city\":\"Airmont\",\"state\":\"NY\",\"country\":\"United States\",\"mobile\":\"\",\"phone\":\"000000\"}",
         "orderNotePublic": "this is a public note I wrote and submited through payment checkout api call",
-        "quoteToken": "quote_bWFkhPpaL56P",
-        "siteToken": "site_63Vdsmr9Qsq0",
-        "companyToken": "comp_fxJJZhdcNMfRF9m",
-        "customerToken": "cust_l513Z8XmSeXRy94tzGaQWfLQ",
-        "orderToken": "ordr_O2tCzcOrPNJZMXLqhjXZp7JJ",
-        "orderNumber": 100000255,
+        "quoteToken": "quote_ce8VcOopzQBt",
+        "siteToken": "site_###############",
+        "companyToken": "comp_#############",
+        "customerToken": "cust_#################",
+        "orderToken": "ordr_###############",
+        "orderNumber": 10005360,
         "orderStatus": "os_awaiting_fulfillment",
-        "checkoutObject": "{\"id\":30921,\"cartToken\":\"quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6\",\"customerToken\":\"cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld\",\"couponCodes\":[\"caltmann\"],\"addressToken\":\"\",\"shippingMethod\":\"\",\"shippingMethodId\":\"\",\"shippingAddressLabel\":\"\",\"shippingAddress\":{\"address\":\"12354 Main Street\",\"address2\":\"dont ship\",\"city\":\"Monsey\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":null},\"contactEmail\":\"awais+111t@evelt.com\",\"contactPhone\":\"123456789\",\"shippingMethodsJson\":{\"error\":\"Missing previous steps\"},\"contactFirstName\":\"Awais\",\"contactLastName\":\"Zafar\",\"companyName\":\"STYLE\",\"createdAt\":\"2023-11-08 16:11:30\",\"editedAt\":\"2023-11-08 17:20:11\",\"pricing\":{\"productsTotal\":74.85,\"origTotal\":74.85,\"subTotal\":74.85,\"totalCouponDiscount\":74.78,\"totalAfterCoupon\":0.07,\"shipping\":0,\"tax\":0,\"total\":0.07},\"couponCodesInfo\":[{\"name\":\"caltmann\",\"msg\":\"Successfully applied\",\"discountAmount\":74.78,\"status\":\"valid\"}]}",
-        "customerObject": "{\"customerFirstName\":\"Awais\",\"customerLastName\":\"Zafar\",\"customerEmail\":\"awais+111t@evelt.com\",\"customerPhone\":\"123456789\",\"customerCompanyName\":\"STYLE\",\"source\":\"store\",\"customerStatus\":\"cs_approved\",\"customerTypes\":null,\"customerGroups\":null,\"isLoggedIn\":1,\"customerDocs\":null,\"taxExempt\":null,\"taxExemptID\":null,\"createdAt\":\"2023-10-28 11:43:26\"}",
-        "dateCreated": 1699446014,
+        "checkoutObject": "{\"id\":32484,\"cartToken\":\"cart_cQyaclM8aCNwyefF7SW0OPhd\",\"customerToken\":\"cs_X8LvwuKFfxOwnKrVZM7YNuaMwxsJNdLYpv4m\",\"couponCodes\":null,\"addressToken\":\"adrs_0RTQlF3mGAUYPkwxCb7D8ucV\",\"shippingMethod\":{\"quoteToken\":\"quote_ce8VcOopzQBt\",\"carrier\":\"UPS\",\"methodName\":\"Next Day Air\",\"origRate\":null,\"rate\":\"0.01\",\"deliveryDateTime\":null,\"deliveryDays\":\"1\",\"description\":null,\"approved\":1,\"approvedBy\":\"Kim Casper\",\"id\":\"shippingQuoteToken_nkZNemaRZbie\"},\"shippingMethodId\":\"shippingQuoteToken_nkZNemaRZbie\",\"shippingAddressLabel\":null,\"shippingAddress\":{\"address\":\"10 high\",\"address2\":\"dont ship\",\"city\":\"Port Jorge\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"United States\",\"phone\":\"797-530-6639\",\"mobile\":\"\",\"specialValues\":[]},\"contactEmail\":\"chayelle+quoteDetails@evelt.com\",\"contactPhone\":\"987657489\",\"shippingMethodsJson\":[{\"quoteToken\":\"quote_ce8VcOopzQBt\",\"carrier\":\"UPS\",\"methodName\":\"Next Day Air\",\"origRate\":null,\"rate\":\"0.01\",\"deliveryDateTime\":null,\"deliveryDays\":\"1\",\"description\":null,\"approved\":1,\"approvedBy\":\"Kim Casper\",\"id\":\"shippingQuoteToken_nkZNemaRZbie\"},{\"quoteToken\":\"quote_ce8VcOopzQBt\",\"carrier\":\"Fedex\",\"methodName\":\"Ground Express\",\"origRate\":null,\"rate\":\"0.02\",\"deliveryDateTime\":null,\"deliveryDays\":\"2\",\"description\":null,\"approved\":0,\"approvedBy\":null,\"id\":\"shippingQuoteToken_pXx6JcI6Kw5t\"}],\"contactFirstName\":\"Sharon\",\"contactLastName\":\"Doe\",\"companyName\":\"Techo\",\"createdAt\":\"2024-02-26 11:05:38\",\"editedAt\":\"2024-02-26 11:05:38\",\"pricing\":{\"productsTotal\":0.5,\"origTotal\":0.5,\"subTotal\":0.5,\"shipping\":\"0.01\",\"tax\":0.05,\"totalCouponDiscount\":0,\"totalAfterCoupon\":0.56,\"total\":0.56},\"couponCodesInfo\":[]}",
+        "customerObject": "{\"customerFirstName\":\"Clare\",\"customerLastName\":\"West\",\"customerEmail\":\"weat@los.com\",\"customerPhone\":\"\",\"customerCompanyName\":\"Beahan, Herman and Ferry\",\"customerStatus\":\"cs_approved\",\"customerTypes\":null,\"customerGroups\":null,\"isLoggedIn\":1,\"customerDocs\":\"\",\"taxExempt\":0,\"taxExemptID\":null,\"createdAt\":\"2024-02-26 10:41:52\"}",
+        "dateCreated": 1708945545,
         "statusTermsData": {
             "processingStatus": "Processing",
             "shippingStatus": "Pending",
             "paymentStatus": "Closed",
             "orderStatus": "Open",
-            "paymentTerms": "Website Payment Transaction",
-            "postPaymentStatus": " NULL"
+            "paymentTerms": "Website Payment",
+            "postPaymentStatus": "NULL"
         }
     }
 }
 ```
 
-## Quote Checkout | Step 3 - Invoice Quote
 
-### HTTP Request
-
-`POST https://adminapi.csomni.com/checkout/po/quote_bWFkhPpaL56P`
-
-
-```shell
-curl --location --request POST 'https://adminapi.csomni.com/checkout/po/quote_bWFkhPpaL56P' \
---header 'token: site_123' \
---header 'customerToken: cs_123' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "po": "123-P9ojd",
-    "billingName": "431 Systems LLC",
-    "billingAddress": "10 Eros Drive",
-    "billingCity": "Airmont",
-    "billingState": "NY",
-    "billingZip": "10952",
-    "billingCountry": "United States",
-    "billingPhone": "000000",
-    "orderNotePublic": "order paid through PO pathway"
-}'
-```
-
-Response: 
-
-```json
-{
-    "status": "success",
-    "order": {
-        "orderProducts": [
-            {
-                "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "cartProdToken": "cp_G7E7KZdkrcXOVHpdlx5SBCPN",
-                "cartProdQuantity": 55,
-                "prodToken": "vrnt_80zIBJ85QSyj7n04",
-                "created_at": "2023-11-08 16:53:54",
-                "updated_at": "2023-11-08 16:53:54",
-                "deleted": 0,
-                "deleted_at": null,
-                "companyToken": "comp_fxJJZhdcNMfRF9m",
-                "siteToken": "site_63Vdsmr9Qsq0",
-                "quoteToken": "quote_bWFkhPpaL56P",
-                "quoteCartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-                "addOnProdTokens": "",
-                "prodStaticCollections": [],
-                "specialValues": [],
-                "product": {
-                    "prodToken": "prod_MdSn0NBeds35AnsE",
-                    "variantToken": "vrnt_80zIBJ85QSyj7n04",
-                    "companyToken": "comp_fxJJZhdcNMfRF9m",
-                    "variantName": "Solomon",
-                    "variantImage": [],
-                    "variantImages": [],
-                    "variantWeight": "1",
-                    "variantDimW": "",
-                    "variantDimL": "",
-                    "variantDimH": "",
-                    "variantUpc": "KZ475588342L48902468",
-                    "variantNumber": "BE35711026406049",
-                    "manufacturerPartNumber": "",
-                    "variantPrice": 0.1,
-                    "variantMapPrice": 0,
-                    "variantMsrpPrice": 0,
-                    "variantDisplayPrice": 0,
-                    "variantDescription": "",
-                    "variantAlert": "",
-                    "variantLowlevel": "",
-                    "variantSlug": "",
-                    "variantVisible": 1,
-                    "taxType": "",
-                    "hideGoogleData": 0,
-                    "google_variantCategory": null,
-                    "google_variantType": null,
-                    "google_variantCondition": null,
-                    "taxable": 1,
-                    "variantAllowCheckout": 0,
-                    "variantCheckInvetory": 0,
-                    "variantTrackInventory": 0,
-                    "inventoryCount": -91582,
-                    "shippingProduct": 0,
-                    "variantMetaTitle": "",
-                    "variantMetaDescription": "",
-                    "variantBrand": "",
-                    "sortOrder": 2,
-                    "dateCreated": "1675165175",
-                    "deleted": 0,
-                    "backOrderWarning": 0,
-                    "createdAt": "2023-01-31 11:39:35",
-                    "editedAt": "2023-10-29 19:45:12",
-                    "variantInStock": true,
-                    "prodName": "Generic Rubber Hat primary",
-                    "prodImage": {
-                        "file": "vel-sint-qui"
-                    }
-                },
-                "addOnProducts": [],
-                "pricing": {
-                    "total": 5.5
-                },
-                "shipping": {
-                    "totalWeight": 55
-                }
-            },
-            {
-                "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "cartProdToken": "cp_pZs6BC43xbHCSE0JUHB8RskT",
-                "cartProdQuantity": 55,
-                "prodToken": "vrnt_80zIBJ85QSyj7n04",
-                "created_at": "2023-11-08 16:53:54",
-                "updated_at": "2023-11-08 16:53:54",
-                "deleted": 0,
-                "deleted_at": null,
-                "companyToken": "comp_fxJJZhdcNMfRF9m",
-                "siteToken": "site_63Vdsmr9Qsq0",
-                "quoteToken": "quote_bWFkhPpaL56P",
-                "quoteCartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-                "addOnProdTokens": "",
-                "prodStaticCollections": [],
-                "specialValues": [],
-                "product": {
-                    "prodToken": "prod_MdSn0NBeds35AnsE",
-                    "variantToken": "vrnt_80zIBJ85QSyj7n04",
-                    "companyToken": "comp_fxJJZhdcNMfRF9m",
-                    "variantName": "Solomon",
-                    "variantImage": [],
-                    "variantImages": [],
-                    "variantWeight": "1",
-                    "variantDimW": "",
-                    "variantDimL": "",
-                    "variantDimH": "",
-                    "variantUpc": "KZ475588342L48902468",
-                    "variantNumber": "BE35711026406049",
-                    "manufacturerPartNumber": "",
-                    "variantPrice": 0.1,
-                    "variantMapPrice": 0,
-                    "variantMsrpPrice": 0,
-                    "variantDisplayPrice": 0,
-                    "variantDescription": "",
-                    "variantAlert": "",
-                    "variantLowlevel": "",
-                    "variantSlug": "",
-                    "variantVisible": 1,
-                    "taxType": "",
-                    "hideGoogleData": 0,
-                    "google_variantCategory": null,
-                    "google_variantType": null,
-                    "google_variantCondition": null,
-                    "taxable": 1,
-                    "variantAllowCheckout": 0,
-                    "variantCheckInvetory": 0,
-                    "variantTrackInventory": 0,
-                    "inventoryCount": -91582,
-                    "shippingProduct": 0,
-                    "variantMetaTitle": "",
-                    "variantMetaDescription": "",
-                    "variantBrand": "",
-                    "sortOrder": 2,
-                    "dateCreated": "1675165175",
-                    "deleted": 0,
-                    "backOrderWarning": 0,
-                    "createdAt": "2023-01-31 11:39:35",
-                    "editedAt": "2023-10-29 19:45:12",
-                    "variantInStock": true,
-                    "prodName": "Generic Rubber Hat primary",
-                    "prodImage": {
-                        "file": "vel-sint-qui"
-                    }
-                },
-                "addOnProducts": [],
-                "pricing": {
-                    "total": 5.5
-                },
-                "shipping": {
-                    "totalWeight": 55
-                }
-            },
-            {
-                "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "cartProdToken": "cp_uiRR3Dn7EVK69Tq3d2zzhMAo",
-                "cartProdQuantity": 55,
-                "prodToken": "vrnt_80zIBJ85QSyj7n04",
-                "created_at": "2023-11-08 16:53:54",
-                "updated_at": "2023-11-08 16:53:54",
-                "deleted": 0,
-                "deleted_at": null,
-                "companyToken": "comp_fxJJZhdcNMfRF9m",
-                "siteToken": "site_63Vdsmr9Qsq0",
-                "quoteToken": "quote_bWFkhPpaL56P",
-                "quoteCartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-                "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-                "addOnProdTokens": "",
-                "prodStaticCollections": [],
-                "specialValues": [],
-                "product": {
-                    "prodToken": "prod_MdSn0NBeds35AnsE",
-                    "variantToken": "vrnt_80zIBJ85QSyj7n04",
-                    "companyToken": "comp_fxJJZhdcNMfRF9m",
-                    "variantName": "Solomon",
-                    "variantImage": [],
-                    "variantImages": [],
-                    "variantWeight": "1",
-                    "variantDimW": "",
-                    "variantDimL": "",
-                    "variantDimH": "",
-                    "variantUpc": "KZ475588342L48902468",
-                    "variantNumber": "BE35711026406049",
-                    "manufacturerPartNumber": "",
-                    "variantPrice": 0.1,
-                    "variantMapPrice": 0,
-                    "variantMsrpPrice": 0,
-                    "variantDisplayPrice": 0,
-                    "variantDescription": "",
-                    "variantAlert": "",
-                    "variantLowlevel": "",
-                    "variantSlug": "",
-                    "variantVisible": 1,
-                    "taxType": "",
-                    "hideGoogleData": 0,
-                    "google_variantCategory": null,
-                    "google_variantType": null,
-                    "google_variantCondition": null,
-                    "taxable": 1,
-                    "variantAllowCheckout": 0,
-                    "variantCheckInvetory": 0,
-                    "variantTrackInventory": 0,
-                    "inventoryCount": -91582,
-                    "shippingProduct": 0,
-                    "variantMetaTitle": "",
-                    "variantMetaDescription": "",
-                    "variantBrand": "",
-                    "sortOrder": 2,
-                    "dateCreated": "1675165175",
-                    "deleted": 0,
-                    "backOrderWarning": 0,
-                    "createdAt": "2023-01-31 11:39:35",
-                    "editedAt": "2023-10-29 19:45:12",
-                    "variantInStock": true,
-                    "prodName": "Generic Rubber Hat primary",
-                    "prodImage": {
-                        "file": "vel-sint-qui"
-                    }
-                },
-                "addOnProducts": [],
-                "pricing": {
-                    "total": 5.5
-                },
-                "shipping": {
-                    "totalWeight": 55
-                }
-            }
-        ],
-        "orderEmail": "awais+111t@evelt.com",
-        "orderShippingMethod": "{\"id\":\"shippingQuoteToken_ILwH778I1HNj\",\"quote_shippingQuoteToken\":\"shippingQuoteToken_ILwH778I1HNj\",\"quoteToken\":\"quote_bWFkhPpaL56P\",\"carrier\":\"TCS\",\"methodName\":\"TCS\",\"origRate\":\"\",\"rate\":\"0.00\",\"deliveryDateTime\":\"\",\"deliveryDays\":\"2\",\"description\":\"\",\"approved\":1,\"approvedBy\":null}",
-        "orderTotal": 0.07,
-        "orderTax": 0,
-        "orderTotalPaid": "0.07",
-        "orderShipping": 0,
-        "orderWeight": 165,
-        "orderShippingAddress": "{\"address\":\"12354 Main Street\",\"address2\":\"dont ship\",\"city\":\"Monsey\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":null}",
-        "orderPaymentMethod": {
-            "xResult": "A",
-            "xStatus": "Approved",
-            "xError": "",
-            "xErrorCode": "00000",
-            "xRefNum": "1181967971",
-            "xExp": "0126",
-            "xAuthCode": "56263A",
-            "xBatch": "5150840",
-            "xAvsResultCode": "NNN",
-            "xAvsResult": "Address: No Match & 5 Digit Zip: No Match",
-            "xCvvResultCode": "",
-            "xCvvResult": "No CVV data available",
-            "xAuthAmount": "0.07",
-            "xMaskedCardNumber": "4xxxxxxxxxxx2438",
-            "xCardType": "Visa",
-            "xName": "Jay Klein",
-            "xToken": "gn7947h075pgh5h8g5743609p6g6552p",
-            "xMID": "xxxxxxxxxx9999",
-            "xTID": "xxxxx6789",
-            "xCurrency": "USD",
-            "xDate": "11/8/2023 7:19:43 AM",
-            "xEntryMethod": "Keyed",
-            "cardToken": "cc_ph4FGz1wiFQx"
-        },
-        "contactLastName": "Zafar",
-        "contactFirstName": "Awais",
-        "orderProdQuantity": 165,
-        "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"1181967971\",\"xExp\":\"0126\",\"xAuthCode\":\"56263A\",\"xBatch\":\"5150840\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.07\",\"xMaskedCardNumber\":\"4xxxxxxxxxxx2438\",\"xCardType\":\"Visa\",\"xName\":\"Jay Klein\",\"xToken\":\"gn7947h075pgh5h8g5743609p6g6552p\",\"xMID\":\"xxxxxxxxxx9999\",\"xTID\":\"xxxxx6789\",\"xCurrency\":\"USD\",\"xDate\":\"11\\/8\\/2023 7:19:43 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_ph4FGz1wiFQx\"}",
-        "cardToken": "cc_ph4FGz1wiFQx",
-        "orderIP": "127.0.0.1",
-        "cartToken": "quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6",
-        "PO": "1234",
-        "BillToName": "Jay Klein",
-        "BillToAddress": "{\"name\":\"Jay Klein\",\"address\":\"10 Eros Drive\",\"address2\":\"\",\"zip\":\"10952\",\"city\":\"Airmont\",\"state\":\"NY\",\"country\":\"United States\",\"mobile\":\"\",\"phone\":\"000000\"}",
-        "orderNotePublic": "this is a public note I wrote and submited through payment checkout api call",
-        "quoteToken": "quote_bWFkhPpaL56P",
-        "siteToken": "site_63Vdsmr9Qsq0",
-        "companyToken": "comp_fxJJZhdcNMfRF9m",
-        "customerToken": "cust_l513Z8XmSeXRy94tzGaQWfLQ",
-        "orderToken": "ordr_O2tCzcOrPNJZMXLqhjXZp7JJ",
-        "orderNumber": 100000255,
-        "orderStatus": "os_awaiting_fulfillment",
-        "checkoutObject": "{\"id\":30921,\"cartToken\":\"quoteCart_QZC2rh7f6HtxNtOa0bYMXKy6\",\"customerToken\":\"cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld\",\"couponCodes\":[\"caltmann\"],\"addressToken\":\"\",\"shippingMethod\":\"\",\"shippingMethodId\":\"\",\"shippingAddressLabel\":\"\",\"shippingAddress\":{\"address\":\"12354 Main Street\",\"address2\":\"dont ship\",\"city\":\"Monsey\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":null},\"contactEmail\":\"awais+111t@evelt.com\",\"contactPhone\":\"123456789\",\"shippingMethodsJson\":{\"error\":\"Missing previous steps\"},\"contactFirstName\":\"Awais\",\"contactLastName\":\"Zafar\",\"companyName\":\"STYLE\",\"createdAt\":\"2023-11-08 16:11:30\",\"editedAt\":\"2023-11-08 17:20:11\",\"pricing\":{\"productsTotal\":74.85,\"origTotal\":74.85,\"subTotal\":74.85,\"totalCouponDiscount\":74.78,\"totalAfterCoupon\":0.07,\"shipping\":0,\"tax\":0,\"total\":0.07},\"couponCodesInfo\":[{\"name\":\"caltmann\",\"msg\":\"Successfully applied\",\"discountAmount\":74.78,\"status\":\"valid\"}]}",
-        "customerObject": "{\"customerFirstName\":\"Awais\",\"customerLastName\":\"Zafar\",\"customerEmail\":\"awais+111t@evelt.com\",\"customerPhone\":\"123456789\",\"customerCompanyName\":\"STYLE\",\"source\":\"store\",\"customerStatus\":\"cs_approved\",\"customerTypes\":null,\"customerGroups\":null,\"isLoggedIn\":1,\"customerDocs\":null,\"taxExempt\":null,\"taxExemptID\":null,\"createdAt\":\"2023-10-28 11:43:26\"}",
-        "dateCreated": 1699446014,
-        "statusTermsData": {
-            "processingStatus": "Processing",
-            "shippingStatus": "Pending",
-            "paymentStatus": "Closed",
-            "orderStatus": "Open",
-            "paymentTerms": "Website Payment Transaction",
-            "postPaymentStatus": " NULL"
-        }
-    }
-}
-```
 
 ## Delete a Specific quote
 
 ### HTTP Request
 
-`DELETE https://adminapi.csomni.com/quotes/{quoteToken}`
+`DELETE https://storeapi.csomni.com/quotes/{quoteToken}`
 
 ```shell
-curl --location --request DELETE 'https://adminapidev.csomni.com/quotes/quote_9Uih2O4wb9Ys' \
+curl --location --request DELETE 'https://storeapi.csomni.com/quotes/quote_9Uih2O4wb9Ys' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 ```
