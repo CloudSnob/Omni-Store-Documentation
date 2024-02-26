@@ -493,6 +493,7 @@ Response:
 ```
 
 ## Process Payment 
+### Option 1: Including new billing card details and billing address details
 
 ### HTTP Request
 
@@ -515,6 +516,47 @@ curl --location --request POST 'https://storeapi.csomni.com//checkout/payment/{q
     "billingCountry": "United States",
     "billingPhone": "000000",
     "po": "1234"
+}'
+```
+
+### Option 2: Refference a cardToken, Billing Address: Same as shipping
+
+### HTTP Request
+
+`POST https://storeapi.csomni.com//checkout/payment/{quoteToken}`
+
+```shell
+curl --location --request POST 'https://storeapi.csomni.com//checkout/payment/{quoteToken}' \
+--header 'token: site_123' \
+--header 'customerToken: cs_123'
+--data '{
+    "cardToken": "cc_#########",
+    "sameAsShipping": "true"
+}'
+```
+
+### Option 3: Refference a cardToken, Billing Address: New address, not same as shipping
+
+### HTTP Request
+
+`POST https://storeapi.csomni.com//checkout/payment/{quoteToken}`
+
+```shell
+curl --location --request POST 'https://storeapi.csomni.com//checkout/payment/{quoteToken}' \
+--header 'token: site_123' \
+--header 'customerToken: cs_123'
+--data '{
+    "nameOnCard": "Jay Klein",
+    "cardNumbers": "###############",
+    "expMonth": "##",
+    "expYear": "##",
+    "cvv": "###",
+    "billingAddress": "10 Graveyan Drive",
+    "billingCity": "Airmont",
+    "billingState": "NJ",
+    "billingZip": "456012",
+    "billingCountry": "United States",
+    "billingPhone": "000000"
 }'
 ```
 
@@ -677,6 +719,7 @@ Response:
     }
 }
 ```
+
 
 
 
