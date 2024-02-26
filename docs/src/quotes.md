@@ -478,7 +478,7 @@ curl --location --request POST 'https://storeapi.csomni.com/quotes/shippingQuote
 --header 'Content-Type: application/json' \
 --data-raw '{
     "approved": true,
-    "approvedBy": "{{customerName}}"  
+    "approvedBy": "[customer-name]"  
 }'
 ```
 
