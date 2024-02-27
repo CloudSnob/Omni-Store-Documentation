@@ -45,7 +45,7 @@ Response:
 {
     "quoteToken": "quote_9Uih2O4wb9Ys",
     "customerToken": "cs_lla3GWnCzC16YfMsPyI06sAoggU2TGHtcnld",
-    "companyToken": "comp_fxJJZhdcNMfRF9m",
+    "companyToken": "comp_################",
     "quoteFiles": "",
     "status": "waiting-response",
     "deleted": 0,
@@ -69,7 +69,7 @@ Response:
             "fullDetails": {
                 "prodToken": "prod_MdSn0NBeds35AnsE",
                 "variantToken": "vrnt_80zIBJ85QSyj7n04",
-                "companyToken": "comp_fxJJZhdcNMfRF9m",
+                "companyToken": "comp_################",
                 "variantName": "Solomon",
                 "variantImage": [],
                 "variantImages": [],
@@ -128,7 +128,7 @@ Response:
         "mobileNumber": "",
         "addressCountry": "United States",
         "addressDefault": 0,
-        "customerToken": "cust_l513Z8XmSeXRy94tzGaQWfLQ",
+        "customerToken": "cust_#################",
         "createdAt": "2023-11-08 15:53:02",
         "editedAt": "2023-11-08 15:53:02",
         "specialValues": []
@@ -199,7 +199,7 @@ Response:
                 "fullDetails": {
                     "prodToken": "prod_MdSn0NBeds35AnsE",
                     "variantToken": "vrnt_80zIBJ85QSyj7n04",
-                    "companyToken": "comp_fxJJZhdcNMfRF9m",
+                    "companyToken": "comp_###################",
                     "variantName": "Solomon",
                     "variantImage": [],
                     "variantImages": [],
@@ -258,7 +258,7 @@ Response:
             "mobileNumber": "",
             "addressCountry": "United States",
             "addressDefault": 0,
-            "customerToken": "cust_l513Z8XmSeXRy94tzGaQWfLQ",
+            "customerToken": "cust_###################",
             "createdAt": "2023-10-28 13:27:55",
             "editedAt": "2023-10-28 13:27:55",
             "specialValues": []
@@ -411,7 +411,7 @@ Response:
         "mobileNumber": "",
         "addressCountry": "United States",
         "addressDefault": 0,
-        "customerToken": "cust_l513Z8XmSeXRy94tzGaQWfLQ",
+        "customerToken": "cust_###################",
         "createdAt": "2023-10-28 13:27:55",
         "editedAt": "2023-10-28 13:27:55",
         "specialValues": []
@@ -564,7 +564,7 @@ Response:
     "order": {
         "orderProducts": [
             {
-                "cartToken": "cart_cQyaclM8aCNwyefF7SW0OPhd",
+                "cartToken": "cart_#################",
                 "cartProdToken": "cp_ereMDhbYG4xZH8BGmXrr1EXn",
                 "cartProdQuantity": 5,
                 "addOnToProdToken": "",
@@ -573,7 +573,7 @@ Response:
                 "deleted": 0,
                 "createdAt": "2024-02-26 11:05:37",
                 "editedAt": "2024-02-26 11:05:37",
-                "companyToken": "comp_fxJJZhdcNMfRF9m",
+                "companyToken": "comp_#####################",
                 "siteToken": "site_###################",
                 "customerToken": "cs_X8LvwuKFfxOwnKrVZM7YNuaMwxsJNdLYpv4m",
                 "cartCreated": null,
@@ -583,7 +583,7 @@ Response:
                 "product": {
                     "prodToken": "prod_tBukFGyCun5nBthb",
                     "variantToken": "vrnt_K15iWEvzzrxoDnZZ",
-                    "companyToken": "comp_fxJJZhdcNMfRF9m",
+                    "companyToken": "comp_#################",
                     "variantName": "Costa",
                     "variantImage": [],
                     "variantImages": [],
@@ -640,7 +640,7 @@ Response:
         ],
         "orderEmail": "saraph@los.com",
         "orderShippingMethod": {
-            "quoteToken": "quote_ce8VcOopzQBt",
+            "quoteToken": "quote_##########",
             "carrier": "UPS",
             "methodName": "Next Day Air",
             "origRate": null,
@@ -657,25 +657,25 @@ Response:
         "orderTotalPaid": "0.56",
         "orderShipping": "0.01",
         "orderWeight": 5,
-        "orderShippingAddress": "{\"address\":\"10 high\",\"address2\":\"Unit 6\",\"city\":\"Port Jorge\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"United States\",\"phone\":\"797-530-6639\",\"mobile\":\"\",\"specialValues\":[]}",
+        "orderShippingAddress": "{\"address\":\"10 high\",\"address2\":\"Unit 6\",\"city\":\"Port Jorge\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"United States\",\"phone\":\"797-550-6639\",\"mobile\":\"\",\"specialValues\":[]}",
         "orderPaymentMethod": {
             "xResult": "A",
             "xStatus": "Approved",
             "xError": "",
             "xErrorCode": "00000",
-            "xRefNum": "10146212864",
+            "xRefNum": "##########",
             "xExp": "0126",
-            "xAuthCode": "46613A",
-            "xBatch": "5152789",
+            "xAuthCode": "#######",
+            "xBatch": "########",
             "xAvsResultCode": "NNN",
             "xAvsResult": "Address: No Match & 5 Digit Zip: No Match",
             "xCvvResultCode": "",
             "xCvvResult": "No CVV data available",
             "xAuthAmount": "0.56",
-            "xMaskedCardNumber": "4xxxxxxxxxxx7896",
+            "xMaskedCardNumber": "#xxxxxxxxxxx####",
             "xCardType": "Visa",
             "xName": "Jay Klark",
-            "xToken": "814147871n898568hm1q2g8985qp67gm",
+            "xToken": "################################",
             "xMID": "xxxxxxxxxx9999",
             "xTID": "xxxxx6789",
             "xCurrency": "USD",
@@ -689,12 +689,12 @@ Response:
         "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"10146212864\",\"xExp\":\"0126\",\"xAuthCode\":\"46613A\",\"xBatch\":\"5150840\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.56\",\"xMaskedCardNumber\":\"#xxxxxxxxxxx####\",\"xCardType\":\"Visa\",\"xName\":\"Jay Klark\",\"xToken\":\"814147871n898568hm1q2g89857gm\",\"xMID\":\"xxxxxxxxxx9979\",\"xTID\":\"xxxxx6799\",\"xCurrency\":\"USD\",\"xDate\":\"2\\/26\\/2024 6:05:43 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_#######\"}",
         "cardToken": "cc_2NIigpQQnrpX",
         "orderIP": "81.151.212.137",
-        "cartToken": "cart_cQyaclM8aCNwyefF7SW0OPhd",
+        "cartToken": "cart_###################",
         "PO": "1234",
         "BillToName": "Jay Klark",
         "BillToAddress": "{\"name\":\"Jay Klein\",\"address\":\"10 Eros Drive\",\"address2\":\"\",\"zip\":\"10952\",\"city\":\"Airmont\",\"state\":\"NY\",\"country\":\"United States\",\"mobile\":\"\",\"phone\":\"000000\"}",
         "orderNotePublic": "this is a public note I wrote and submited through payment checkout api call",
-        "quoteToken": "quote_ce8VcOopzQBt",
+        "quoteToken": "quote_##########",
         "siteToken": "site_###############",
         "companyToken": "comp_#############",
         "customerToken": "cust_#################",
@@ -726,16 +726,16 @@ Response:
 `DELETE https://storeapi.csomni.com/quotes/{quoteToken}`
 
 ```shell
-curl --location --request DELETE 'https://storeapi.csomni.com/quotes/quote_9Uih2O4wb9Ys' \
---header 'token: site_123' \
---header 'customerToken: cs_123'
+curl --location --request DELETE 'https://storeapi.csomni.com/quotes/quote_##########' \
+--header 'token: site_#########' \
+--header 'customerToken: cs_#################'
 ```
 
 Response:
 
 ```json
 {
-  "token": "quote_SCOBBRFrfpXV",
+  "token": "quote_##########",
   "deleted": "true"
 }
 ```
