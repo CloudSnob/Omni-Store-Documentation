@@ -96,7 +96,8 @@ This endpoint retrieves a Specific customer (requires a custtoken in the header)
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/customers/customerToken`
+`GET https://storeapi.csomni.com/customers/customerToken`
+
 
 ### URL Parameters
 
@@ -104,26 +105,40 @@ This endpoint retrieves a Specific customer (requires a custtoken in the header)
 | ------------- | -------- | ------ | --------------------------------- |
 | customerToken | true     | -      | Token of the customer to retreive |
 
-## Delete a Specific customer - (not allowed)
+
+
+
+
+
+## Delete Customer
+
+This endpoint allows a customer to (soft) delete their own store account
+
+### HTTP Request
+
+`POST https://storeapi.csomni.com/customers/`
+
+### Headers
+
+| Parameter           | Required | Unique | Description           |
+| ------------------- | -------- | ------ | --------------------- |
+| token               | true     | false  | Site Token            |
+| customerToken       | true     | true   | Customer Public Token  |
+
 
 ```shell
 curl --request DELETE \
-  --url https://apistore.csomni.com/customers/{customerToken}\
-  --header 'content-type: application/json' \
-  --header 'token: 123'
+  --url https://storeapi.csomni.com/customers
+  --header 'token: site_#######'
+  --header 'customerToken: cs_##################''
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "token": "cust_token",
+  "token": "cs_##################'
   "deleted": "true"
 }
 ```
 
-This endpoint deletes (soft) a customer
-
-### HTTP Request
-
-`DELETE https://apistore.csomni.com/customers/{customerToken}`
