@@ -1,5 +1,12 @@
 # Customers
 
+<!-- Previous Customer Creation Scenario -->
+
+In the past, customer creation occurred via MYSQL.
+
+<!-- Updated Changes Implemented as of April 4, 2024 by Baseer -->
+
+Customer creation was facilitated through MYSQL and Solr (Apache Solr). Consequently, any time a customer was created or edited, it was mandatory to update the customer's information in the Solr database.
 
 ## Create/Edit Customer
 
@@ -110,9 +117,9 @@ This endpoint retrieves a Specific customer (requires a custtoken in the header)
 
 
 
-## Delete Customer
+## Delete / Archive Customer
 
-This endpoint allows a customer to (soft) delete their own store account
+This endpoint allows a customer to (soft) delete / Archive their own store account
 
 ### HTTP Request
 
