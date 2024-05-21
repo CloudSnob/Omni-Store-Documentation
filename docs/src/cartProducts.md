@@ -10,7 +10,11 @@
 | customerToken    | false    | -      | Customer Token (creates a new one if empty)   |
 | prodToken        | true     | -      | Variant Token                                 |
 | cartProdQuantity | true     | -      | Quantity to add to cart                       |
+| specialValues    | false    | -      | Special Values associated with this cart product                       |
+| specialValues:valueName    | true    | -      | Key of the SpecialValue                     |
+| specialValues:value    | true    | -      | Value of SpecialValue property                   |
 
+Example 1: Only adding item to cart
 ```shell
 curl --request POST \
   --url https://apistore.csomni.com/cartprods/[cartToken] \
@@ -48,6 +52,75 @@ curl --request POST \
   "status": "Prod Updated"
 }
 ```
+
+Example 2: Adding item with special value:
+
+```shell
+curl --request POST \
+  --url https://apistore.csomni.com/cartprods/[cartToken] \
+  --header 'cache-control: no-cache' \
+  --header 'postman-token: 1234567890' \
+  --header 'token: 123' \
+  --data '{
+            "cartProdQuantity" : "1",
+            "prodToken" : "vrnt_##############",
+            "specialValues": [
+                    {
+                        "valueName": "dog",
+                        "value": "brown"
+                    },
+                    {
+                        "valueName": "id",
+                        "value": "1234"
+                    }
+                ]
+}'
+
+```
+
+> The above command returns JSON structured like this
+
+```json
+{
+    "specialValues": [
+        {
+            "specialValueToken": "sv_mXQyCYHGE3bLIiokcBhKI3bJHB3znfM0mvbU",
+            "valueName": "dog",
+            "value": "brown"
+        },
+        {
+            "specialValueToken": "sv_mXQyCYHGE3bLIiokcBhKI3bJHB3znfM0mvbU",
+            "valueName": "id",
+            "value": "1234"
+        }
+    ],
+    "cartToken": "cart_2EwMrNJlBqndLlDr9LLP24VU",
+    "cartProdToken": "cp_IOadVIVOCUA7sEdjW84POIbd",
+    "cartProdQuantity": 1,
+    "customerToken": "cs_lEe26Ej6ATKvyo4LD0dNahQEFTU9biuGzezj",
+    "prodToken": "vrnt_yqktptPndobaaR86",
+    "cartAddedQuantity": 1,
+    "status": "Prod Added"
+}
+```
+
+> Where a product already exists in the cart, and the cart product is increased/decreased in quantity the above command returns a JSON structured like this
+
+```json
+{
+  "cartToken": "cart_123456",
+  "prodToken": "prod_123456",
+  "customerToken": "cs_123456",
+  "cartProdQuantity": 23,
+  "cartProdToken": "cp_123456",
+  "cartAddedQuantity": "8",
+  "status": "Prod Updated"
+}
+```
+
+
+
+
 
 ## Edit cart product
 
