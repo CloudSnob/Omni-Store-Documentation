@@ -14,7 +14,7 @@
 | specialValues:valueName    | true    | -      | Key of the SpecialValue                     |
 | specialValues:value    | true    | -      | Value of SpecialValue property                   |
 
-Example 1: Only adding item to cart
+#### Example 1: Only adding item to cart
 ```shell
 curl --request POST \
   --url https://apistore.csomni.com/cartprods/[cartToken] \
@@ -53,7 +53,7 @@ curl --request POST \
 }
 ```
 
-Example 2: Adding item with special value:
+#### Example 2: Adding item with special value:
 
 ```shell
 curl --request POST \
