@@ -39,7 +39,7 @@ curl --request POST \
 }
 ```
 
-> if Prod in cart already The above command returns JSON structured like this
+> Where a product already exists in the cart, and the cart product is increased/decreased in quantity the above command returns a JSON structured like this
 
 ```json
 {
