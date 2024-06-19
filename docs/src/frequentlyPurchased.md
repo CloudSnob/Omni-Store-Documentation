@@ -4,7 +4,7 @@
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/frequentlyPurchased`
+`GET https://storeapi.csomni.com/frequentlyPurchased`
 
 | Parameter | Required | Unique | Description                                                     |
 | --------- | -------- | ------ | --------------------------------------------------------------- |
@@ -12,7 +12,7 @@
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/frequentlyPurchased \
+  --url https://storeapi.csomni.com/frequentlyPurchased \
   --header 'token: site_dg30sdfsgdsgsvv'
 ```
 
@@ -156,7 +156,7 @@ Response:
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/frequentlyPurchased/forceRefresh`
+`GET https://storeapi.csomni.com/frequentlyPurchased/forceRefresh`
 
 | Parameter | Required | Unique | Description                                                     |
 | --------- | -------- | ------ | --------------------------------------------------------------- |
@@ -164,7 +164,7 @@ Response:
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/frequentlyPurchased/forceRefresh \
+  --url https://storeapi.csomni.com/frequentlyPurchased/forceRefresh \
   --header 'token: site_123456123456'
 ```
 

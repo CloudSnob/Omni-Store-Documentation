@@ -4,13 +4,13 @@
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/sites`
+`GET https://storeapi.csomni.com/sites`
 
 ## Get A Specific Site
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/sites/ \
+  --url https://storeapi.csomni.com/sites/ \
   --header 'token: [site_token]'
 ```
 

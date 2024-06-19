@@ -5,7 +5,7 @@
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/customeritemlist`
+`POST https://storeapi.csomni.com/customeritemlist`
 
 ### Header Requirements
 
@@ -21,7 +21,7 @@ Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/customeritemlist \
+  --url https://storeapi.csomni.com/customeritemlist \
   --header 'cache-control: no-cache' \
   --header 'postman-token: 1234567890' \
   --header 'token: site_123', 'customerToken: cs_123' \
@@ -45,7 +45,7 @@ Response:
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/customeritemlist/[custListToken]`
+`POST https://storeapi.csomni.com/customeritemlist/[custListToken]`
 
 ### Header Requirements
 
@@ -70,7 +70,7 @@ Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/customeritemlist/{custListToken}
+  --url https://storeapi.csomni.com/customeritemlist/{custListToken}
   --header 'cache-control: no-cache' \
   --header 'postman-token: 1234567890' \
   --header 'token: site_123', 'customerToken: cs_123' \
@@ -177,7 +177,7 @@ Response:
 
 ### HTTP Request
 
-`PUT https://apistore.csomni.com/customeritemlist/[custListToken]`
+`PUT https://storeapi.csomni.com/customeritemlist/[custListToken]`
 
 ### Header Requirements
 
@@ -195,7 +195,7 @@ Response:
 
 ```shell
 curl --request PUT \
-  --url https://apistore.csomni.com/customeritemlist/[custListToken] \
+  --url https://storeapi.csomni.com/customeritemlist/[custListToken] \
   --header 'customerToken: [cs_token]'\
   --data-raw '{
     "sortOrder": 0,
@@ -231,7 +231,7 @@ Response:
 
 ### HTTP Request
 
-`PUT https://apistore.csomni.com/customeritemlist/[custListToken]/[listItem]`
+`PUT https://storeapi.csomni.com/customeritemlist/[custListToken]/[listItem]`
 
 ### Header Requirements
 
@@ -249,7 +249,7 @@ Response:
 
 ```shell
 curl --request PUT \
-  --url https://apistore.csomni.com/customeritemlist/[custListToken] \
+  --url https://storeapi.csomni.com/customeritemlist/[custListToken] \
   --header 'token: site_########' \
   --header 'customerToken: cs_#########' \
   --header 'Content-Type: application/json' \
@@ -283,7 +283,7 @@ Response:
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/customeritemlist/[custListToken]`
+`GET https://storeapi.csomni.com/customeritemlist/[custListToken]`
 
 | Parameter     | Required | Unique | Description |
 | ------------- | -------- | ------ | ----------- |
@@ -382,7 +382,7 @@ Response:
 ### Header Requirements
 
 
-`GET https://apistore.csomni.com/customeritemlist/`
+`GET https://storeapi.csomni.com/customeritemlist/`
 
 | Parameter     | Required | Unique | Description |
 | ------------- | -------- | ------ | ----------- |
@@ -395,7 +395,7 @@ Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/customeritemlist/ \
+  --url https://storeapi.csomni.com/customeritemlist/ \
    --header 'token: site_123', 'customerToken: cs_123' \
 ```
 
@@ -509,7 +509,7 @@ Response:
 
 ### HTTP Request
 
-`DELETE https://apistore.csomni.com/customeritemlist/[listToken]`
+`DELETE https://storeapi.csomni.com/customeritemlist/[listToken]`
 
 | Parameter     | Required | Unique | Description |
 | ------------- | -------- | ------ | ----------- |
@@ -522,7 +522,7 @@ Sample in Shell:
 
 ```shell
 curl --request DELETE \
-  --url https://apistore.csomni.com/customeritemlist/[listToken] \
+  --url https://storeapi.csomni.com/customeritemlist/[listToken] \
   --header 'content-type: application/json' \
   --header 'token: 123', 'customerToken: cs_123'
 ```
@@ -539,7 +539,7 @@ Respose:
 
 ### HTTP Request
 
-`DELETE https://apistore.csomni.com/customeritemlist/[listToken]/[listItemToken]`
+`DELETE https://storeapi.csomni.com/customeritemlist/[listToken]/[listItemToken]`
 
 | Parameter     | Required | Unique | Description |
 | ------------- | -------- | ------ | ----------- |
@@ -552,7 +552,7 @@ Sample in Shell:
 
 ```shell
 curl --request DELETE \
-  --url https://apistore.csomni.com/customeritemlist/[listToken]/[listItemToken] \
+  --url https://storeapi.csomni.com/customeritemlist/[listToken]/[listItemToken] \
   --header 'content-type: application/json' \
   --header 'token: 123', 'customerToken: cs_123'
 ```

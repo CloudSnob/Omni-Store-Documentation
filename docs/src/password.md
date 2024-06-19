@@ -4,7 +4,7 @@
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/password/forgot \
+  --url https://storeapi.csomni.com/password/forgot \
   --data '{"customerEmail" : "test@gmail.com","siteToken" : "site_222"}'
 ```
 
@@ -20,7 +20,7 @@ This endpoint send a reset password link to a user (Be careful, it always return
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/password/forgot`
+`POST https://storeapi.csomni.com/password/forgot`
 
 ### Request Parameters
 
@@ -33,7 +33,7 @@ This endpoint send a reset password link to a user (Be careful, it always return
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/restorepassword \
+  --url https://storeapi.csomni.com/restorepassword \
   --data '{ "hash" : "pass_1234567", "newPassword" : "123456789" }'
 ```
 
@@ -49,7 +49,7 @@ This endpoint saves users new password
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/restorepassword`
+`POST https://storeapi.csomni.com/restorepassword`
 
 ### Request Parameters
 

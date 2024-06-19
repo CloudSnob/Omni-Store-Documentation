@@ -1,0 +1,48 @@
+# @name new_cart_for_existing_customer
+POST {{baseStoreUrl}}/cart
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+
+> {%
+    client.global.set("cartToken", response.body.cartToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+%}
+
+###
+
+# @name new_cart_and_new_customer
+POST {{baseStoreUrl}}/cart
+token: {{siteToken}}
+Content-Type: application/json
+
+
+> {%
+    client.global.set("customerPublicToken2", response.body.customerToken);
+    client.global.set("cartToken2", response.body.cartToken);
+%}
+
+###
+
+# @name get_cart_by_customer
+GET {{baseStoreUrl}}/cart
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("cartToken", response.body.cartToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+
+%}
+
+###
+
+# @name combine_cart // not working
+POST {{baseStoreUrl}}/cart/combine/{{cartToken2}}/{{customerPublicToken2}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+###

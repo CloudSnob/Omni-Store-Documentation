@@ -1,0 +1,89 @@
+
+# @name create_new_cart_and_add_product
+POST {{baseStoreUrl}}/cartprods
+token: {{siteToken}}
+Content-Type: application/json
+
+{
+ "cartProdQuantity": 1,
+  "prodToken" : "vrnt_EvonkJQsR6fRbDtm"
+}
+
+> {%
+    client.global.set("cartToken", response.body.cartToken);
+    client.global.set("cartProdToken", response.body.cartProdToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+
+%}
+###
+
+# @name add_product_to_cart
+POST {{baseStoreUrl}}/cartprods
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "cartProdQuantity": 1,
+  "prodToken" : "vrnt_EvonkJQsR6fRbDtm"
+}
+
+> {%
+    client.global.set("cartToken", response.body.cartToken);
+    client.global.set("cartProdToken", response.body.cartProdToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+
+%}
+###
+
+# @name edit_cart_product
+POST {{baseStoreUrl}}/cartprods/{{cartToken}}/{{cartProdToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+ "cartProdQuantity": 5,
+  "prodToken" : "vrnt_EvonkJQsR6fRbDtm"
+}
+
+> {%
+    client.global.set("cartToken", response.body.cartToken);
+    client.global.set("cartProdToken", response.body.cartProdToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+
+%}
+
+###
+
+
+# @name get_a_cart_product
+GET {{baseStoreUrl}}/cartprods/{{cartProdToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("cartToken", response.body.cartToken);
+    client.global.set("cartProdToken", response.body.cartProdToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+
+%}
+
+###
+
+
+# @name delete_a_cart_product
+DELETE {{baseStoreUrl}}/cartprods/{{cartProdToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("cartToken", response.body.cartToken);
+    client.global.set("cartProdToken", response.body.cartProdToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+
+%}
+
+###

@@ -4,7 +4,7 @@
 
 ### HTTP Request
 
-`POST https://adminapidev.csomni.com/quotes`
+`POST https://storeapi.csomni.com/quotes`
 
 ### URL Parameters
 
@@ -15,7 +15,7 @@
 
 ```shell
 
-curl --location --request POST 'https://adminapidev.csomni.com/quotes' \
+curl --location --request POST 'https://storeapi.csomni.com/quotes' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123' \
 --header 'Content-Type: application/json' \
@@ -151,7 +151,7 @@ Response:
 
 ### HTTP Request
 
-`GET https://adminapidev.csomni.com/quotes`
+`GET https://storeapi.csomni.com/quotes`
 
 ### URL Parameters
 
@@ -162,7 +162,7 @@ Response:
 
 ```shell
 
-curl --location --request GET 'https://adminapidev.csomni.com/quotes/' \
+curl --location --request GET 'https://storeapi.csomni.com/quotes/' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 
@@ -306,7 +306,7 @@ Response:
 
 ### HTTP Request
 
-`GET https://adminapidev.csomni.com/quotes/[quoteToken]`
+`GET https://storeapi.csomni.com/quotes/[quoteToken]`
 
 ### URL Parameters
 
@@ -317,7 +317,7 @@ Response:
 | quoteToken(GET)   | Token of the Quote to retrieve.   |
 
 ```shell
-curl --location --request GET 'https://adminapidev.csomni.com/quotes/quote_bWFkhPpaL56P' \
+curl --location --request GET 'https://storeapi.csomni.com/quotes/quote_bWFkhPpaL56P' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 ```
@@ -458,7 +458,7 @@ Response:
 
 ### HTTP Request
 
-`POST https://adminapidev.csomni.com/quotes/shippingQuoteToken_123/approve-shipping`
+`POST https://storeapi.csomni.com/quotes/shippingQuoteToken_123/approve-shipping`
 
 ### URL Parameters
 
@@ -472,7 +472,7 @@ Response:
 | approvedBy (POST)             | Customer Name who is approving quote                                  |
 
 ```shell
-curl --location --request POST 'http://azzyomnifrontendapi.com//quotes/shippingQuoteToken_3yw8DHZYCYvk/approve-shipping' \
+curl --location --request POST 'https://storeapi.com/quotes/shippingQuoteToken_3yw8DHZYCYvk/approve-shipping' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 --header 'Content-Type: application/json' \
@@ -496,7 +496,7 @@ Response:
 
 ### HTTP Request
 
-`POST https://adminapidev.csomni.com/checkout/review-checkout/quote_bWFkhPpaL56P`
+`POST https://storeapi.csomni.com/checkout/review-checkout/quote_bWFkhPpaL56P`
 
 ### URL Parameters
 
@@ -509,7 +509,7 @@ Response:
 | shippingMethodId (POST)       | shiping Quote Token                                                   |
 
 ```shell
-curl --location --request POST 'https://adminapidev.csomni.com/checkout/review-checkout/quote_bWFkhPpaL56P' \
+curl --location --request POST 'https://storeapi.csomni.com/checkout/review-checkout/quote_bWFkhPpaL56P' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123' \
 --header 'Content-Type: application/json' \
@@ -595,7 +595,7 @@ Response:
 
 ### HTTP Request
 
-`POST https://adminapidev.csomni.com/checkout/applycoupon/quote_bWFkhPpaL56P`
+`POST https://storeapi.csomni.com/checkout/applycoupon/quote_bWFkhPpaL56P`
 
 ### URL Parameters
 
@@ -607,7 +607,7 @@ Response:
 | couponCode (POST)             | couponCode                                                            |
 
 ```shell
-curl --location --request POST 'https://adminapidev.csomni.com/checkout/applycoupon/quote_bWFkhPpaL56P' \
+curl --location --request POST 'https://storeapi.csomni.com/checkout/applycoupon/quote_bWFkhPpaL56P' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123' \
 --header 'Content-Type: application/json' \
@@ -702,10 +702,10 @@ Response:
 
 ### HTTP Request
 
-`POST https://adminapidev.csomni.com/checkout/payment/quote_bWFkhPpaL56P`
+`POST https://storeapi.csomni.com/checkout/payment/quote_bWFkhPpaL56P`
 
 ```shell
-curl --location --request POST 'https://adminapidev.csomni.com/checkout/payment/quote_bWFkhPpaL56P' \
+curl --location --request POST 'https://storeapi.csomni.com/checkout/payment/quote_bWFkhPpaL56P' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123' \
 --header 'Content-Type: application/json' \
@@ -1026,11 +1026,11 @@ Response:
 
 ### HTTP Request
 
-`POST https://adminapidev.csomni.com/checkout/po/quote_bWFkhPpaL56P`
+`POST https://storeapi.csomni.com/checkout/po/quote_bWFkhPpaL56P`
 
 
 ```shell
-curl --location --request POST 'https://adminapidev.csomni.com/checkout/po/quote_bWFkhPpaL56P' \
+curl --location --request POST 'https://storeapi.csomni.com/checkout/po/quote_bWFkhPpaL56P' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123' \
 --header 'Content-Type: application/json' \
@@ -1347,10 +1347,10 @@ Response:
 
 ### HTTP Request
 
-`DELETE https://adminapidev.csomni.com/quotes/{quoteToken}`
+`DELETE https://storeapi.csomni.com/quotes/{quoteToken}`
 
 ```shell
-curl --location --request DELETE 'https://adminapidev.csomni.com/quotes/quote_9Uih2O4wb9Ys' \
+curl --location --request DELETE 'https://storeapi.csomni.com/quotes/quote_9Uih2O4wb9Ys' \
 --header 'token: site_123' \
 --header 'customerToken: cs_123'
 ```

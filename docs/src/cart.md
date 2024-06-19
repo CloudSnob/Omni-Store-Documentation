@@ -1,60 +1,101 @@
 # Cart
 
-## New Cart
+## New Cart for existing customer
 
-This endpoint creates a cart
+This endpoint creates a cart for a customer, or retrieves the cart if the customer has a cart
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/cart`
+`POST https://storeapi.csomni.com/cart`
 
-### Query Parameters
-
-| Parameter     | Required | Unique | Description                                 |
-| ------------- | -------- | ------ | ------------------------------------------- |
-| customerToken | false    | -      | Customer Token (creates a new one if empty) |
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/cart/ \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123' \
-  --data '{"customerToken" : "cusst444"}'
+  --url https://storeapi.csomni.com/cart/ \
+  --header 'token: site-xxxxxxxxx'\
+  --header 'customerToken: cs_xxxxxxxxxxxxxxxxxxxxx'
+```
 
+> The above command returns JSON structured like this when a new cart is created:
+
+```json
+{
+  "cartToken": "cart_xxxxxxxxxxxxxx",
+  "companyToken": "comp_xxxxxxxxxxxxxx",
+  "siteToken": "site_xxxxxxxxxx",
+  "customerToken": "cs_xxxxxxxxxxxxxxxxx",
+  "status": "cart created"
+}
+```
+
+> The above command returns JSON structured like this when a cart is retrieved:
+
+```json
+{
+  "cartToken": "cart_xxxxxxxxxxxxxx",
+  "companyToken": "comp_xxxxxxxxxxxxxx",
+  "siteToken": "site_xxxxxxxxxx",
+  "customerToken": "cs_xxxxxxxxxxxxxxxxx",
+  "status": "cart retrieved"
+}
+```
+
+
+## New Cart and new customer
+
+This endpoint creates a new guest customer and a new cart
+
+### HTTP Request
+
+`POST https://storeapi.csomni.com/cart`
+
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| siteToken     | true     | string | Unique siteToken |
+
+```shell
+curl --request POST \
+  --url https://storeapi.csomni.com/cart/ \
+  --header 'token: site_xxxxxxxxxxxx'
 ```
 
 > The above command returns JSON structured like this
 
 ```json
 {
-  "cartToken": "cart_123456",
-  "companyToken": "comp_123456",
-  "siteToken": "site_123",
-  "customerToken": "cust_123456",
+  "cartToken": "cart_xxxxxxxxxxxxxx",
+  "companyToken": "comp_xxxxxxxxxxxxxx",
+  "siteToken": "site_xxxxxxxxxx",
+  "customerToken": "cs_xxxxxxxxxxxxxxxxx",
   "status": "cart created"
 }
 ```
 
-## Get A Cart
+## Get Cart By Customer
 
-This endpoint retrieves a cart by cart token or customer token
+This endpoint retrieves a cart by customer token
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/cart`
+`GET https://storeapi.csomni.com/cart`
 
-### URL Parameters
-
-| Parameter     | Required | Unique | Description                           |
-| ------------- | -------- | ------ | ------------------------------------- |
-| customerToken | true     | -      | Customer Token for this cart (header) |
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/cart \
-  --header 'token: 123'
-  --header 'customerToken: cs_123456'
+  --url https://storeapi.csomni.com/cart \
+  --header 'token: site-xxxxxxxxx'\
+  --header 'customerToken: cs_xxxxxxxxxxxxxxxxxxx'
 
 ```
 
@@ -62,10 +103,9 @@ curl --request GET \
 
 ```json
 {
-  "companyToken": "comp_123456",
-  "siteToken": "site_123456",
-  "cartToken": "cart_123456",
-  "customerToken": "cust_123456",
+  "siteToken": "site_xxxxxxxxxxxx",
+  "cartToken": "cart_xxxxxxxxxxxxxxx",
+  "customerToken": "cs_xxxxxxxxxxxxxxxxxxx",
   "cartCreated": "1637945854",
   "cartLastTouched": "1637945854",
   "deleted": 0,
@@ -78,16 +118,16 @@ curl --request GET \
   "cartWeight": 0,
   "cartProds": [
     {
-      "cartToken": "cart_123456",
-      "cartProdToken": "cp_123456",
+      "cartToken": "cart_xxxxxxxxxxxxxxx",
+      "cartProdToken": "cp_xxxxxxxxxxxxxxx",
       "addOnToProdToken": "",
       "cartProdQuantity": 1,
       "addOnProdTokens": null,
-      "prodToken": "vrnt_123456",
+      "prodToken": "vrnt_xxxxxxxxxxxxxxx",
       "deleted": 0,
-      "companyToken": "comp_123456",
-      "siteToken": "site_123456",
-      "customerToken": "cust_123456",
+      "companyToken": "comp_xxxxxxxxxxxxxxx",
+      "siteToken": "site_xxxxxxxxx",
+      "customerToken": "cs_xxxxxxxxxxxxxxxxxxx",
       "cartCreated": "1637945854",
       "cartLastTouched": "1637945854",
       "prodStaticCollections": [
@@ -98,14 +138,14 @@ curl --request GET \
       ],
       "specialValues": [],
       "product": {
-        "prodToken": "prod_123456",
-        "variantToken": "vrnt_123456",
-        "companyToken": "comp_123456",
+        "prodToken": "prod_xxxxxxxxxxxxxxx",
+        "variantToken": "vrnt_xxxxxxxxxxxxxxx",
+        "companyToken": "comp_xxxxxxxxxxxxxxx",
         "variantName": "",
         "variantImage": {
           "file": "10-13-2021/1634136843403__65263__aron-yigin-epjvM-Ql5-Y-unsplash.jpg",
           "type": "",
-          "id": "lwigs97k",
+          "id": "abc",
           "status": "poolImages"
         },
         "variantImages": [],
@@ -145,19 +185,19 @@ curl --request GET \
         "variantInStock": true,
         "variantOptions": [
           {
-            "optionToken": "optn_123456",
+            "optionToken": "optn_xxxxxxxxxxxxxxx",
             "optionValue": "dsasda",
             "optionName": "color"
           },
           {
-            "optionToken": "optn_123456",
+            "optionToken": "optn_xxxxxxxxxxxxxxx",
             "optionValue": "f",
             "optionName": "size"
           }
         ],
-        "prodName": "dsadsadsads",
+        "prodName": "Black T-Shirt",
         "prodImage": {
-          "file": "5-31-2021/1622471456251__6160299__jonah-brown-veEPQ7aOx8w-unsplash.jpg",
+          "file": "5-1-2024/1622471456251__6160299__jonah-brown-veEPQ7aOx8w-unsplash.jpg",
           "name": "",
           "type": ""
         }
@@ -174,46 +214,42 @@ curl --request GET \
 }
 ```
 
-## Add cart to customer
+
+## Combine Carts
 
 This endpoint Adds a user to a cart
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/cart/combine/[cartToken]/[customerToken cs_]/`
+`POST https://storeapi.csomni.com/cart/combine/[cartToken]/[customerToken]/`
 
 ### URL Parameters
 
-| Parameter | Required | Unique | Description        |
-| --------- | -------- | ------ | ------------------ |
-| combine   | true     | -      | To combine 2 carts |
-| cartToken | true     | -      | Cart to transfer   |
+| Parameter     | Required | Unique | Description                                                      |
+|---------------|----------|--------|------------------------------------------------------------------|
+| combine       | true     | -      | To combine 2 carts                                               |
+| cartToken     | true     | true   | Cart Token for the cart that should be transferred               |
+| customerToken | true     | true   | Customer Token for the account the cart should be transferred to |
 
+### Header Parameters
+| Parameter     | Required | Unique | Description                                                           |
+|---------------|----------|--------|-----------------------------------------------------------------------|
+| customerToken | true     | -      | Customer Token for account that the cart is currently associated with |
+| siteToken     | true     | -      | Unique site token                                                     |
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/cart/combine/[cartToken]/[customerToken cs_] \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123, customertoken : cs_123' \
-```
-
-Another example:
-
-```shell
-curl --request POST \
-  --url 'https://apistore.csomni.com/cart/combine/cart_123456/cs_123456' \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123, customertoken : cs_123456' \
+  --url https://storeapi.csomni.com/cart/combine/[cartToken]/[customerToken] \
+  --header 'token: site_xxxxxxxxx' \
+  --header 'customerToken : cs_xxxxxxxxxxxxxxxx' 
 ```
 
 > The above command returns JSON structured like this
 
 ```json
 {
-  "companyToken": "comp_123456",
-  "siteToken": "site_123",
-  "cartToken": "cart_123456",
+  "companyToken": "comp_xxxxxxxxxxxxxx",
+  "siteToken": "site_xxxxxxxxx",
+  "cartToken": "cart_xxxxxxxxxxxxxx",
   "customerToken": "cust_123456",
   "cartCreated": "1638346960",
   "cartLastTouched": "1638346960",
@@ -225,24 +261,24 @@ curl --request POST \
   "cartWeight": 4,
   "cartProds": [
     {
-      "cartToken": "cart_123456",
-      "cartProdToken": "cp_123456",
+      "cartToken": "cart_xxxxxxxxxxxxxx",
+      "cartProdToken": "xxx",
       "addOnToProdToken": "",
       "cartProdQuantity": 4,
       "addOnProdTokens": null,
-      "prodToken": "vrnt_123456",
+      "prodToken": "vrnt_xxxxxxxxxxxxxx",
       "deleted": 0,
-      "companyToken": "comp_123456",
-      "siteToken": "site_123",
-      "customerToken": "cust_123456",
+      "companyToken": "comp_xxxxxxxxxxxxxx",
+      "siteToken": "site_xxxxxxx",
+      "customerToken": "cs_xxxxxxxxxxxxxxxxx",
       "cartCreated": "1638346960",
       "cartLastTouched": "1638346960",
       "prodStaticCollections": [],
       "specialValues": [],
       "product": {
-        "prodToken": "prod_123456",
-        "variantToken": "vrnt_123456",
-        "companyToken": "comp_123456",
+        "prodToken": "prod_xxxxxxxxxxxxxx",
+        "variantToken": "vrnt_xxxxxxxxxxxxxx",
+        "companyToken": "comp_xxxxxxxxxxxxxx",
         "variantName": "",
         "variantImage": {
           "file": ""
@@ -298,18 +334,3 @@ curl --request POST \
   ]
 }
 ```
-
-This endpoint Adds a user to a cart
-
-### HTTP Request
-
-`POST https://apistore.csomni.com/cart/combine/[cartToken]/[customerToken]`
-
-### URL Parameters
-
-| Parameter             | Required | Unique | Description                                                                                    |
-| --------------------- | -------- | ------ | ---------------------------------------------------------------------------------------------- |
-| combine               | true     | -      | To combine 2 carts                                                                             |
-| cartToken             | true     | -      | Cart to transfer                                                                               |
-| customerToken         | true     | -      | Customer login Token associated with the previously used cartToken                             |
-| HEADER: customerToken | true     | -      | Customer Login Token of account you would like to send the cart content in Http request URL to |

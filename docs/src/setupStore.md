@@ -15,7 +15,7 @@ NOTE: This shippingSetting call must include a 'ups' and 'freeshipping' record. 
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/V1.10/setupStore/`
+`POST https://storeapi.csomni.com/V1.10/setupStore/`
 
 ### Headers
 | Parameter   | Required | Unique | Description   | Default |
@@ -69,7 +69,7 @@ NOTE: This shippingSetting call must include a 'ups' and 'freeshipping' record. 
 ## Example 
 
 ```shell
-curl --location --request POST 'https://apistore.csomni.com/V1.10/setupStore/' \
+curl --location --request POST 'https://storeapi.csomni.com/V1.10/setupStore/' \
 --header 'Content-Type: application/json' \
 --header 'securty: [contact chayelle@evelt.com]'
 
@@ -205,12 +205,12 @@ This endpoint will return all tokens associated to the site token required.
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/V1.10/setupStore`
+`GET https://storeapi.csomni.com/V1.10/setupStore`
 
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/V1.10/setupStore \
+  --url https://storeapi.csomni.com/V1.10/setupStore \
   --header 'token: site_123456'
   --header 'security: [contact chayelle@evelt.com]'
 ```
@@ -389,7 +389,7 @@ curl --request GET \
 ### CALL 2: shipping setup:
 ### HTTP Request
 
-`POST https://apistore.csomni.com/V1.10/shippingmethods/`
+`POST https://storeapi.csomni.com/V1.10/shippingmethods/`
 
 ### Query (Data) Parameters
 
@@ -410,7 +410,7 @@ curl --request GET \
 ## Example 
 
 ```shell
-curl --location --request POST 'https://apistore.csomni.com/V1.10/shippingmethods/' \
+curl --location --request POST 'https://storeapi.csomni.com/V1.10/shippingmethods/' \
 --header 'token: user_123456' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -614,7 +614,7 @@ curl --location --request POST 'https://apistore.csomni.com/V1.10/shippingmethod
 
 ### HTTP Request
 
-`PUT https://apistore.csomni.com/V1.10/setupStore/[companyToken]`
+`PUT https://storeapi.csomni.com/V1.10/setupStore/[companyToken]`
 
 ### Headers
 | Parameter   | Required | Unique | Description                                                      | Default |
@@ -671,7 +671,7 @@ curl --location --request POST 'https://apistore.csomni.com/V1.10/shippingmethod
 ### Includes only a few possible editable fields. Note: See above table for more fields that may be edited through the below example
 
 ```shell
-    curl --location --request PUT 'https://apistore.csomni.com/V1.10/setupStore/comp_123456' \
+    curl --location --request PUT 'https://storeapi.csomni.com/V1.10/setupStore/comp_123456' \
 --header 'security: [contact evelt]' \
 --header 'token: site_123456' \
 --header 'userToken: user_123456' \

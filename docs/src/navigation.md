@@ -6,7 +6,7 @@ This endpoint retrieves a full poulated navigation
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/navigations/[navigationToken/navigationSlug]`
+`GET https://storeapi.csomni.com/navigations/[navigationToken/navigationSlug]`
 
 ### URL Parameters
 
@@ -24,7 +24,7 @@ This endpoint retrieves a full poulated navigation
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/navigations/[navigationToken/navigationSlug] \
+  --url https://storeapi.csomni.com/navigations/[navigationToken/navigationSlug] \
   --header 'token: 123'
 ```
 

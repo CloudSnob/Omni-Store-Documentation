@@ -1,17 +1,22 @@
 # Brands
 
-## Get All Brands
+## Get Brands
 
-This endpoint retrieves all brands
+This endpoint retrieves all brands 
 
 ### HTTP Request
 
-`GET https://api.omnifront.cloudsnob.com/brands`
+`GET https://storeapi.csomni/brands`
+
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| siteToken     | true     | string | Unique siteToken |
 
 ```shell
 curl --request GET \
-  --url https://api.omnifront.cloudsnob.com/brands \
-  --header 'token: 123'
+  --url https://storeapi.csomni/brands \
+  --header 'token: site_xxxxxxxxxxxx'
 ```
 
 > The above command returns JSON structured like this:
@@ -19,25 +24,25 @@ curl --request GET \
 ```json
 [
   {
-    "companyToken": "comp_123456",
-    "brandToken": "brnd_123456",
-    "brandName": "aaaaaaaaaa",
+    "companyToken": "comp_xxxxxxxxxxxxx",
+    "brandToken": "brnd_xxxxxxxxxxxxx",
+    "brandName": "Elph & Rand",
     "brandImage": "",
     "createdAt": "2021-12-16 18:45:21",
     "editedAt": "2021-12-16 18:45:21"
   },
   {
-    "companyToken": "comp_123456",
-    "brandToken": "brnd_123456",
-    "brandName": "Second brand test",
+    "companyToken": "comp_xxxxxxxxxxxxx",
+    "brandToken": "brnd_xxxxxxxxxxxxx",
+    "brandName": "Kite Bulls",
     "brandImage": "",
     "createdAt": "2021-12-16 18:45:21",
     "editedAt": "2021-12-16 18:45:21"
   },
   {
-    "companyToken": "comp_123456",
-    "brandToken": "brnd_123456",
-    "brandName": "newbrnaad",
+    "companyToken": "comp_xxxxxxxxxxxxx",
+    "brandToken": "brnd_xxxxxxxxxxxxx",
+    "brandName": "Rock-a-bye",
     "brandImage": "",
     "createdAt": "2021-12-16 18:45:21",
     "editedAt": "2021-12-16 18:45:21"
@@ -45,33 +50,31 @@ curl --request GET \
 ]
 ```
 
-## Get a Specific Brand
+## Get a Brand by brandToken
 
 This endpoint retrieves a Specific brand.
 
 ### HTTP Request
 
-`GET https://api.omnifront.cloudsnob.com/brands/[brandToken]`
+`GET https://storeapi.csomni/brands/{brandToken}`
 
-### URL Parameters
-
-| Parameter  | Description        |
-| ---------- | ------------------ |
-| brandToken | Token of the Brand |
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| siteToken     | true     | string | Unique siteToken |
 
 ```shell
 curl --request GET \
-  --url https://api.omnifront.cloudsnob.com/brands/[brandToken] \
-  --header 'token: 123'
+  --url https://storeapi.csomni/brands/{}brandToken} \
+  --header 'token: site_xxxxxxxxxxxxx'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "companyToken": "comp_123456",
-  "brandToken": "brnd_123456",
-  "brandName": "newbrnaad",
+  "brandToken": "brnd_xxxxxxxxxxxxx",
+  "brandName": "Rock-a-bye",
   "brandImage": "",
   "createdAt": "2021-12-16 18:45:21",
   "editedAt": "2021-12-16 18:45:21"

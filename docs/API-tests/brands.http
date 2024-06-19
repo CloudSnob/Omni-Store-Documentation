@@ -1,0 +1,15 @@
+# @name get_brands
+GET {{baseStoreUrl}}/brands
+token: {{siteToken}}
+Content-Type: application/json
+
+
+> {%
+    client.global.set("brandToken", response.body[0].brandToken);
+%}
+###
+
+# @name get_a_brand_by_brand_token
+GET {{baseStoreUrl}}/brands/{{brandToken}}
+token: {{siteToken}}
+Content-Type: application/json

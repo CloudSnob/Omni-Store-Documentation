@@ -1,0 +1,44 @@
+#import getCustomerPrivateToken from "customers.http";
+
+
+# @name createQuote
+POST {{baseStoreUrl}}/quotes/ HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+ "quoteItems": [
+        {
+            "variantToken" : "vrnt_s4ajfvrcN5hzamEp",
+            "quantity" : 2
+        },
+        {
+            "variantToken" : "vrnt_yqktptPndobaaR86",
+            "quantity" : 2
+        }
+    ],
+    "shippingAddress" : "adrs_Esfy9infyTJoGNiLZ6Oqm0bz",
+    "contactDetails" : {
+        "firstName" : "Sharon",
+        "lastName" : "Doe",
+        "email" : "chayelle+quoteDetails@evelt.com",
+        "phoneNumber" : "987657489",
+        "companyName" : "Techo"
+    }
+
+}
+
+###
+
+# @name getCustomerPrivateToken
+GET {{baseAdminUrl}}/customers/exchangeLoginToken/{{customerPublicToken}} HTTP/1.1
+token: {{userPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("customerPrivateToken", response.body.trim);
+    //client.global.set("customerPrivateToken", trim('"', customerPrivateToken))
+%}
+
+###

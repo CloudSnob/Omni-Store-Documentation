@@ -1,0 +1,43 @@
+#@name createCustomer
+POST {{baseStoreUrl}}/customers
+token: {{siteToken}}
+Content-Type: application/json
+
+{
+  "customerEmail": "chayelle{{$randomInt}}{{$randomInt}}{{$randomInt}}@csomni.com",
+  "customerFirstName": "Chayelle_{{$random.alphanumeric(4)}}",
+  "customerLastName": "Altmann_{{$random.alphanumeric(4)}}",
+  "customerPhone": "5619980301",
+  "customerPassword": "test123!"
+}
+
+> {%
+
+    client.var.set("customerPrivateToken1", response.body.customerToken);
+    //client.global.set("customerPrivateToken", trim('"', customerPrivateToken))
+    request.variables.set()
+%}
+###
+
+# @name getCustomerPrivateToken
+GET {{baseAdminUrl}}/customers/exchangeLoginToken/{{customerPublicToken}} HTTP/1.1
+token: {{userPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("customerPrivateToken", response.body.trim);
+    //client.global.set("customerPrivateToken", trim('"', customerPrivateToken))
+%}
+
+###
+
+// notSureIfWorking
+# @name approveCustomer
+POST {{baseAdminUrl}}/customers/{{customerPrivateToken}} HTTP/1.1
+token: {{userPublicToken}}
+Content-Type: application/json
+
+{
+  "customerStatus" : "cs_approved"
+}
+
