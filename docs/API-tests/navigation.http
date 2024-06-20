@@ -1,0 +1,30 @@
+#@name get_navigations
+GET {{baseStoreUrl}}/navigations
+token: {{siteToken}}
+Content-Type: application/json
+
+> {%
+        client.global.set("navigationToken", response.body[0].navigationToken);
+        client.global.set("navigationSlug", response.body[0].slug);
+
+%}
+###
+#@name get_a_navigation_by_navigation_token
+GET {{baseStoreUrl}}/navigations/{{navigationToken}}
+token: {{siteToken}}
+Content-Type: application/json
+
+> {%
+        client.global.set("navigationToken", response.body.navigationToken);
+%}
+###
+
+#@name get_a_navigation_by_navigation_slug
+GET {{baseStoreUrl}}/navigations/{{navigationSlug}}
+token: {{siteToken}}
+Content-Type: application/json
+
+> {%
+        client.global.set("navigationToken", response.body.navigationToken);
+%}
+###

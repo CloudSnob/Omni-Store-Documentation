@@ -1,0 +1,39 @@
+# @name get_all_products
+GET {{baseStoreUrl}}/products
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_product_by_product_token
+GET {{baseStoreUrl}}/products/{{productToken1}}
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_product_by_slug
+GET {{baseStoreUrl}}/products/{{productSlug1}}
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_full_product_by_product_token
+GET {{baseStoreUrl}}/products/{{productToken1}}/full
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_products_by_solr
+GET {{baseStoreUrl}}/products/solr?parsedQ=flapper&fq={}&rows=20&start=0&responseData=firstVariant,variantAggregates&facets=1
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name update_inventory_count
+POST {{baseStoreUrl}}/products/{{productToken1}}
+token: {{siteToken}}
+Content-Type: application/json
+
+{
+  "count": 25
+}
+###

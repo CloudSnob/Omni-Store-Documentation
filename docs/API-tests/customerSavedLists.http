@@ -1,0 +1,114 @@
+#@name create_new_list
+POST {{baseStoreUrl}}/customeritemlist
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "listReadableName":"Autumn List {{$randomInt}}",
+  "sortOrder" : 0
+}
+
+> {%
+    client.global.set("listToken", response.body.listToken);
+%}
+###
+
+#@name edit_list_name_or_sort_order
+PUT {{baseStoreUrl}}/customeritemlist/{{listToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "listReadableName":"Autumn List {{$randomInt}}",
+  "sortOrder" : 0
+}
+
+> {%
+    client.global.set("listToken", response.body.listToken);
+%}
+###
+
+#@name add_items_to_list
+POST {{baseStoreUrl}}/customeritemlist/{{listToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "listItems": [
+    {
+      "variantToken": "{{variantToken1}}",
+      "quantity": 1,
+      "sortOrder": 0
+    },
+    {
+      "variantToken": "{{variantToken2}}",
+      "quantity": 2,
+      "sortOrder": 1
+    }
+  ]
+}
+
+> {%
+    client.global.set("listToken", response.body.listToken);
+    client.global.set("itemToken", response.body.listItems[0].itemToken);
+%}
+###
+
+#@name edit_list_item
+PUT {{baseStoreUrl}}/customeritemlist/{{listToken}}/{{itemToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "sortOrder" : 1,
+  "variantToken": "{{variantToken3}}",
+  "quantity" : 2
+}
+
+> {%
+    client.global.set("listToken", response.body.listToken);
+    client.global.set("itemToken", response.body.listItems[0].itemToken);
+%}
+###
+
+#@name get_list_by_list_token
+GET {{baseStoreUrl}}/customeritemlist/{{listToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("listToken", response.body.listToken);
+    client.global.set("itemToken", response.body.listItems[0].itemToken);
+%}
+###
+
+#@name get_list_by_customer
+GET {{baseStoreUrl}}/customeritemlist
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("listToken", response.body.listToken);
+    client.global.set("itemToken", response.body.listItems[0].itemToken);
+%}
+###
+
+#@name delete_a_customer_list_and_items
+DELETE {{baseStoreUrl}}/customeritemlist/{{listToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+###
+
+#@name delete_a_list_item
+DELETE {{baseStoreUrl}}/customeritemlist/{{listToken}}/{{itemToken}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+###

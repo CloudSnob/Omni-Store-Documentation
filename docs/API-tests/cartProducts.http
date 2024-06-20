@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
  "cartProdQuantity": 1,
-  "prodToken" : "vrnt_EvonkJQsR6fRbDtm"
+  "prodToken" : "{{variantToken1}}"
 }
 
 > {%
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
   "cartProdQuantity": 1,
-  "prodToken" : "vrnt_EvonkJQsR6fRbDtm"
+  "prodToken" : "{{variantToken1}}"
 }
 
 > {%
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 {
  "cartProdQuantity": 5,
-  "prodToken" : "vrnt_EvonkJQsR6fRbDtm"
+  "prodToken" : "{{variantToken1}}"
 }
 
 > {%
