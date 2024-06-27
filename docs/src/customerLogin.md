@@ -24,10 +24,12 @@ This endpoint returns logged in user.
 | customerEmail    | true     | Customer Email    |
 | customerPassword | true     | Customer Password |
 
+Sample in Shell:
+
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/login \
-  --header 'token: cs_xxxxxxxxxxxxxx' \
+  --header 'token: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
   --data '{
             "customerEmail" : "tesst@gmail.com",
              "customerPassword" : "Abc12345"
@@ -54,14 +56,14 @@ curl --request POST \
   "taxExemptID": null,
   "createdAt": "2021-12-01 10:12:01",
   "editedAt": "2021-12-01 13:42:53",
-  "customerToken": "cs_xxxxxxxxxxxxxxx"
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi"
 }
 ```
 > If a company setting requires a customer to be approved, until the customer is approved a limited response is provided and login is not initiated
 
 ```json
 {
-    "customerToken": "cs_123456",
+    "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
     "customerStatus": "cs_awaiting_approval",
     "customerEmail": "123456@evelt.com",
     "customerFirstName": "Sarah"
@@ -80,12 +82,12 @@ curl --request POST \
 |---------------|----------|--------|----------------------|
 | siteToken     | true     | string | Site Token           |
 
-
+Sample in Shell:
 
 ```shell
 curl --location POST 'https://storeapi.csomni.com/login/logout' \
---header 'token: site_xxxxxxxxx' \
---header 'customerToken: cs_xxxxxxxxxxxxxxxxxx'
+--header 'token: site_xxxxxxxxxxxxx' \
+--header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
 > The above command returns JSON structured like this:

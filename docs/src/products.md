@@ -3,42 +3,43 @@
 ## Get All Products
 This endpoint retrieves products by solr
 
-Example 1:
+Example 1: Basic Solr search - get all products and specify list size per page
 ### HTTP Request
 `GET https://storeapi.csomni.com/products/solr?parsedQ=&rows=20`
 
-### Query Parameters
-| Parameter                                                                                                                                                                                                                                                                                          | Required | Default | Description                                                                                                                         |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------------------------------------|
-| parsedQ                                                                                                                                                                                                                                                                                            | false    | -       | If empty will bring in all values this will                                                                                         |
-| do a search in catch all and in prodName,prodNumber,prodDescription,variantName,variantNumber,variantToken,variantUpc and prodUpc if it will match prodName or prodNumber etc. fully it'll return those items first else it'll only check in catchAll for partial matches. Example: parsedQ=laptop |
-| start                                                                                                                                                                                                                                                                                              | false    | 0       | At which field to start                                                                                                             |
-| rows                                                                                                                                                                                                                                                                                               | false    | 10      | Amount of rows to returns                                                                                                           |
-| sort                                                                                                                                                                                                                                                                                               | false    | -       | Any field to sort by                                                                                                                |
-| sortOrder                                                                                                                                                                                                                                                                                          | false    | asc     | asc (ascending) or desc (descending)                                                                                                |
-| responseData                                                                                                                                                                                                                                                                                       | false    | -       | comma dilimited list of response data (full,variantAggregates,specs,specialValues,firstAggregate)                                   |
-| fq                                                                                                                                                                                                                                                                                                 | false    | -       | A list of filters (for example if you want to show items from specific collection put fq={"prodCollectionSlugs":"collection-name"}) |
-| facets                                                                                                                                                                                                                                                                                             | false    | -       | put the value 1 if you want to get facets for the results.                                                                          |
+### Header Parameters
+| Parameter     | Required | Type   | Description   |
+|---------------|----------|--------|---------------|
+| siteToken     | true     | string | Site Token ID |
 
-when user selects a Facet. Let's say brand:brnd_123, add it to the filter query JSON object. To search by multiptple
-brands,put an array, do like this: fq={"prodCollectionSlugs":["brnd_1","brnd_2"]} to search for range do fq={"
-variantPrice":"[* TO 500]"} where \* is anything.
+### Query Parameters
+| Parameter    | Required | Type   | Default | Description                                                                                                                                              |
+|--------------|----------|--------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| parsedQ      | false    | string | -       | The search term. <br/> If no exact match is found, partial matches will be returned<br/>If parameter is left empty, a full list of products is returned. |
+| start        | false    | string | 0       | At which field to start                                                                                                                                  |
+| rows         | false    | int    | 10      | Amount of rows to returns                                                                                                                                |
+| sort         | false    | string | -       | Any field to sort by                                                                                                                                     |
+| sortOrder    | false    | string | asc     | asc (ascending) or desc (descending)                                                                                                                     |
+| responseData | false    | string | -       | comma delimited list of response data (full,variantAggregates,specs,specialValues,firstAggregate). See below for list of response types                  |
+| fq           | false    | string | -       | A list of filters (for example if you want to show items from specific collection put fq={"prodCollectionSlugs":"collection-name"})                      |
+| facets       | false    | bool   | -       | Set to '1' to be served facets.                                                                                                                          |
+
 
 ### Response Data Options
-
 | Parameter         | Description                                                   |
 |-------------------|---------------------------------------------------------------|
 | full              | Returns All variants on the product                           |
-| variantAggregates | Returns the varinat count, highest and lowest priced variants |
+| variantAggregates | Returns the variant count, highest and lowest priced variants |
 | specs             | Returns Specs on the product and variant                      |
 | specialValues     | Returns Special Values on the product and variant             |
 | firstVariant      | Returns only the first variant on the product (as an object)  |
 | fullAccessories   | Returns array of accessory products                           |
 
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://storeapi.csomni.com/products/solr?parsedQ=flap&rows=6 \
+  --url https://storeapi.csomni.com/products/solr?parsedQ=&rows=20 \
   --header 'token: site_xxxxxxxxxx'
 ```
 
@@ -46,111 +47,185 @@ curl --request GET \
 
 ```json
 {
-  "numFound": 19,
+  "numFound": 2203,
   "start": 0,
   "numFoundExact": true,
-  "docs":[
-            {
-                      "prodToken": "prod_Ar890Yysu525DowM",
-                      "prodName": "KORKY 525BP UNIVERSAL TOILET FLAPPER BLUE",
-                      "prodImage": {
-                          "file": "1-19-2023\/1674146138554__133110__NS-525.jpg",
-                          "type": ""
-                      },
-                      "prodImages": [],
-                      "prodWeight": 0,
-                      "prodDimW": "0",
-                      "prodDimL": "",
-                      "prodDimH": "",
-                      "prodUpc": "",
-                      "prodNumber": "",
-                      "prodPrice": ".00",
-                      "prodDescription": "",
-                      "prodHighlights": "",
-                      "prodAlert": "",
-                      "prodLowlevel": "",
-                      "prodSlug": "korky-525bp-universal-toilet-flapper-blue",
-                      "prodVisible": 1,
-                      "prodAllowCheckout": 0,
-                      "prodCheckInvetory": 0,
-                      "prodTrackInventory": 0,
-                      "inventoryCount": 0,
-                      "shippingProduct": 0,
-                      "prodMetaTitle": "",
-                      "prodMetaDescription": "",
-                      "prodBrand": "",
-                      "prodType": "",
-                      "prodTemplate": "",
-                      "prodAccessories": [],
-                      "google_prodCategory": "",
-                      "google_prodType": "",
-                      "google_prodCondition": "",
-                      "backOrderWarning": 0,
-                      "createdAt": "2023-06-21 21:20:33",
-                      "editedAt": "2023-06-21 21:20:33",
-                      "prodCollections": [
-                          "clcs_IdT3XKUXXIqBybaN"
-                      ],
-                      "variantInfo": {
-                          "priceTo": 2.7,
-                          "priceFrom": 2.7,
-                          "variantCount": 1
-                      }
-                  },
-                  {
-                      "prodToken": "prod_kp1eGuTl4MHaeove",
-                      "prodName": "KORKY TOILET FLAPPER, RUBBER, BLACK #50BP",
-                      "prodImage": {
-                          "file": "1-11-2023\/1673480469634__70901__50BP.jpg",
-                          "type": ""
-                      },
-                      "prodImages": [],
-                      "prodWeight": 0,
-                      "prodDimW": "0",
-                      "prodDimL": "",
-                      "prodDimH": "",
-                      "prodUpc": "",
-                      "prodNumber": "",
-                      "prodPrice": ".00",
-                      "prodDescription": "",
-                      "prodHighlights": "",
-                      "prodAlert": "",
-                      "prodLowlevel": "",
-                      "prodSlug": "korky-toilet-flapper-rubber-black-50bp",
-                      "prodVisible": 1,
-                      "prodAllowCheckout": 0,
-                      "prodCheckInvetory": 0,
-                      "prodTrackInventory": 0,
-                      "inventoryCount": 0,
-                      "shippingProduct": 0,
-                      "prodMetaTitle": "",
-                      "prodMetaDescription": "",
-                      "prodBrand": "",
-                      "prodType": "",
-                      "prodTemplate": "",
-                      "prodAccessories": [],
-                      "google_prodCategory": "",
-                      "google_prodType": "",
-                      "google_prodCondition": "",
-                      "backOrderWarning": 0,
-                      "createdAt": "2023-06-21 21:20:33",
-                      "editedAt": "2023-06-21 21:20:33",
-                      "prodCollections": [
-                          "clcs_IdT3XKUXXIqBybaN"
-                      ],
-                      "variantInfo": {
-                          "priceTo": 3.24,
-                          "priceFrom": 3.24,
-                          "variantCount": 1
-                      }
-                  },...
-          ]
-}
+  "docs": [
+    {
+      "prodToken": "prod_Pnllm7TeX9ZpSDCS",
+      "prodName": "Surface-Mount Double Toilet Paper Holder, Chrome",
+      "prodImage": {
+        "file": "2-3-2021\/1612376323137__21714__93015.jpg",
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "<ul><li>Chrome<\/li><li>Surface-Mount<\/li><li>Holds 2 Rolls<\/li><\/ul>",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "double-roll-toilet-paper-holder-",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [
+        "prod_Ci5ly6NqRiVzaBgb",
+        "prod_RwGyyJPLH2s6I5vU",
+        "prod_YMNVLGJTLkhANUOW",
+        "prod_ZZ5kjqqWOpp8Wv7J"
+      ],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2022-12-18 23:01:00",
+      "editedAt": "2022-12-18 23:01:00",
+      "prodCollections": [
+        "clcs_X84pzkjlQpaJPp7r"
+      ],
+      "variantInfo": {
+        "priceTo": 0,
+        "priceFrom": 0,
+        "variantCount": 1
+      }
+    },
+    {
+      "prodToken": "prod_BCqk75xNGmbyZMwI",
+      "prodName": "Curved Steel Floor Squeegee, 24\" with Tapered Wood Handle",
+      "prodImage": {
+        "file": "6-17-2021\/1623947921984__18918__13059.jpg",
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "<ul><li>Scraping edge for removing job site debris, sludge, ice and snow<\/li><li>Stands up to most chemicals, paints, and solvents<\/li><li>Galvanized steel construction<\/li><\/ul>",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "curved-steel-floor-squeegee-24-with-54-tapered-wood-handle",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [
+        "prod_np74FIo3sTdLiLdo",
+        "prod_6lRqA5VvZ7zO0O8Y",
+        "prod_03lZcsgezLqzS8qc",
+        "prod_QgBXLyuANnVOqkHM"
+      ],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2022-12-18 23:01:00",
+      "editedAt": "2022-12-18 23:01:00",
+      "prodCollections": [
+        "clcs_3KAdzRr9xYkhRlbG"
+      ],
+      "variantInfo": {
+        "priceTo": 21.95,
+        "priceFrom": 0,
+        "variantCount": 3
+      },
+      "prodOptions": [
+        {
+          "optionToken": "optn_L9wEPF6PvSa70buLR1Ek",
+          "optionName": "",
+          "optionOrder": "0"
+        }
+      ]
+    },
+    {
+      "prodToken": "prod_PMehQTerQYPxfHnt",
+      "prodName": "Black Floor Pads ",
+      "prodImage": {
+        "file": "2-4-2021\/1612456968174__242712__14000.jpg",
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "<p>Stripping Pads<\/p><p>Cs 5<\/p>",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "black-floor-pads-",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2022-12-18 23:01:00",
+      "editedAt": "2022-12-18 23:01:00",
+      "prodCollections": [],
+      "variantInfo": {
+        "priceTo": 34.95,
+        "priceFrom": 0,
+        "variantCount": 7
+      },
+      "prodOptions": [
+        {
+          "optionToken": "optn_IsYdz0y1mKkFFZlzPxL6",
+          "optionName": "size",
+          "optionOrder": "0"
+        }
+      ]
+    }...*
 ```
+...* : RESULT IS CUT SHORT DUE TO LARGE LENGTH
 
-Example 2:
+Example 2: Search with a search term ('flapper'), page list limit, responseData attributes and facets.
+
 ### HTTP Request
 `GET https://storeapi.csomni.com/products/solr?parsedQ=flapper&fq={}&rows=20&start=0&responseData=firstVariant,variantAggregates&facets=1`
+
+Sample in Shell:
 
 ```shell
 curl --request GET \
@@ -158,346 +233,574 @@ curl --request GET \
 --header 'token: site_xxxxxxxxxx'
 ```
 
+
 > The above command returns the response JSON structured like this:
 
 ```json
 {
-    "numFound": 18,
-    "start": 0,
-    "numFoundExact": true,
-    "docs": [
-        {
-            "prodToken": "prod_Ar890Yysu525DowM",
-            "prodName": "KORKY 525BP UNIVERSAL TOILET FLAPPER BLUE",
-            "prodImage": {
-                "file": "1-19-2023\/1674146138554__133110__NS-525.jpg",
-                "type": ""
-            },
-            "prodImages": [],
-            "prodWeight": 0,
-            "prodDimW": "0",
-            "prodDimL": "",
-            "prodDimH": "",
-            "prodUpc": "",
-            "prodNumber": "",
-            "prodPrice": ".00",
-            "prodDescription": "",
-            "prodHighlights": "",
-            "prodAlert": "",
-            "prodLowlevel": "",
-            "prodSlug": "korky-525bp-universal-toilet-flapper-blue",
-            "prodVisible": 1,
-            "prodAllowCheckout": 0,
-            "prodCheckInvetory": 0,
-            "prodTrackInventory": 0,
-            "inventoryCount": 0,
-            "shippingProduct": 0,
-            "prodMetaTitle": "",
-            "prodMetaDescription": "",
-            "prodBrand": "",
-            "prodType": "",
-            "prodTemplate": "",
-            "prodAccessories": [],
-            "google_prodCategory": "",
-            "google_prodType": "",
-            "google_prodCondition": "",
-            "backOrderWarning": 0,
-            "createdAt": "2023-06-21 21:20:33",
-            "editedAt": "2023-06-21 21:20:33",
-            "prodCollections": [
-                "clcs_IdT3XKUXXIqBybaN"
-            ],
-            "variantInfo": {
-                "priceTo": 2.7,
-                "priceFrom": 2.7,
-                "variantCount": 1
-            },
-            "firstVariant": {
-                "prodToken": "prod_Ar890Yysu525DowM",
-                "variantToken": "vrnt_LlDZqIJNEfvVAAwT",
-                "variantName": "",
-                "variantImage": {
-                    "file": "1-19-2023\/1674146138554__133110__NS-525.jpg",
-                    "type": ""
-                },
-                "variantImages": [],
-                "variantWeight": "0",
-                "variantDimW": "0",
-                "variantDimL": "0",
-                "variantDimH": "0",
-                "variantUpc": "",
-                "variantNumber": "NS-525",
-                "manufacturerPartNumber": "",
-                "variantPrice": 2.7,
-                "variantMapPrice": 0,
-                "variantMsrpPrice": 0,
-                "variantDisplayPrice": 0,
-                "variantDescription": "",
-                "variantAlert": "",
-                "variantLowlevel": "",
-                "variantSlug": "",
-                "variantVisible": 1,
-                "taxType": "",
-                "hideGoogleData": 0,
-                "google_variantCategory": null,
-                "google_variantType": null,
-                "google_variantCondition": null,
-                "taxable": 1,
-                "variantAllowCheckout": 0,
-                "variantCheckInvetory": 0,
-                "variantTrackInventory": 0,
-                "inventoryCount": 10000,
-                "shippingProduct": 0,
-                "variantMetaTitle": "",
-                "variantMetaDescription": "",
-                "variantBrand": "",
-                "sortOrder": 0,
-                "dateCreated": "1674146144",
-                "deleted": 0,
-                "backOrderWarning": 0,
-                "createdAt": "2023-06-21 21:20:36",
-                "editedAt": "2023-08-21 20:21:30",
-                "variantInStock": true
-            }
+  "numFound": 3,
+  "start": 0,
+  "numFoundExact": true,
+  "docs": [
+    {
+      "prodToken": "prod_J6Kcyx43Xefz44DZ",
+      "prodName": "KORKY TOILET FLAPPER BLACK 316540",
+      "prodImage": {
+        "file": "11-13-2022\/1668373988001__3802__72102.jpg",
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "korky-toilet-flapper-black-316540",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2022-12-18 23:01:00",
+      "editedAt": "2022-12-18 23:01:00",
+      "prodCollections": [
+        "clcs_IdT3XKUXXIqBybaN"
+      ],
+      "variantInfo": {
+        "priceTo": 0,
+        "priceFrom": 0,
+        "variantCount": 1
+      },
+      "firstVariant": {
+        "prodToken": "prod_J6Kcyx43Xefz44DZ",
+        "variantToken": "vrnt_7lCrBWvVut8oMjUQ",
+        "variantName": "",
+        "variantImage": {
+          "file": "11-13-2022\/1668373988001__3802__72102.jpg",
+          "type": ""
         },
-        {
-            "prodToken": "prod_kp1eGuTl4MHaeove",
-            "prodName": "KORKY TOILET FLAPPER, RUBBER, BLACK #50BP",
-            "prodImage": {
-                "file": "1-11-2023\/1673480469634__70901__50BP.jpg",
-                "type": ""
-            },
-            "prodImages": [],
-            "prodWeight": 0,
-            "prodDimW": "0",
-            "prodDimL": "",
-            "prodDimH": "",
-            "prodUpc": "",
-            "prodNumber": "",
-            "prodPrice": ".00",
-            "prodDescription": "",
-            "prodHighlights": "",
-            "prodAlert": "",
-            "prodLowlevel": "",
-            "prodSlug": "korky-toilet-flapper-rubber-black-50bp",
-            "prodVisible": 1,
-            "prodAllowCheckout": 0,
-            "prodCheckInvetory": 0,
-            "prodTrackInventory": 0,
-            "inventoryCount": 0,
-            "shippingProduct": 0,
-            "prodMetaTitle": "",
-            "prodMetaDescription": "",
-            "prodBrand": "",
-            "prodType": "",
-            "prodTemplate": "",
-            "prodAccessories": [],
-            "google_prodCategory": "",
-            "google_prodType": "",
-            "google_prodCondition": "",
-            "backOrderWarning": 0,
-            "createdAt": "2023-06-21 21:20:33",
-            "editedAt": "2023-06-21 21:20:33",
-            "prodCollections": [
-                "clcs_IdT3XKUXXIqBybaN"
-            ],
-            "variantInfo": {
-                "priceTo": 3.24,
-                "priceFrom": 3.24,
-                "variantCount": 1
-            },
-            "firstVariant": {
-                "prodToken": "prod_kp1eGuTl4MHaeove",
-                "variantToken": "vrnt_siVUJmd5Ihw2OnQL",
-                "variantName": "",
-                "variantImage": {
-                    "file": "1-11-2023\/1673480469634__70901__50BP.jpg",
-                    "type": ""
-                },
-                "variantImages": [],
-                "variantWeight": "0",
-                "variantDimW": "0",
-                "variantDimL": "0",
-                "variantDimH": "0",
-                "variantUpc": "",
-                "variantNumber": "50BP",
-                "manufacturerPartNumber": "",
-                "variantPrice": 3.24,
-                "variantMapPrice": 0,
-                "variantMsrpPrice": 0,
-                "variantDisplayPrice": 0,
-                "variantDescription": "",
-                "variantAlert": "",
-                "variantLowlevel": "",
-                "variantSlug": "",
-                "variantVisible": 1,
-                "taxType": "",
-                "hideGoogleData": 0,
-                "google_variantCategory": null,
-                "google_variantType": null,
-                "google_variantCondition": null,
-                "taxable": 1,
-                "variantAllowCheckout": 0,
-                "variantCheckInvetory": 0,
-                "variantTrackInventory": 0,
-                "inventoryCount": 10000,
-                "shippingProduct": 0,
-                "variantMetaTitle": "",
-                "variantMetaDescription": "",
-                "variantBrand": "",
-                "sortOrder": 0,
-                "dateCreated": "1673480474",
-                "deleted": 0,
-                "backOrderWarning": 0,
-                "createdAt": "2023-06-21 21:20:36",
-                "editedAt": "2023-08-21 20:18:23",
-                "variantInStock": true
-            }
+        "variantImages": [],
+        "variantWeight": "0",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "72102",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": null,
+        "google_variantType": null,
+        "google_variantCondition": null,
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": -1,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1668373994",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2023-05-29 13:28:50",
+        "variantInStock": true
+      }
+    },
+    {
+      "prodToken": "prod_HMvvCv8wA3oe6f9f",
+      "prodName": "FLUIDMASTERS FLAPPER PERFORMANCE 502",
+      "prodImage": {
+        "file": "11-9-2022\/1668007722412__6537__502P21.jpg",
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "fluidmasters-flapper-performance-502",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2022-12-18 23:01:00",
+      "editedAt": "2024-01-18 13:58:34",
+      "prodCollections": [
+        "clcs_IdT3XKUXXIqBybaN",
+        "clcs_KHPYhbf6eOGsaCJo"
+      ],
+      "variantInfo": {
+        "priceTo": 0,
+        "priceFrom": 0,
+        "variantCount": 1
+      },
+      "firstVariant": {
+        "prodToken": "prod_HMvvCv8wA3oe6f9f",
+        "variantToken": "vrnt_KewgBZoZD0ePWdyV",
+        "variantName": "",
+        "variantImage": {
+          "file": "11-9-2022\/1668007722412__6537__502P21.jpg",
+          "type": ""
         },
-        {
-            "prodToken": "prod_3juVe2E7nCeI3vIU",
-            "prodName": "TOILET TANK FLAPPER FIT ALL",
-            "prodImage": {
-                "file": "1-16-2023\/1673905838358__14183__89385.jpg",
-                "type": ""
-            },
-            "prodImages": [],
-            "prodWeight": 0,
-            "prodDimW": "0",
-            "prodDimL": "",
-            "prodDimH": "",
-            "prodUpc": "",
-            "prodNumber": "",
-            "prodPrice": ".00",
-            "prodDescription": "",
-            "prodHighlights": "",
-            "prodAlert": "",
-            "prodLowlevel": "",
-            "prodSlug": "toilet-tank-flapper-fit-all",
-            "prodVisible": 1,
-            "prodAllowCheckout": 0,
-            "prodCheckInvetory": 0,
-            "prodTrackInventory": 0,
-            "inventoryCount": 0,
-            "shippingProduct": 0,
-            "prodMetaTitle": "",
-            "prodMetaDescription": "",
-            "prodBrand": "",
-            "prodType": "",
-            "prodTemplate": "",
-            "prodAccessories": [],
-            "google_prodCategory": "",
-            "google_prodType": "",
-            "google_prodCondition": "",
-            "backOrderWarning": 0,
-            "createdAt": "2023-06-21 21:20:33",
-            "editedAt": "2023-06-21 21:20:33",
-            "prodCollections": [
-                "clcs_IdT3XKUXXIqBybaN"
-            ],
-            "variantInfo": {
-                "priceTo": 3.79,
-                "priceFrom": 3.79,
-                "variantCount": 1
-            },
-            "firstVariant": {
-                "prodToken": "prod_3juVe2E7nCeI3vIU",
-                "variantToken": "vrnt_FJaPr75CHmuN4i34",
-                "variantName": "",
-                "variantImage": {
-                    "file": "1-16-2023\/1673905838358__14183__89385.jpg",
-                    "type": ""
-                },
-                "variantImages": [],
-                "variantWeight": "0",
-                "variantDimW": "0",
-                "variantDimL": "0",
-                "variantDimH": "0",
-                "variantUpc": "",
-                "variantNumber": "89385",
-                "manufacturerPartNumber": "",
-                "variantPrice": 3.79,
-                "variantMapPrice": 0,
-                "variantMsrpPrice": 0,
-                "variantDisplayPrice": 0,
-                "variantDescription": "",
-                "variantAlert": "",
-                "variantLowlevel": "",
-                "variantSlug": "",
-                "variantVisible": 1,
-                "taxType": "",
-                "hideGoogleData": 0,
-                "google_variantCategory": null,
-                "google_variantType": null,
-                "google_variantCondition": null,
-                "taxable": 1,
-                "variantAllowCheckout": 0,
-                "variantCheckInvetory": 0,
-                "variantTrackInventory": 0,
-                "inventoryCount": 10000,
-                "shippingProduct": 0,
-                "variantMetaTitle": "",
-                "variantMetaDescription": "",
-                "variantBrand": "",
-                "sortOrder": 0,
-                "dateCreated": "1673905841",
-                "deleted": 0,
-                "backOrderWarning": 0,
-                "createdAt": "2023-06-21 21:20:36",
-                "editedAt": "2023-08-21 20:20:38",
-                "variantInStock": true
-            }
-        }
-    ],
-    "facets": {
-        "count": 18,
-        "prodBrand": {
-            "buckets": []
-        },
-        "prodCollectionSlugs": {
-            "buckets": [
-                {
-                    "val": "flappers",
-                    "count": 15,
-                    "productsCount": 15
-                },
-                {
-                    "val": "toilet-tank-repair-parts",
-                    "count": 4,
-                    "productsCount": 4
-                }
-            ]
-        },
-        "variantPrice": {
-            "buckets": [
-                {
-                    "val": "[*, 100]",
-                    "count": 18,
-                    "productsCount": 18
-                },
-                {
-                    "val": "[100, 250]",
-                    "count": 0
-                },
-                {
-                    "val": "[250, 500]",
-                    "count": 0
-                },
-                {
-                    "val": "[500, 1000]",
-                    "count": 0
-                },
-                {
-                    "val": "[1000, 2000]",
-                    "count": 0
-                },
-                {
-                    "val": "[2000, *]",
-                    "count": 0
-                }
-            ]
-        }
+        "variantImages": [],
+        "variantWeight": "2",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "502P21",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": -13,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1668007746",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-01-25 18:59:37",
+        "variantInStock": true
+      }
+    },
+    {
+      "prodToken": "prod_4FNLFRwfvbOhUQvf",
+      "prodName": "Flapper double",
+      "prodImage": {
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "flapper-double",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2024-06-24 11:01:40",
+      "editedAt": "2024-06-24 11:02:01",
+      "prodCollections": [],
+      "variantInfo": {
+        "priceTo": null,
+        "priceFrom": null,
+        "variantCount": 0
+      },
+      "firstVariant": {}
     }
+  ],
+  "facets": {
+    "count": 3,
+    "prodBrand": {
+      "buckets": []
+    },
+    "prodCollectionSlugs": {
+      "buckets": [
+        {
+          "val": "flappers",
+          "count": 2,
+          "productsCount": 2
+        },
+        {
+          "val": "toilet-tank-repair-parts",
+          "count": 1,
+          "productsCount": 1
+        }
+      ]
+    },
+    "variantPrice": {
+      "buckets": [
+        {
+          "val": "[*, 100]",
+          "count": 2,
+          "productsCount": 2
+        },
+        {
+          "val": "[100, 250]",
+          "count": 0
+        },
+        {
+          "val": "[250, 500]",
+          "count": 0
+        },
+        {
+          "val": "[500, 1000]",
+          "count": 0
+        },
+        {
+          "val": "[1000, 2000]",
+          "count": 0
+        },
+        {
+          "val": "[2000, *]",
+          "count": 0
+        }
+      ]
+    }
+  }
+}
+```
+
+Example 3: Using the response from Example 2, a secondary search is made in this example by selecting the 'variantPrice' facet to filter a specific price point range. The result filters out 1 item that is above the price point.
+
+Any facet specifications can be specified with the 'fq' parameter. Some examples:
+fq={"variantPrice":"[* TO 100]"} can be replaced by other facet specifications for example:
+fq={"prodCollectionSlugs":"toilet-tank-repair-parts"}
+fq={"brands":"brand_token"}
+fq={"brands":["brand_token1", "brand_token2"]}
+
+
+### HTTP Request
+`GET https://storeapi.csomni.com/products/solr?parsedQ=flapper&fq={"variantPrice":"[* TO 100]"}&rows=20&start=0&responseData=firstVariant,variantAggregates&facets=1`
+
+Sample in Shell:
+
+```shell
+curl --request GET \
+--url https://storeapi.csomni.com/products/solr?parsedQ=flapper&fq={"variantPrice":"[* TO 100]"}&rows=20&start=0&responseData=firstVariant,variantAggregates&facets=1 \
+--header 'token: site_xxxxxxxxxx'
+```
+
+> The above command returns the response JSON structured like this:
+
+```json
+{
+  "numFound": 2,
+  "start": 0,
+  "numFoundExact": true,
+  "docs": [
+    {
+      "prodToken": "prod_J6Kcyx43Xefz44DZ",
+      "prodName": "KORKY TOILET FLAPPER BLACK 316540",
+      "prodImage": {
+        "file": "11-13-2022\/1668373988001__3802__72102.jpg",
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "korky-toilet-flapper-black-316540",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2022-12-18 23:01:00",
+      "editedAt": "2022-12-18 23:01:00",
+      "prodCollections": [
+        "clcs_IdT3XKUXXIqBybaN"
+      ],
+      "variantInfo": {
+        "priceTo": 0,
+        "priceFrom": 0,
+        "variantCount": 1
+      },
+      "firstVariant": {
+        "prodToken": "prod_J6Kcyx43Xefz44DZ",
+        "variantToken": "vrnt_7lCrBWvVut8oMjUQ",
+        "variantName": "",
+        "variantImage": {
+          "file": "11-13-2022\/1668373988001__3802__72102.jpg",
+          "type": ""
+        },
+        "variantImages": [],
+        "variantWeight": "0",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "72102",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": null,
+        "google_variantType": null,
+        "google_variantCondition": null,
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": -1,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1668373994",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2023-05-29 13:28:50",
+        "variantInStock": true
+      }
+    },
+    {
+      "prodToken": "prod_HMvvCv8wA3oe6f9f",
+      "prodName": "FLUIDMASTERS FLAPPER PERFORMANCE 502",
+      "prodImage": {
+        "file": "11-9-2022\/1668007722412__6537__502P21.jpg",
+        "type": ""
+      },
+      "prodImages": [],
+      "prodWeight": 0,
+      "prodDimW": 0,
+      "prodDimL": "",
+      "prodDimH": "",
+      "prodUpc": "",
+      "prodNumber": "",
+      "prodPrice": ".00",
+      "prodDescription": "",
+      "prodHighlights": "",
+      "prodAlert": "",
+      "prodLowlevel": "",
+      "prodSlug": "fluidmasters-flapper-performance-502",
+      "prodVisible": 1,
+      "prodAllowCheckout": 0,
+      "prodCheckInvetory": 0,
+      "prodTrackInventory": 0,
+      "inventoryCount": 0,
+      "shippingProduct": 0,
+      "prodMetaTitle": "",
+      "prodMetaDescription": "",
+      "prodBrand": "",
+      "prodType": "",
+      "prodTemplate": "",
+      "prodAccessories": [],
+      "google_prodCategory": "",
+      "google_prodType": "",
+      "google_prodCondition": "",
+      "archived": 0,
+      "backOrderWarning": 0,
+      "createdAt": "2022-12-18 23:01:00",
+      "editedAt": "2024-01-18 13:58:34",
+      "prodCollections": [
+        "clcs_IdT3XKUXXIqBybaN",
+        "clcs_KHPYhbf6eOGsaCJo"
+      ],
+      "variantInfo": {
+        "priceTo": 0,
+        "priceFrom": 0,
+        "variantCount": 1
+      },
+      "firstVariant": {
+        "prodToken": "prod_HMvvCv8wA3oe6f9f",
+        "variantToken": "vrnt_KewgBZoZD0ePWdyV",
+        "variantName": "",
+        "variantImage": {
+          "file": "11-9-2022\/1668007722412__6537__502P21.jpg",
+          "type": ""
+        },
+        "variantImages": [],
+        "variantWeight": "2",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "502P21",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": -13,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1668007746",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-01-25 18:59:37",
+        "variantInStock": true
+      }
+    }
+  ],
+  "facets": {
+    "count": 2,
+    "prodBrand": {
+      "buckets": []
+    },
+    "prodCollectionSlugs": {
+      "buckets": [
+        {
+          "val": "flappers",
+          "count": 2,
+          "productsCount": 2
+        },
+        {
+          "val": "toilet-tank-repair-parts",
+          "count": 1,
+          "productsCount": 1
+        }
+      ]
+    },
+    "variantPrice": {
+      "buckets": [
+        {
+          "val": "[*, 100]",
+          "count": 2,
+          "productsCount": 2
+        },
+        {
+          "val": "[100, 250]",
+          "count": 0
+        },
+        {
+          "val": "[250, 500]",
+          "count": 0
+        },
+        {
+          "val": "[500, 1000]",
+          "count": 0
+        },
+        {
+          "val": "[1000, 2000]",
+          "count": 0
+        },
+        {
+          "val": "[2000, *]",
+          "count": 0
+        }
+      ]
+    }
+  }
 }
 ```
 
@@ -514,14 +817,16 @@ This endpoint retrieves a Specific Product.
 | siteToken     | true     | string | Site ID token     |
 
 ### URL Parameters
-| Parameter     | Type   | Description                       |
-|---------------|--------|-----------------------------------|
-| Product Token | string | Token of the Product to retrieve. |
-| Slug          | string | OR a slug of the product          |
+| Parameter     | Type   | Description                         |
+|---------------|--------|-------------------------------------|
+| Product Token | string | Token of the Product to retrieve OR |
+| Slug          | string | OR a slug of the product            |
+
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://storeapi.csomni.com/products/[prodToken||slug] \
+  --url https://storeapi.csomni.com/products/3-4-in-o-d-satin-nickel-drive-in-spring-loaded-ball-style-cabinet-door-latch-with-strike- \
   --header 'token: site_xxxxxxxxxxx'
 ```
 
@@ -592,7 +897,7 @@ This endpoint retrieves a full product and all its information.
 | Product Token | string | Token of the Product to retrieve.                                                             |
 | Slug          | string | OR a slug of the product                                                                      |
 | full          | string | To get the whole product and all its variants and options                                     |
-| responseData  | string | comma delimited list of response data (full,fullAccessories,specailValues,specs,firstVariant) |
+| responseData  | string | comma delimited list of response data (full,fullAccessories,specialValues,specs,firstVariant) |
 
 
 ### Data Parameters
@@ -604,10 +909,11 @@ This endpoint retrieves a full product and all its information.
 | firstVariant    | Returns only the first variant on the product (as an object) |
 | fullAccessories | Returns array of accessory products                          |
 
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://storeapi.csomni.com/products/[prodToken||slug]/full \
+  --url https://storeapi.csomni.com/products/prod_Q73DQtIhj9IJzZ0y/full \
   --header 'token: site_xxxxxxxxx'
 ```
 
@@ -712,39 +1018,5 @@ curl --request GET \
       "variantInStock": true
     }
   ]
-}
-```
-
-## Update Inventory Count
-
-### HTTP Request
-
-`POST https://storeapi.csomni.com/products/{token}`
-
-### URL Parameters
-| Parameter | Type   | Required | Description      |
-|-----------|--------|----------|------------------|
-| prodToken | string | true     | Product Token ID |
-
-
-### Data Parameters
-| Parameter | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| count     | string | true     | Stock level |
-
-```shell
-curl --request POST \
-  --url https://storeapi.csomni.com/products/{prodToken} \
-  --header 'token: site_xxxxxxxxxx'\
-  --data '{ "count" :3" }'
-
-```
-
-Response:
-
-```json
-{
-  "status": "success",
-  "count": 2
 }
 ```

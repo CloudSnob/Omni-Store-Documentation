@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ###
 # @name get_collection_by_collection_token
-GET {{baseStoreUrl}}/collections/{{collectionToken}}
+GET {{baseStoreUrl}}/collections/clcs_9hOv0qbYj0eOkngC
 token: {{siteToken}}
 Content-Type: application/json
 

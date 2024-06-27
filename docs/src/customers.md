@@ -2,7 +2,6 @@
 
 
 ## Create Customer
-
 This endpoint creates a customer
 
 ### HTTP Request
@@ -25,7 +24,7 @@ This endpoint creates a customer
 | customerPassword    | true     | string | false  | Customer Password     |
 | customerCompanyName | false    | string | false  | Company Name          |
 
-
+Sample in Shell:
 
 ```shell
 curl --request POST \
@@ -60,16 +59,14 @@ curl --request POST \
   "taxExemptID": null,
   "createdAt": "2021-12-17 16:54:00",
   "editedAt": "2021-12-17 16:54:00",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxx"
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi"
 }
 ```
 
 ## Edit Customer
-
 This endpoint edits a customer
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/customers`
 
 ### Header Parameters
@@ -80,7 +77,6 @@ This endpoint edits a customer
 
 
 ### Data Parameters
-
 | Parameter           | Required | Type   | Unique | Description           |
 |---------------------|----------|--------|--------|-----------------------|
 | customerEmail       | true     | string | true   | Customer Email        |
@@ -90,13 +86,13 @@ This endpoint edits a customer
 | customerPassword    | true     | string | false  | Customer Password     |
 | customerCompanyName | false    | string | false  | Company Name          |
 
-
+Sample in Shell:
 
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/customers \
   --header 'token: site_xxxxxxxxx' \
-  --header 'token: cs_xxxxxxxxxxxxxxxxxxxx' \
+  --header 'token: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
   --data '{ 
             "customerFirstName" : "Sarah", 
             "customerLastName" : "Jones", 
@@ -107,12 +103,11 @@ curl --request POST \
 ```
 
 > The above command returns JSON structured like this
-
 ```json
 {
   "customerPhone": "1234567890123",
   "isLoggedIn": true,
-  "customerToken": "cs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi"
 }
 ```
 
@@ -134,12 +129,13 @@ This endpoint retrieves a specific customer
 | siteToken     | true     | string | Unique site token     |
 | customerToken | true     | string | Unique customer token |
 
+Sample in Shell:
 
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/customers/ \
   --header 'token: site_xxxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxxxxxxxxxxxxx'
+  --header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi'
 ```
 
 > The above command returns JSON structured like this:
@@ -169,18 +165,27 @@ curl --request GET \
 ## Archive customer
 This endpoint soft deletes a customer. The customer data remains accessible through admin under 'archived'
 
+### Header Parameters
+| Parameter     | Required | Type   | Description           |
+|---------------|----------|--------|-----------------------|
+| siteToken     | true     | string | Unique site token     |
+| customerToken | true     | string | Unique customer token |
+
+
+Sample in Shell:
+
 ```shell
 curl --request DELETE \
   --url https://storeapi.csomni.com/customers/{customerToken}\
   --header 'token: site_xxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxxxxxx'
+  --header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "token": "cs_xxxxxxxxxxxxxxxxxxxx",
+  "token": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
   "deleted": "true"
 }
 ```

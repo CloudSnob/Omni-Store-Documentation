@@ -5,7 +5,6 @@ This endpoint returns a list of 'frequently purchased' items.
 It utilizes cached data for speed. A fresh data pull is triggered if the cached data is <24 hours old.
 
 ### HTTP Request
-
 `GET https://storeapi.csomni.com/frequentlyPurchased`
 
 ### Header Parameters
@@ -13,13 +12,15 @@ It utilizes cached data for speed. A fresh data pull is triggered if the cached 
 |---------------|----------|--------|--------|-------------|
 | token         | true     | string | true   | Site ID     |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/frequentlyPurchased \
   --header 'token: site_xxxxxxxxxxxxxxx'
 ```
 
-Response:
+> The above command returns JSON structured like this:
 
 ```json
 [
@@ -114,14 +115,15 @@ This endpoint returns a list of 'frequently purchased' items with a fresh data p
 |---------------|----------|--------|--------|-------------|
 | token         | true     | string | true   | Site ID     |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/frequentlyPurchased/forceRefresh \
   --header 'token: site_xxxxxxxxxxxxx'
 ```
 
-Response:
-
+> The above command returns JSON structured like this:
 ```json
 [
   {
@@ -212,4 +214,4 @@ Follow instructions for GET frequently purchased list, and add an optional custo
 |---------------|----------|--------|--------|-------------|
 | customerToken | true     | string | true   | Login ID    |
 
---header 'customerToken: cs_xxxxxxxxxxxx'
+--header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'

@@ -4,7 +4,6 @@
 This endpoint creates a new address. If the customerToken parameter is empty, a new customer is created
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/addresses`
 
 ### Header Parameters
@@ -29,6 +28,7 @@ This endpoint creates a new address. If the customerToken parameter is empty, a 
 | phoneNumber      | false               | false  | string | Phone Number                                 |
 | mobileNumber     | false               | false  | string | Mobile/Cell Number                           |
 
+Sample in Shell:
 
 ```shell
 curl request POST https://storeapi.csomni.com/addresses \
@@ -50,7 +50,6 @@ curl request POST https://storeapi.csomni.com/addresses \
 ```
 
 > The above commands both return JSON structured like this
-
 ```json
 {
   "address": "123 Main street",
@@ -63,9 +62,9 @@ curl request POST https://storeapi.csomni.com/addresses \
   "addressLastName": "Foster",
   "phoneNumber": "03356705565",
   "mobileNumber": "45678945666",
-  "customerToken": "cs_xxxxxxxxxxxxxxxx",
+  "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
   "addressCountry": "United States",
-  "addressToken": "adrs_xxxxxxxxxxxxx",
+  "addressToken": "adrs_gQcx91rPcNCGrVkhqADvYtY1",
   "specialValues": ""
 }
 ```
@@ -101,12 +100,13 @@ This endpoint edits an existing address
 | addressDefault   | false                                   | false  | bool   | Mark as default address                      |
 | phoneNumber      | false                                   | false  | string | Phone Number                                 |
 
+Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://storeapi.csomni.com/addresses/[addressToken] \
+  --url https://storeapi.csomni.com/addresses/adrs_Ny13sCIcZRFJD7edR5Dwo6J8 \
   --header 'token: site_xxxxxxxxxxx' \
-  --header 'customerToken: [cs_xxxxxxxxxxxxxxxxx"
+  --header 'customerToken: "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK"
   --data 
   '{ 
       "addressLabel": "Home Address - Edited",
@@ -141,8 +141,8 @@ curl --request POST \
   "addressDefault": "1",
   "phoneNumber": "6338526379",
   "mobileNumber": "3034465487",
-  "addressToken": "adrs_xxxxxxxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxxx",
+  "addressToken": "adrs_Ny13sCIcZRFJD7edR5Dwo6J8",
+  "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
   "specialValues": ""
 }
 ```
@@ -152,7 +152,6 @@ curl --request POST \
 This endpoint returns an array of a customer's addresses
 
 ### HTTP Request
-
 `GET https://storeapi.csomni.com/addresses`
 
 ### Header Parameters
@@ -161,19 +160,20 @@ This endpoint returns an array of a customer's addresses
 | customerToken | true     | string | Customer Token   |
 | siteToken     | true     | string | Unique siteToken |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/addresses \
   --header 'token: site_xxxxxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxxxx'
+  --header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
 > The above command returns JSON structured like this:
-
 ```json
 [
   {
-    "addressToken": "adrs_xxxxxxxxxxxxx",
+    "addressToken": "adrs_W20sV9PC4vVgVDXKnR736YKL",
     "addressLabel": "Home",
     "address": "10 Highfield Park",
     "address2": "Unit 6",
@@ -186,11 +186,11 @@ curl --request GET \
     "mobileNumber": "",
     "addressCountry": "United States",
     "addressDefault": 0,
-    "customerToken": "cs_xxxxxxxxxxxxxxx",
+    "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
     "specialValues": []
   },
   {
-    "addressToken": "adrs_xxxxxxxxxxxxx",
+    "addressToken": "adrs_CJO9LkwmNJqSQmOBtaTsGE1w",
     "addressLabel": "Office ",
     "address": "123 Main street",
     "address2": "Unit 4",
@@ -203,7 +203,7 @@ curl --request GET \
     "mobileNumber": "",
     "addressCountry": "USA",
     "addressDefault": 0,
-    "customerToken": "cs_xxxxxxxxxxxxxxx",
+    "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
     "specialValues": []
   }
 ]
@@ -211,7 +211,6 @@ curl --request GET \
 
 
 ## Get Address by address token
-
 This endpoint retrieves a specific address by searching for 'addressToken'
 
 
@@ -221,18 +220,20 @@ This endpoint retrieves a specific address by searching for 'addressToken'
 | customerToken | true     | string | Customer Token   |
 | siteToken     | true     | string | Unique siteToken |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
-  --url https://storeapi.csomni.com/addresses/{}addressToken} \
+  --url https://storeapi.csomni.com/addresses/adrs_CJO9LkwmNJqSQmOBtaTsGE1w \
   --header 'token: site_xxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxxxxxx'
+  --header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "addressToken": "adrs_xxxxxxxxxxxxxxx",
+  "addressToken": "adrs_CJO9LkwmNJqSQmOBtaTsGE1w",
   "addressLabel": "My Address",
   "address": "123 Main street",
   "address2": "unit 4",
@@ -245,19 +246,16 @@ curl --request GET \
   "mobileNumber": "",
   "addressCountry": "USA",
   "addressDefault": 0,
-  "customerToken": "cs_xxxxxxxxxxxxxxx",
+  "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
   "specialValues": []
 }
 ```
 
 
-
 ## Delete Address
-
 This endpoint deletes (archives) an address
 
 ### HTTP Request
-
 `DELETE https://storeapi.csomni.com/addresses/{addressToken}`
 
 
@@ -267,18 +265,20 @@ This endpoint deletes (archives) an address
 | customerToken | true     | string | Customer Token   |
 | siteToken     | true     | string | Unique siteToken |
 
+Sample in Shell:
+
 ```shell
 curl --request DELETE \
-  -- https://storeapi.csomni.com/addresses/{addressToken} \
+  -- https://storeapi.csomni.com/addresses/adrs_CJO9LkwmNJqSQmOBtaTsGE1w \
   --header 'token: site_xxxxxxxxxx'\
-  --header 'customerToken:cs_xxxxxxxxxxxxxxxxxx'
+  --header 'customerToken:cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "token": "adrs_xxxxxxxxxxxxxxx",
+  "token": "adrs_CJO9LkwmNJqSQmOBtaTsGE1w",
   "deleted": "true"
 }
 ```

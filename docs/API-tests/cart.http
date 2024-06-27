@@ -1,25 +1,25 @@
 # @name new_cart_for_existing_customer
 POST {{baseStoreUrl}}/cart
-token: {{siteToken}}
-customerToken: {{customerPublicToken}}
+token: {{siteTokenBrooklynGifting}}
+customerToken: cs_zeDmVO831Yg7b1kac95a7wYVzY424YJgQOBS
 Content-Type: application/json
 
 
 > {%
-    client.global.set("cartToken", response.body.cartToken);
-    client.global.set("customerPublicToken", response.body.customerToken);
+   // client.global.set("cartToken", response.body.cartToken);
+   // client.global.set("customerPublicToken", response.body.customerToken);
 %}
 
 ###
 
 # @name new_cart_and_new_customer
 POST {{baseStoreUrl}}/cart
-token: {{siteToken}}
+token: site_KCDlSRZWaIotet0v
 Content-Type: application/json
 
 
 > {%
-    client.global.set("customerPublicToken2", response.body.customerToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
     client.global.set("cartToken2", response.body.cartToken);
 %}
 
@@ -27,8 +27,8 @@ Content-Type: application/json
 
 # @name get_cart_by_customer
 GET {{baseStoreUrl}}/cart
-token: {{siteToken}}
-customerToken: {{customerPublicToken}}
+token: site_KCDlSRZWaIotet0v
+customerToken: cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7
 Content-Type: application/json
 
 > {%
@@ -40,9 +40,9 @@ Content-Type: application/json
 ###
 
 # @name combine_cart // not working
-POST {{baseStoreUrl}}/cart/combine/{{cartToken2}}/{{customerPublicToken2}}
-token: {{siteToken}}
-customerToken: {{customerPublicToken}}
+POST {{baseStoreUrl}}/cart/combine/cart_VibxVH2PCJnWrIWdWoNHoVxe/cs_zeDmVO831Yg7b1kac95a7wYVzY424YJgQOBS
+token: {{siteTokenBrooklynGifting}}
+customerToken: cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7
 Content-Type: application/json
 
 ###

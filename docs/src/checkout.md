@@ -5,7 +5,6 @@ This endpoint adds the email and address information for part one of checkout.
 It returns the available shipping options for the data submitted
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/checkout/info`
 
 ### Header Parameters
@@ -15,8 +14,7 @@ It returns the available shipping options for the data submitted
 | siteToken     | true     | string | Unique siteToken |
 
 
-### Query Parameters
-
+### Data Parameters
 | Parameter        | Required | Type   | Unique | Description                       |
 |------------------|----------|--------|--------|-----------------------------------|
 | addressToken     | true     | string | -      | Customer Address refference token |
@@ -26,15 +24,16 @@ It returns the available shipping options for the data submitted
 | contactLastName  | false    | string | false  | Customer Last Name                |
 | companyName      | false    | string | false  | Customer Company Name             |
 
+Sample in Shell:
 
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/checkout/info \
   --header 'token: site_xxxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxx' \
+  --header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
   --data '{
         "contactEmail" : "123456@test.com",
-        "addressToken" : "adrs_xxxxxxxxxxxxxx",
+        "addressToken" : "adrs_hzle2kYXjQg1LGnPGtLwMs9m",
         "contactFirstName": "Sarah",
         "contactLastName": "Jones"
         }'
@@ -45,30 +44,27 @@ curl --request POST \
 
 ```json
 {
-  "id": 821,
-  "cartToken": "cart_xxxxxxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxxxx",
+  "id": 31109,
+  "cartToken": "cart_kf4bA6ljiCf7RhWTnXDwq8On",
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
   "couponCodes": null,
-  "addressToken": "adrs_xxxxxxxxxxxxxx",
-  "shippingMethod": null,
+  "addressToken": "adrs_hzle2kYXjQg1LGnPGtLwMs9m",
+  "shippingMethod": "",
   "shippingMethodId": "",
   "shippingAddressLabel": "",
   "shippingAddress": {
-    "address": "abc",
-    "address2": "",
-    "city": "New York",
-    "state": "New York",
-    "zip": "71005",
+    "address": "123 Main street",
+    "address2": "Unit 4",
+    "city": "NY",
+    "state": "NY",
+    "zip": "10952",
     "country": "",
-    "phone": "",
+    "phone": "03356705565",
     "mobile": "",
     "specialValues": []
   },
-  "contactEmail": "sjones1@gmail.com",
-  "contactFirstName": "Sarah",
-  "contactLastName": "Jones",
-  "companyName": "",
-  "contactPhone": "1233333",
+  "contactEmail": "sharonjones@gmail.com",
+  "contactPhone": "",
   "shippingMethodsJson": [
     {
       "carrier": "freeshipping",
@@ -77,28 +73,50 @@ curl --request POST \
       "deliveryDays": null,
       "origRate": 0,
       "rate": 0,
-      "id": "xxxxxxxxxxxxxxxx",
-      "methodName": "freeshipping"
+      "id": "UO2S3uFr49zCBJGAZMRYanqh",
+      "methodName": "Free Shipping"
+    },
+    {
+      "carrier": "storepickup",
+      "description": "",
+      "deliveryDateTime": null,
+      "deliveryDays": null,
+      "origRate": 0,
+      "rate": 0,
+      "id": "KHC4UAucyBEnwTjOWFxPMGr7",
+      "methodName": "Store Pickup"
+    },
+    {
+      "carrier": "",
+      "origRate": 0,
+      "rate": 50,
+      "id": "FDQxZnVyNYK8UiOsSlIX7dAm",
+      "methodName": ""
     }
   ],
+  "contactFirstName": "Sarah",
+  "contactLastName": "Jones",
+  "companyName": "",
+  "createdAt": "2024-06-27 10:33:43",
+  "editedAt": "2024-06-27 10:33:45",
   "pricing": {
-    "productsTotal": 9,
-    "origTotal": 9,
-    "subTotal": 9,
-    "tax": 0.9,
+    "productsTotal": 0.1,
+    "origTotal": 0.1,
+    "subTotal": 0.1,
     "totalCouponDiscount": 0,
-    "totalAfterCoupon": 9.9,
-    "total": 9.9
+    "totalAfterCoupon": 0.1,
+    "shipping": 0,
+    "tax": 0,
+    "total": 0.1
   },
   "couponCodesInfo": []
 }
 ```
 
-## Chekout Step 2 - Choose shipping method
+## Checkout Step 2 - Choose shipping method
 This API submits the chosen shipping method. The shipping method Id's are returned in the previous API call - Checkout Step 1, and returns the new total including any shipping charge
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/checkout/info`
 
 ### Header Parameters
@@ -109,18 +127,20 @@ This API submits the chosen shipping method. The shipping method Id's are return
 
 ### Data Parameters
 
-| Parameter        | Type   | Type   |Required | Description        |
+| Parameter        | Type   | Type   | Required | Description        |
 |------------------|--------|--------|----------|--------------------|
-| shippingMethodId | string | string |true     | Shipping method Id |
+| shippingMethodId | string | string | true     | Shipping method Id |
+
+Sample in Shell:
 
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/checkout/shippingmethod \
   --header 'token: site_xxxxxxxxx' \
-  -- header 'customerToken: cs_xxxxxxxxxxxxxx' \
+  -- header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
   --data '{
-          "shippingMethodId" : "123456789"
-           }'
+            "shippingMethodId" : "UO2S3uFr49zCBJGAZMRYanqh"
+          }'
 
 ```
 
@@ -128,30 +148,36 @@ curl --request POST \
 
 ```json
 {
-  "id": 821,
-  "cartToken": "cart_xxxxxxxxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxx",
+  "id": 31109,
+  "cartToken": "cart_kf4bA6ljiCf7RhWTnXDwq8On",
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
   "couponCodes": null,
-  "addressToken": "adrs_xxxxxxxxxxxxxxx",
-  "shippingMethod": null,
-  "shippingMethodId": "",
+  "addressToken": "adrs_hzle2kYXjQg1LGnPGtLwMs9m",
+  "shippingMethod": {
+    "carrier": "freeshipping",
+    "description": "",
+    "deliveryDateTime": null,
+    "deliveryDays": null,
+    "origRate": 0,
+    "rate": 0,
+    "id": "UO2S3uFr49zCBJGAZMRYanqh",
+    "methodName": "Free Shipping"
+  },
+  "shippingMethodId": "UO2S3uFr49zCBJGAZMRYanqh",
   "shippingAddressLabel": "",
   "shippingAddress": {
-    "address": "abc",
-    "address2": "",
-    "city": "New York",
-    "state": "New York",
-    "zip": "71005",
+    "address": "123 Main street",
+    "address2": "Unit 4",
+    "city": "NY",
+    "state": "NY",
+    "zip": "10952",
     "country": "",
-    "phone": "",
+    "phone": "03356705565",
     "mobile": "",
     "specialValues": []
   },
-  "contactEmail": "test@gmail.com",
-  "contactFirstName": "Sarah",
-  "contactLastName": "Jones",
-  "companyName": "",
-  "contactPhone": "1234567890",
+  "contactEmail": "sharondoe@gmail.com",
+  "contactPhone": "",
   "shippingMethodsJson": [
     {
       "carrier": "freeshipping",
@@ -160,34 +186,38 @@ curl --request POST \
       "deliveryDays": null,
       "origRate": 0,
       "rate": 0,
-      "id": "123456789",
-      "methodName": "freeshipping"
+      "id": "UO2S3uFr49zCBJGAZMRYanqh",
+      "methodName": "Free Shipping"
     }
   ],
+  "contactFirstName": "Sarah",
+  "contactLastName": "Jones",
+  "companyName": "",
+  "createdAt": "2024-06-27 10:33:43",
+  "editedAt": "2024-06-27 10:35:01",
   "pricing": {
-    "productsTotal": 9,
-    "origTotal": 9,
-    "subTotal": 9,
-    "tax": 0.9,
+    "productsTotal": 0.1,
+    "origTotal": 0.1,
+    "subTotal": 0.1,
     "totalCouponDiscount": 0,
-    "totalAfterCoupon": 9.9,
-    "total": 9.9
+    "totalAfterCoupon": 0.1,
+    "shipping": 0,
+    "tax": 0,
+    "total": 0.1
   },
   "couponCodesInfo": []
 }
 ```
 
-## Chekout Step 3: OPTION 1: Pay NOW
+## Checkout Step 3: OPTION 1: Pay NOW
 
 This endpoint processes payment for a cart and creates an order. 
 The data is expected to include all the card details, or reference a cardToken that has already been saved for this customer
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/checkout/payment`
 
-### Query Parameters - to pay with a new card
-
+### Data Parameters - to pay with a new card
 | Parameter           | Required | Type   | Unique | Description                                                                                                                                                                                              |
 |---------------------|----------|--------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | expMonth            | true     | string | false  | Card Exp Month                                                                                                                                                                                           |
@@ -206,6 +236,8 @@ The data is expected to include all the card details, or reference a cardToken t
 | billingAddressToken | false    | string | false  | Billing Address Token                                                                                                                                                                                    |
 | PO                  | false    | string | false  | Customer facing Purchase Order Number. Can include digits, letters (which will be converted to upper case), dashes and dots. All other characters will not be processed and will return an error message |
 | orderNotePublic     | false    | string | false  | Order Note submitted by the customer which will be visible to the customer                                                                                                                               |
+
+Sample in Shell:
 
 ```shell
 curl --request POST \
@@ -236,8 +268,8 @@ curl --request POST \
 | PO              | false    | string | false  | Customer facing Purchase Order Number. Can include digits, letters (which will be converted to upper case), dashes and dots. All other characters will not be processed and will return an error message |
 | orderNotePublic | false    | string | false  | Order Note submitted by the customer which will be visible to the customer                                                                                                                               |
 
-
-                                                                                                                |
+Sample in Shell:
+|
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/checkout/payment \
@@ -258,135 +290,219 @@ curl --request POST \
   "order": {
     "orderProducts": [
       {
-        "cartToken": "cart_xxxxxxxxxxxxxx",
-        "cartProdToken": "cp_xxxxxxxxxxxxxxx",
-        "addOnToProdToken": "",
+        "cartToken": "cart_0dlVuUpVQEuRbkB92eMseToh",
+        "cartProdToken": "cp_4T8dqlwPUN25Gu75Fp8CLptY",
         "cartProdQuantity": 1,
+        "addOnToProdToken": "",
         "addOnProdTokens": null,
-        "prodToken": "vrnt_xxxxxxxxxxxxxxx",
+        "prodToken": "vrnt_EvonkJQsR6fRbDtm",
         "deleted": 0,
-        "siteToken": "site_xxxxxxxxxxxx",
-        "customerToken": "cs_xxxxxxxxxxxxxxxx",
-        "cartCreated": "1638443146",
-        "cartLastTouched": "1638443146",
-        "prodStaticCollections": ["clcs_xxxxxxxxxxx"],
+        "createdAt": "2024-06-19 10:15:14",
+        "editedAt": "2024-06-19 10:15:14",
+        "siteToken": "site_63Vdsmr9Qsq0",
+        "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
+        "cartCreated": "1718792114",
+        "cartLastTouched": "1718792114",
+        "prodStaticCollections": [
+          "clcs_DMtKEagwAAPjuKy7"
+        ],
         "specialValues": [],
         "product": {
-          "prodToken": "prod_xxxxxxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
-          "variantName": "Red Ball",
+          "prodToken": "prod_Q73DQtIhj9IJzZ0y",
+          "variantToken": "vrnt_EvonkJQsR6fRbDtm",
+          "variantName": "",
           "variantImage": {
-            "file": "[]"
+            "file": "11-25-2022\/1669391493868__30709__NS-35859.jpg",
+            "type": "",
+            "id": "srn5s4aj",
+            "status": "poolImages"
           },
           "variantImages": [],
-          "variantWeight": "55",
-          "variantDimW": "76",
-          "variantDimL": "3",
-          "variantDimH": "4",
+          "variantWeight": "1",
+          "variantDimW": "0",
+          "variantDimL": "0",
+          "variantDimH": "0",
           "variantUpc": "",
-          "variantNumber": "UHNK-4567",
-          "manufacturerPartNumber": "1234567888",
-          "variantPrice": 9,
+          "variantNumber": "NS-35859",
+          "manufacturerPartNumber": "",
+          "variantPrice": 0.3,
           "variantMapPrice": 0,
           "variantMsrpPrice": 0,
-          "variantDisplayPrice": 21,
+          "variantDisplayPrice": 0,
           "variantDescription": "",
           "variantAlert": "",
-          "variantLowlevel": "46",
-          "variantSlug": "placeat-aut-consequ",
+          "variantLowlevel": "",
+          "variantSlug": "",
           "variantVisible": 1,
-          "variantAllowCheckout": 0,
-          "variantCheckInvetory": 0,
-          "variantTrackInventory": 0,
           "taxType": "",
-          "taxable": 1,
-          "inventoryCount": "4",
-          "shippingProduct": 0,
-          "variantMetaTitle": "",
-          "variantMetaDescription": "",
-          "variantBrand": "",
+          "hideGoogleData": 0,
           "google_variantCategory": "",
           "google_variantType": "",
           "google_variantCondition": "",
-          "hideGoogleData": 0,
+          "taxable": 1,
+          "variantAllowCheckout": 0,
+          "variantCheckInvetory": 0,
+          "variantTrackInventory": 0,
+          "inventoryCount": -17,
+          "shippingProduct": 1,
+          "variantMetaTitle": "",
+          "variantMetaDescription": "",
+          "variantBrand": "",
           "sortOrder": 0,
-          "dateCreated": "1620318552",
+          "dateCreated": "1669391499",
           "deleted": 0,
           "backOrderWarning": 0,
+          "createdAt": "2022-12-18 23:01:04",
+          "editedAt": "2024-06-19 10:10:30",
           "variantInStock": true,
-          "prodName": "Balls",
+          "prodName": "3\/4 IN. O.D. SATIN NICKEL DRIVE-IN, SPRING LOADED, BALL STYLE, CABINET DOOR LATCH WITH STRIKE\t",
+          "prodImage": {
+            "file": "11-25-2022\/1669391493868__30709__NS-35859.jpg",
+            "type": ""
+          }
+        },
+        "addOnProducts": [],
+        "pricing": {
+          "total": 0.3
+        },
+        "shipping": {
+          "totalWeight": 1
+        }
+      },
+      {
+        "cartToken": "cart_0dlVuUpVQEuRbkB92eMseToh",
+        "cartProdToken": "cp_tvZnIK2TOyuJPhGL5YD6q1Iw",
+        "cartProdQuantity": 1,
+        "addOnToProdToken": "",
+        "addOnProdTokens": null,
+        "prodToken": "vrnt_k2BdGbMqyFoopAhO",
+        "deleted": 0,
+        "createdAt": "2024-06-19 10:15:14",
+        "editedAt": "2024-06-19 10:15:14",
+        "siteToken": "site_63Vdsmr9Qsq0",
+        "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
+        "cartCreated": "1718792114",
+        "cartLastTouched": "1718792114",
+        "prodStaticCollections": [],
+        "specialValues": [],
+        "product": {
+          "prodToken": "prod_4398Buqqstztncng",
+          "variantToken": "vrnt_k2BdGbMqyFoopAhO",
+          "variantName": "interface",
+          "variantImage": [],
+          "variantImages": [],
+          "variantWeight": "1",
+          "variantDimW": null,
+          "variantDimL": null,
+          "variantDimH": null,
+          "variantUpc": null,
+          "variantNumber": "JSON 5",
+          "manufacturerPartNumber": null,
+          "variantPrice": 0.1,
+          "variantMapPrice": null,
+          "variantMsrpPrice": null,
+          "variantDisplayPrice": null,
+          "variantDescription": null,
+          "variantAlert": null,
+          "variantLowlevel": null,
+          "variantSlug": null,
+          "variantVisible": 1,
+          "taxType": null,
+          "hideGoogleData": 0,
+          "google_variantCategory": null,
+          "google_variantType": null,
+          "google_variantCondition": null,
+          "taxable": 1,
+          "variantAllowCheckout": 0,
+          "variantCheckInvetory": 0,
+          "variantTrackInventory": 0,
+          "inventoryCount": 84,
+          "shippingProduct": 0,
+          "variantMetaTitle": null,
+          "variantMetaDescription": null,
+          "variantBrand": null,
+          "sortOrder": 2,
+          "dateCreated": "1717576258",
+          "deleted": 0,
+          "backOrderWarning": 0,
+          "createdAt": "2024-06-05 08:30:58",
+          "editedAt": "2024-06-26 09:49:53",
+          "variantInStock": true,
+          "prodName": "Generic Plastic SoapBike",
           "prodImage": {
             "file": ""
           }
         },
         "addOnProducts": [],
         "pricing": {
-          "total": 9
+          "total": 0.1
         },
         "shipping": {
-          "totalWeight": 55
+          "totalWeight": 1
         }
       }
     ],
-    "orderEmail": "example@gmail.com",
-    "orderShippingMethod": {
-      "carrier": "freeshipping",
-      "description": "",
-      "deliveryDateTime": null,
-      "deliveryDays": null,
-      "origRate": 0,
-      "rate": 0,
-      "id": "123456",
-      "methodName": "freeshipping"
-    },
-    "orderTotal": 9.9,
-    "orderTax": 0.9,
+    "orderEmail": "sara@jones.com",
+    "orderShippingMethod": "{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"RlV1xCXpAr3SBaMwcZd9j5FQ\",\"methodName\":\"Free Shipping\"}",
+    "orderTotal": 0.41,
+    "orderTax": 0.01,
+    "orderTotalPaid": "0.41",
     "orderShipping": 0,
-    "orderWeight": 55,
-    "orderShippingAddress": "{\"address\":\"abc\",\"address2\":\"\",\"city\":\"New York\",\"state\":\"New York\",\"zip\":\"1234567\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":[]}",
+    "orderWeight": 2,
+    "orderShippingAddress": "{\"address\":\"123 Main street\",\"address2\":\"Unit 4\",\"city\":\"NY\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"03356705565\",\"mobile\":\"\",\"specialValues\":[]}",
     "orderPaymentMethod": {
       "xResult": "A",
       "xStatus": "Approved",
       "xError": "",
       "xErrorCode": "00000",
-      "xRefNum": "xxxxxxxx",
+      "xRefNum": "10038240703",
       "xExp": "xxxx",
-      "xAuthCode": "xxxxxxx",
-      "xBatch": "xxxxxxx",
+      "xAuthCode": "xxxxxxxxxx",
+      "xBatch": "xxxxxxxxxxxxxx",
       "xAvsResultCode": "NNN",
       "xAvsResult": "Address: No Match & 5 Digit Zip: No Match",
       "xCvvResultCode": "",
       "xCvvResult": "No CVV data available",
-      "xAuthAmount": "9.90",
-      "xMaskedCardNumber": "4xxxxxxxxxxx4242",
+      "xAuthAmount": "0.41",
+      "xMaskedCardNumber": "4xxxxxxxxxxx1234",
       "xCardType": "Visa",
       "xName": "Sarah Jones",
-      "xToken": "123456",
+      "xToken": "xxxxxxxxxxxxxxxxxxxxxxx",
       "xMID": "xxxxxxxxxx1234",
-      "xTID": "xxxxx1234",
+      "xTID": "xxxxx7894",
       "xCurrency": "USD",
-      "xDate": "12/2/2021 6:19:14 AM",
+      "xDate": "6\/26\/2024 6:07:43 AM",
       "xEntryMethod": "Keyed",
-      "cardToken": "cc_xxxxxxxxxx"
+      "cardToken": "cc_xxxxxxxxxxxxx"
     },
     "contactLastName": "Jones",
     "contactFirstName": "Sarah",
-    "orderProdQuantity": 1,
-    "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"xxxxxxxxx\",\"xExp\":\"0123\",\"xAuthCode\":\"xxxxxxxx\",\"xBatch\":\"5150840\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"9.90\",\"xMaskedCardNumber\":\"4xxxxxxxxxxx1234\",\"xCardType\":\"Visa\",\"xName\":\"Sarah Jones\",\"xToken\":\"123456\",\"xMID\":\"xxxxxxxxxx9999\",\"xTID\":\"xxxxx6789\",\"xCurrency\":\"USD\",\"xDate\":\"12\\/2\\/2021 6:19:14 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_xxxxxxxxxxxxxx\"}",
-    "cardToken": "cc_xxxxxxxxxxxxx",
-    "orderIP": "000.000.000.00",
-    "cartToken": "cart_xxxxxxxxxxxxx",
-    "po": "",
+    "orderProdQuantity": 2,
+    "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"10038240703\",\"xExp\":\"0126\",\"xAuthCode\":\"xxxxxxxx\",\"xBatch\":\"xxxxxx\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.41\",\"xMaskedCardNumber\":\"4xxxxxxxxxxx1234\",\"xCardType\":\"Visa\",\"xName\":\"Sarah Jones\",\"xToken\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"xMID\":\"xxxxxxxxxx9999\",\"xTID\":\"xxxxx4567\",\"xCurrency\":\"USD\",\"xDate\":\"6\\\/26\\\/2024 6:07:43 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_xxxxxxxxxxxx\"}",
+    "cardToken": "cc_xxxxxxxxxxxx",
+    "orderIP": "00.000.000.00",
+    "cartToken": "cart_0dlVuUpVQEuRbkB92eMseToh",
+    "PO": "123-245jk",
     "BillToName": "Sarah Jones",
-    "BillToAddress": "{\"name\":\"Sarah Jones\",\"address\":\"abc\",\"address2\":\"\",\"zip\":\"71005\",\"city\":\"New York\",\"state\":\"New York\",\"country\":\"\",\"mobile\":\"\",\"phone\":\"\"}",
+    "BillToAddress": "{\"name\":\"Sarah Jones\",\"address\":\"123 Main street\",\"address2\":\"Unit 4\",\"zip\":\"10952\",\"city\":\"NY\",\"state\":\"NY\",\"country\":\"\",\"mobile\":\"\",\"phone\":\"03356705565\"}",
     "orderNotePublic": "",
-    "siteToken": "site_xxxxxxxxxxxxxx",
-    "customerToken": "cs_xxxxxxxxxxxxxxxx",
-    "orderToken": "ordr_xxxxxxxxxxxx",
-    "orderNumber": 117,
+    "quoteToken": "",
+    "siteToken": "site_63Vdsmr9Qsq0",
+    "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
+    "orderToken": "ordr_VOnbeilit2gwfSyTb05Vattf",
+    "orderNumber": 100000492,
     "orderStatus": "os_awaiting_fulfillment",
-    "checkoutObject": "{\"id\":821,\"cartToken\":\"cart_xxxxxxxxxxx\",\"customerToken\":\"cs_xxxxxxxxxxxx\",\"couponCodes\":null,\"addressToken\":\"adrs_xxxxxxxxxxxxx\",\"shippingMethod\":{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"123456\",\"methodName\":\"freeshipping\"},\"shippingMethodId\":\"123456\",\"shippingAddressLabel\":\"\",\"shippingAddress\":{\"address\":\"abc\",\"address2\":\"\",\"city\":\"New York\",\"state\":\"New York\",\"zip\":\"71005\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":[]},\"contactEmail\":\"123456@gmail.com\",\"contactFirstName\":\"Sarah\",\"contactLastName\":\"Jones\",\"companyName\":\"\",\"contactPhone\":\"1233333\",\"shippingMethodsJson\":[{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"uC6tjBvFKAlrzb5Rh21nVmkG\",\"methodName\":\"freeshipping\"}],\"pricing\":{\"productsTotal\":9,\"origTotal\":9,\"subTotal\":9,\"tax\":0.9,\"totalCouponDiscount\":0,\"totalAfterCoupon\":9.9,\"total\":9.9},\"couponCodesInfo\":[]}",
-    "customerObject": "{\"id\":0,\"customerFirstName\":\"Sarah \",\"customerLastName\":\"Jones\",\"customerEmail\":\"sjones1@gmail.com\",\"customerPhone\":\"0313445214\",\"customerCompanyName\":\"abcd\",\"dateCreated\":\"1635837718\",\"customerStatus\":\"\",\"customerTypes\":null,\"customerGroups\":null,\"isLoggedIn\":0,\"customerDocs\":null,\"taxExempt\":null,\"taxExemptID\":null,\"createdAt\":\"2021-11-02 07:21:58\",\"editedAt\":\"2021-11-02 12:04:02\"}"
+    "checkoutObject": "{\"id\":31085,\"cartToken\":\"cart_0dlVuUpVQEuRbkB92eMseToh\",\"customerToken\":\"cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK\",\"couponCodes\":[],\"addressToken\":\"adrs_CJO9LkwmNJqSQmOBtaTsGE1w\",\"shippingMethod\":{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"RlV1xCXpAr3SBaMwcZd9j5FQ\",\"methodName\":\"Free Shipping\"},\"shippingMethodId\":\"RlV1xCXpAr3SBaMwcZd9j5FQ\",\"shippingAddressLabel\":\"\",\"shippingAddress\":{\"address\":\"123 Main street\",\"address2\":\"Unit 4\",\"city\":\"NY\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"03356705565\",\"mobile\":\"\",\"specialValues\":[]},\"contactEmail\":\"sarahjones@gmail.com\",\"contactPhone\":\"\",\"shippingMethodsJson\":[{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"RlV1xCXpAr3SBaMwcZd9j5FQ\",\"methodName\":\"Free Shipping\"}],\"contactFirstName\":\"Sarah\",\"contactLastName\":\"Jones\",\"companyName\":\"\",\"createdAt\":\"2024-06-19 10:15:21\",\"editedAt\":\"2024-06-26 10:05:36\",\"pricing\":{\"productsTotal\":0.4,\"origTotal\":0.4,\"subTotal\":0.4,\"totalCouponDiscount\":0,\"totalAfterCoupon\":0.4,\"shipping\":0,\"tax\":0.01,\"total\":0.41},\"couponCodesInfo\":[]}",
+    "customerObject": "{\"customerFirstName\":\"Sarah\",\"customerLastName\":\"Jones\",\"customerEmail\":\"sarah@jones.com\",\"customerPhone\":\"\",\"customerCompanyName\":\"\",\"source\":\"store\",\"customerStatus\":\"\",\"customerTypes\":null,\"customerGroups\":null,\"isLoggedIn\":1,\"customerDocs\":\"\",\"taxExempt\":null,\"taxExemptID\":null,\"createdAt\":\"2024-05-16 11:11:53\"}",
+    "dateCreated": 1719396465,
+    "statusTermsData": {
+      "processingStatus": "Processing",
+      "shippingStatus": "Pending",
+      "paymentStatus": "Closed",
+      "orderStatus": "Open",
+      "paymentTerms": "Website Payment Transaction",
+      "postPaymentStatus": " NULL"
+    }
   }
 }
 ```
@@ -394,11 +510,10 @@ curl --request POST \
 
 
 ## Checkout Step 3 OPTION 2: Pay Later - Process as a PO
-This endpoint allows customers to process their order without payment. 
-This endpoint is only accessible if the company and/or site settings are set to allow checkout with PO
+Enable PO module through company settings.
+This endpoint processes an order without payment. 
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/checkout/po`
 
 ### Header Parameters
@@ -422,12 +537,13 @@ This endpoint is only accessible if the company and/or site settings are set to 
 | billingPhone        | true     | string | false  | Billing Phone Number                                                                                                                                                                                     |
 | orderNotePublic     | false    | string | false  | Order Note submitted by the customer which will be visible to the customer                                                                                                                               |
 
+Sample in Shell:
 
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/checkout/po \
   --header 'token: site_xxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxx' \
+  --header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
   --header '{
                "po": "123-P9ojd",
                "billingName": "431 Systems LLC",
@@ -445,121 +561,120 @@ curl --request POST \
 
 ```json
 {
-    "status": "success",
-    "order": {
-        "orderProducts": [
-            {
-                "cartToken": "cart_xxxxxxxxxxxx",
-                "cartProdToken": "cp_xxxxxxxxxx",
-                "cartProdQuantity": 1,
-                "addOnToProdToken": "",
-                "addOnProdTokens": null,
-                "prodToken": "vrnt_xxxxxxxxxxxx",
-                "deleted": 0,
-                "createdAt": "2022-12-08 12:34:27",
-                "editedAt": "2022-12-08 12:34:27",
-                "siteToken": "site_xxxxxxxxxxxxxxxx",
-                "customerToken": "cust_xxxxxxxxxxxxxxxxxxxxx",
-                "cartCreated": "1670502867",
-                "cartLastTouched": "1670502867",
-                "prodStaticCollections": [],
-                "specialValues": [],
-                "product": {
-                    "prodToken": "prod_xxxxxxxxxxxxxxx",
-                    "variantToken": "vrnt_xxxxxxxxxxxxxxxx",
-                    "variantName": "viral",
-                    "variantImage": [],
-                    "variantImages": [],
-                    "variantWeight": "",
-                    "variantDimW": "",
-                    "variantDimL": "",
-                    "variantDimH": "",
-                    "variantUpc": "",
-                    "variantNumber": "",
-                    "manufacturerPartNumber": "",
-                    "variantPrice": 0.1,
-                    "variantMapPrice": 0,
-                    "variantMsrpPrice": 0,
-                    "variantDisplayPrice": 0,
-                    "variantDescription": "",
-                    "variantAlert": "",
-                    "variantLowlevel": "",
-                    "variantSlug": "",
-                    "variantVisible": 1,
-                    "taxType": "",
-                    "hideGoogleData": 0,
-                    "google_variantCategory": null,
-                    "google_variantType": null,
-                    "google_variantCondition": null,
-                    "taxable": 1,
-                    "variantAllowCheckout": 0,
-                    "variantCheckInvetory": 0,
-                    "variantTrackInventory": 0,
-                    "inventoryCount": -2,
-                    "shippingProduct": 0,
-                    "variantMetaTitle": "",
-                    "variantMetaDescription": "",
-                    "variantBrand": "",
-                    "sortOrder": 0,
-                    "dateCreated": "1667771464",
-                    "deleted": 0,
-                    "backOrderWarning": 0,
-                    "createdAt": "2022-11-06 21:51:04",
-                    "editedAt": "2022-12-08 11:43:32",
-                    "variantInStock": true,
-                    "prodName": "Soft Pretzel",
-                    "prodImage": {
-                        "file": "magni-quaerat-et"
-                    }
-                },
-                "addOnProducts": [],
-                "pricing": {
-                    "total": 0.1
-                },
-                "shipping": {
-                    "totalWeight": 0
-                }
-            }
-        ],
-        "orderEmail": "sarah@gmail.com",
-        "orderShippingMethod": {
-            "carrier": "freeshipping",
-            "description": "",
-            "deliveryDateTime": null,
-            "deliveryDays": null,
-            "origRate": 0,
-            "rate": 0,
-            "id": "123456",
-            "methodName": ""
+  "status": "success",
+  "order": {
+    "orderProducts": [
+      {
+        "cartToken": "cart_FT583q6GuFBGwC2whG0mnaKF",
+        "cartProdToken": "cp_bTLWzL9aPPGKVqMF96hSAiUG",
+        "cartProdQuantity": 1,
+        "addOnToProdToken": "",
+        "addOnProdTokens": null,
+        "prodToken": "vrnt_k2BdGbMqyFoopAhO",
+        "deleted": 0,
+        "createdAt": "2024-06-26 10:12:15",
+        "editedAt": "2024-06-26 10:12:15",
+        "siteToken": "site_63Vdsmr9Qsq0",
+        "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
+        "cartCreated": "1719396735",
+        "cartLastTouched": "1719396735",
+        "prodStaticCollections": [],
+        "specialValues": [],
+        "product": {
+          "prodToken": "prod_4398Buqqstztncng",
+          "variantToken": "vrnt_k2BdGbMqyFoopAhO",
+          "variantName": "interface",
+          "variantImage": [],
+          "variantImages": [],
+          "variantWeight": "1",
+          "variantDimW": null,
+          "variantDimL": null,
+          "variantDimH": null,
+          "variantUpc": null,
+          "variantNumber": "JSON 5",
+          "manufacturerPartNumber": null,
+          "variantPrice": 0.1,
+          "variantMapPrice": null,
+          "variantMsrpPrice": null,
+          "variantDisplayPrice": null,
+          "variantDescription": null,
+          "variantAlert": null,
+          "variantLowlevel": null,
+          "variantSlug": null,
+          "variantVisible": 1,
+          "taxType": null,
+          "hideGoogleData": 0,
+          "google_variantCategory": null,
+          "google_variantType": null,
+          "google_variantCondition": null,
+          "taxable": 1,
+          "variantAllowCheckout": 0,
+          "variantCheckInvetory": 0,
+          "variantTrackInventory": 0,
+          "inventoryCount": 83,
+          "shippingProduct": 0,
+          "variantMetaTitle": null,
+          "variantMetaDescription": null,
+          "variantBrand": null,
+          "sortOrder": 2,
+          "dateCreated": "1717576258",
+          "deleted": 0,
+          "backOrderWarning": 0,
+          "createdAt": "2024-06-05 08:30:58",
+          "editedAt": "2024-06-26 10:07:43",
+          "variantInStock": true,
+          "prodName": "Generic Plastic SoapBike",
+          "prodImage": {
+            "file": ""
+          }
         },
-        "orderTotal": 0.1,
-        "orderTotalPaid": 0,
-        "orderTax": 0,
-        "orderShipping": 0,
-        "orderWeight": 0,
-        "orderShippingAddress": "{\"address\":\"12354 Main Street\",\"address2\":\"\",\"city\":\"Monsey\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":[]}",
-        "orderPaymentMethod": null,
-        "contactLastName": "Jones",
-        "contactFirstName": "Sarah",
-        "orderProdQuantity": 1,
-        "paymentObject": null,
-        "cardToken": null,
-        "orderIP": "00.000.000.000",
-        "cartToken": "cart_xxxxxxxxxxxxxxx",
-        "PO": "123-P9ojd",
-        "BillToName": "Sarah  Jones ",
-        "BillToAddress": "{\"name\":\"Sarah Jones \",\"address\":\"12354 Main Street\",\"address2\":\"\",\"zip\":\"10952\",\"city\":\"Monsey\",\"state\":\"NY\",\"country\":\"\",\"mobile\":\"\",\"phone\":\"\"}",
-        "orderNotePublic": "order processed through PO pathway",
-        "siteToken": "site_xxxxxxxxxxxxxxx",
-        "companyToken": "comp_xxxxxxxxxxxxxxx",
-        "customerToken": "cs_Xxxxxxxxxxx",
-        "orderToken": "ordr_xxxxxxxxxxxxxxx",
-        "orderNumber": "xxxxxxxxxx",
-        "orderStatus": "os_awaiting_fulfillment",
-        "checkoutObject": "{\"id\":30557,\"cartToken\":\"cart_xxxxxxxxxxxxxxx\",\"customerToken\":\"cs_xxxxxxxxxxxxxxx\",\"couponCodes\":null,\"addressToken\":\"adrs_xxxxxxxxxxxx\",\"shippingMethod\":{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"123456\",\"methodName\":\"\"},\"shippingMethodId\":\"BQRJmVECcNaT37w5Aq8h2fot\",\"shippingAddressLabel\":\"\",\"shippingAddress\":{\"address\":\"12354 Main Street\",\"address2\":\"\",\"city\":\"Monsey\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"\",\"mobile\":\"\",\"specialValues\":[]},\"contactEmail\":\"sjones1@gmail.com\",\"contactPhone\":\"925-755-7647\",\"shippingMethodsJson\":[{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"123456\",\"methodName\":\"\"}],\"contactFirstName\":\"Sarah - shippingName\",\"contactLastName\":\"Jones - shippingName\",\"companyName\":\"Tyrell Corp,\",\"createdAt\":\"2022-12-08 12:34:38\",\"editedAt\":\"2022-12-08 12:34:46\",\"pricing\":{\"productsTotal\":0.1,\"origTotal\":0.1,\"subTotal\":0.1,\"tax\":0,\"totalCouponDiscount\":0,\"totalAfterCoupon\":0.1,\"total\":0.1},\"couponCodesInfo\":[]}",
-        "customerObject": "{\"id\":53237,\"customerFirstName\":\"Sarah\",\"customerLastName\":\"Jones\",\"customerEmail\":\"sjones1@gmail.com\",\"customerPhone\":\"925-755-7647\",\"customerCompanyName\":\"Tyrell Corp\",\"dateCreated\":\"1670502805\",\"customerStatus\":\"cs_approved\",\"customerTypes\":null,\"customerGroups\":null,\"isLoggedIn\":1,\"customerDocs\":null,\"taxExempt\":null,\"taxExemptID\":null,\"createdAt\":\"2022-12-08 12:33:25\",\"editedAt\":\"2022-12-08 12:34:55\"}",
-        "dateCreated": 1670502895
+        "addOnProducts": [],
+        "pricing": {
+          "total": 0.1
+        },
+        "shipping": {
+          "totalWeight": 1
+        }
+      }
+    ],
+    "orderEmail": "sarahjones@gmail.com",
+    "orderShippingMethod": "{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"itqDLvaPN5JM3cBA7zOfbCxn\",\"methodName\":\"Free Shipping\"}",
+    "orderTotal": 0.1,
+    "orderTotalPaid": 0,
+    "orderTax": 0,
+    "orderShipping": 0,
+    "orderWeight": 1,
+    "orderShippingAddress": "{\"address\":\"123 Main street\",\"address2\":\"Unit 4\",\"city\":\"NY\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"03356705565\",\"mobile\":\"\",\"specialValues\":[]}",
+    "orderPaymentMethod": null,
+    "contactLastName": "Jones",
+    "contactFirstName": "Sarah",
+    "orderProdQuantity": 1,
+    "paymentObject": null,
+    "cardToken": null,
+    "orderIP": "81.151.213.25",
+    "cartToken": "cart_FT583q6GuFBGwC2whG0mnaKF",
+    "PO": "123-P9ojd",
+    "BillToName": "Sarah Jones",
+    "BillToAddress": "{\"name\":\"Sarah Jones\",\"address\":\"123 Main street\",\"address2\":\"Unit 4\",\"zip\":\"10952\",\"city\":\"NY\",\"state\":\"NY\",\"country\":\"\",\"mobile\":\"\",\"phone\":\"03356705565\"}",
+    "orderNotePublic": "order processed through PO pathway",
+    "quoteToken": "",
+    "siteToken": "site_63Vdsmr9Qsq0",
+    "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
+    "orderToken": "ordr_BZoD7Y38awuVg5wnzBxBnbrz",
+    "orderNumber": 100000493,
+    "orderStatus": "os_awaiting_fulfillment",
+    "checkoutObject": "{\"id\":31107,\"cartToken\":\"cart_FT583q6GuFBGwC2whG0mnaKF\",\"customerToken\":\"cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK\",\"couponCodes\":null,\"addressToken\":\"adrs_CJO9LkwmNJqSQmOBtaTsGE1w\",\"shippingMethod\":{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"itqDLvaPN5JM3cBA7zOfbCxn\",\"methodName\":\"Free Shipping\"},\"shippingMethodId\":\"itqDLvaPN5JM3cBA7zOfbCxn\",\"shippingAddressLabel\":\"\",\"shippingAddress\":{\"address\":\"123 Main street\",\"address2\":\"Unit 4\",\"city\":\"NY\",\"state\":\"NY\",\"zip\":\"10952\",\"country\":\"\",\"phone\":\"03356705565\",\"mobile\":\"\",\"specialValues\":[]},\"contactEmail\":\"sarahjones@gmail.com\",\"contactPhone\":\"\",\"shippingMethodsJson\":[{\"carrier\":\"freeshipping\",\"description\":\"\",\"deliveryDateTime\":null,\"deliveryDays\":null,\"origRate\":0,\"rate\":0,\"id\":\"itqDLvaPN5JM3cBA7zOfbCxn\",\"methodName\":\"Free Shipping\"}],\"contactFirstName\":\"Sarah\",\"contactLastName\":\"Jones\",\"companyName\":\"\",\"createdAt\":\"2024-06-26 10:12:21\",\"editedAt\":\"2024-06-26 10:12:28\",\"pricing\":{\"productsTotal\":0.1,\"origTotal\":0.1,\"subTotal\":0.1,\"totalCouponDiscount\":0,\"totalAfterCoupon\":0.1,\"shipping\":0,\"tax\":0,\"total\":0.1},\"couponCodesInfo\":[]}",
+    "customerObject": "{\"customerFirstName\":\"Sharon\",\"customerLastName\":\"Dolar\",\"customerEmail\":\"sharondollar@gmail.com\",\"customerPhone\":\"\",\"customerCompanyName\":\"\",\"source\":\"store\",\"customerStatus\":\"\",\"customerTypes\":null,\"customerGroups\":null,\"isLoggedIn\":1,\"customerDocs\":\"\",\"taxExempt\":null,\"taxExemptID\":null,\"createdAt\":\"2024-05-16 11:11:53\"}",
+    "dateCreated": 1719396754,
+    "statusTermsData": {
+      "processingStatus": "Processing",
+      "shippingStatus": "Pending",
+      "paymentStatus": "Open",
+      "orderStatus": "Open",
+      "paymentTerms": "Purchase Order",
+      "postPaymentStatus": " NULL"
     }
+  }
 }
 ```
 
@@ -581,12 +696,13 @@ This endpoint applies a coupon code to a cart
 |------------|----------|--------|------------------------------|
 | couponCode | true     | string | Name of coupon to be applied |
 
+Sample in Shell:
 
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/checkout/applycoupon \
   --header 'token: site_xxxxxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxxxx' \
+  --header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
   --data '{"couponCode" : "SUMMER20"}'
 
 ```
@@ -597,13 +713,25 @@ curl --request POST \
 
 ```json
 {
-  "id": "117",
-  "cartToken": "cart_xxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxx",
-  "couponCodes": ["SUMMER50"],
-  "addressToken": "adrs_xxxxxxxxxxxxxx",
-  "shippingMethod": "",
-  "shippingMethodId": "",
+  "id": 31109,
+  "cartToken": "cart_kf4bA6ljiCf7RhWTnXDwq8On",
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
+  "couponCodes": [
+    "ca"
+  ],
+  "addressToken": "adrs_hzle2kYXjQg1LGnPGtLwMs9m",
+  "shippingMethod": {
+    "carrier": "freeshipping",
+    "description": "",
+    "deliveryDateTime": null,
+    "deliveryDays": null,
+    "origRate": 0,
+    "rate": 0,
+    "id": "UO2S3uFr49zCBJGAZMRYanqh",
+    "methodName": "Free Shipping"
+  },
+  "shippingMethodId": "UO2S3uFr49zCBJGAZMRYanqh",
+  "shippingAddressLabel": "",
   "shippingAddress": {
     "address": "123 Main street",
     "address2": "Unit 4",
@@ -615,14 +743,7 @@ curl --request POST \
     "mobile": "",
     "specialValues": []
   },
-  "shippingAddress2": "",
-  "shippingZip": "",
-  "shippingState": "",
-  "shippingCity": "",
-  "contactEmail": "",
-  "contactFirstName": "",
-  "contactLastName": "",
-  "companyName": "",
+  "contactEmail": "sharondoe@gmail.com",
   "contactPhone": "",
   "shippingMethodsJson": [
     {
@@ -632,43 +753,34 @@ curl --request POST \
       "deliveryDays": null,
       "origRate": 0,
       "rate": 0,
-      "id": "5gcIaksdpf3vbSArCKPjwEBh",
+      "id": "UO2S3uFr49zCBJGAZMRYanqh",
       "methodName": "Free Shipping"
-    },
-    {
-      "carrier": "storepickup",
-      "description": "",
-      "deliveryDateTime": null,
-      "deliveryDays": null,
-      "origRate": 0,
-      "rate": 0,
-      "id": "xXpZObCDte8J2F6TkVSQY7qy",
-      "methodName": "Store Pickup"
-    },
-    {
-      "carrier": "",
-      "origRate": 0,
-      "rate": 50,
-      "id": "ZYoaWGmhU5CgsNJdcqe3FAw0",
-      "methodName": ""
     }
   ],
+  "contactFirstName": "Sarah",
+  "contactLastName": "Jones",
+  "companyName": "",
+  "createdAt": "2024-06-27 10:33:43",
+  "editedAt": "2024-06-27 10:38:31",
   "pricing": {
-    "productsTotal": 329.95,
-    "origTotal": 329.95,
-    "totalCouponDiscount": 164.975,
-    "totalAfterCoupon": 164.98,
+    "productsTotal": 0.1,
+    "origTotal": 0.1,
+    "subTotal": 0.1,
+    "totalCouponDiscount": 0.05,
+    "totalAfterCoupon": 0.05,
+    "shipping": 0,
     "tax": 0,
-    "subTotal": 164.98,
-    "total": 164.98
+    "total": 0.05
   },
   "couponCodesInfo": [
     {
-      "name": "SUMMER50",
+      "name": "ca",
       "msg": "Successfully applied",
+      "discountAmount": 0.05,
       "status": "valid"
     }
-  ]
+  ],
+  "couponCodeInfo": []
 }
 ```
 
@@ -678,7 +790,6 @@ curl --request POST \
 This endpoint removes a coupon from a cart
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/checkout/removecoupon`
 
 ### Header Parameters
@@ -692,11 +803,13 @@ This endpoint removes a coupon from a cart
 |------------|----------|--------|------------------------------|
 | couponCode | true     | string | Name of coupon to be removed |
 
+Sample in Shell:
+
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/checkout/removecoupon \
   --header 'token: site_xxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxx' \
+  --header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
   --data '{"couponCode" : "SUMMER20"}'
 
 ```
@@ -705,32 +818,62 @@ curl --request POST \
 
 ```json
 {
-  "id": "117",
-  "cartToken": "cart_xxxxxxxxxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxxxx",
+  "id": 31109,
+  "cartToken": "cart_kf4bA6ljiCf7RhWTnXDwq8On",
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
   "couponCodes": [],
-  "addressToken": "",
-  "shippingMethod": "",
-  "shippingMethodId": "",
-  "shippingAddress": "",
-  "shippingAddress2": "",
-  "shippingZip": "",
-  "shippingState": "",
-  "shippingCity": "",
-  "contactEmail": "",
-  "contactFirstName": "",
-  "contactLastName": "",
-  "companyName": "",
+  "addressToken": "adrs_hzle2kYXjQg1LGnPGtLwMs9m",
+  "shippingMethod": {
+    "carrier": "freeshipping",
+    "description": "",
+    "deliveryDateTime": null,
+    "deliveryDays": null,
+    "origRate": 0,
+    "rate": 0,
+    "id": "UO2S3uFr49zCBJGAZMRYanqh",
+    "methodName": "Free Shipping"
+  },
+  "shippingMethodId": "UO2S3uFr49zCBJGAZMRYanqh",
+  "shippingAddressLabel": "",
+  "shippingAddress": {
+    "address": "123 Main street",
+    "address2": "Unit 4",
+    "city": "NY",
+    "state": "NY",
+    "zip": "10952",
+    "country": "",
+    "phone": "03356705565",
+    "mobile": "",
+    "specialValues": []
+  },
+  "contactEmail": "sharondoe@gmail.com",
   "contactPhone": "",
-  "shippingMethodsJson": "",
+  "shippingMethodsJson": [
+    {
+      "carrier": "freeshipping",
+      "description": "",
+      "deliveryDateTime": null,
+      "deliveryDays": null,
+      "origRate": 0,
+      "rate": 0,
+      "id": "UO2S3uFr49zCBJGAZMRYanqh",
+      "methodName": "Free Shipping"
+    }
+  ],
+  "contactFirstName": "Sarah",
+  "contactLastName": "Jones",
+  "companyName": "",
+  "createdAt": "2024-06-27 10:33:43",
+  "editedAt": "2024-06-27 10:41:54",
   "pricing": {
-    "productsTotal": 329.95,
-    "origTotal": 329.95,
-    "totalCouponDiscount": null,
-    "totalAfterCoupon": 329.95,
+    "productsTotal": 0.1,
+    "origTotal": 0.1,
+    "subTotal": 0.1,
+    "totalCouponDiscount": 0,
+    "totalAfterCoupon": 0.1,
+    "shipping": 0,
     "tax": 0,
-    "subTotal": 329.95,
-    "total": 329.95
+    "total": 0.1
   },
   "couponCodesInfo": []
 }

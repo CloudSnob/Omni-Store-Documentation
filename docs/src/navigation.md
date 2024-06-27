@@ -25,6 +25,8 @@ This endpoint retrieves a full navigation list
 | fullProducts      | Return the full product (Product with variants) |
 | variantAggregates | Return the variant aggregates on each variant   |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/navigations\
@@ -32,7 +34,6 @@ curl --request GET \
 ```
 
 > The above command returns JSON structured like this:
-
 ```json
 [
   {
@@ -109,6 +110,8 @@ This endpoint retrieves a navigation by navigationToken or slug
 |-------------------|-------------------------------------------------|
 | fullProducts      | Return the full product (Product with variants) |
 | variantAggregates | Return the variant aggregates on each variant   |
+
+Sample in Shell:
 
 ```shell
 curl --request GET \

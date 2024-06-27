@@ -1,17 +1,17 @@
 # Collections (static)
 
 ## Get All Collections
-
 This endpoint retrieves all collections
 
 ### HTTP Request
-
 `GET https://storeapi.csomni.com/collections`
 
 ### Header Parameters
 | Parameter     | Required | Type   | Description       |
 |---------------|----------|--------|-------------------|
 | siteToken     | true     | string | Unique siteToken  |
+
+Sample in Shell:
 
 ```shell
 curl --request GET \
@@ -24,32 +24,57 @@ curl --request GET \
 ```json
 [
   {
-    "collectionToken": "clcs_xxxxxxxxxxxxxxxx",
-    "collectionName": "Educational Toys",
-    "collectionDefaultSort": "0",
-    "collectionSlug": "educational-toys",
-    "collectionDescription": "",
-    "collectionImage": "",
-    "archived": "0",
+    "collectionToken": "clcs_759czs0N8JyAczpL",
+    "collectionName": "Floor Cleaning & Deodorant",
+    "collectionDefaultSort": "",
+    "collectionSlug": "janitorial",
+    "collectionDescription": "\nfor cleaning",
+    "collectionImage": "6-23-2021\/1624461506141__314197__Cherry.jpg",
+    "archived": 0,
+    "hideCollection": 1,
     "collectionMetaTitle": "",
     "collectionMetaDescription": "",
+    "collectionSortOrder": 0,
     "collectionBrand": "",
-    "createdAt": "2021-12-15 13:23:54",
-    "editedAt": "2021-12-15 13:23:54",
+    "createdAt": "2022-12-18 23:01:01",
+    "editedAt": "2023-11-29 11:32:48",
+    "active": 1,
     "products": []
   },
   {
-    "collectionToken": "clcs_xxxxxxxxxxxx",
-    "collectionName": "Children toys",
-    "collectionDefaultSort": "b",
-    "collectionSlug": "children-toys",
-    "collectionDescription": "desc",
-    "collectionImage": "url.url.com",
-    "archived": "0",
+    "collectionToken": "clcs_MWyWZa1BkzjOKJsw",
+    "collectionName": "Cleaners & Degreasers",
+    "collectionDefaultSort": "",
+    "collectionSlug": "cleaners-degreasers",
+    "collectionDescription": "",
+    "collectionImage": "4-14-2021\/1618422410531__24516__01019.jpg",
+    "archived": 0,
+    "hideCollection": 1,
     "collectionMetaTitle": "",
     "collectionMetaDescription": "",
-    "collectionBrand": "",
     "collectionSortOrder": 0,
+    "collectionBrand": "",
+    "createdAt": "2022-12-18 23:01:01",
+    "editedAt": "2023-11-29 11:38:54",
+    "active": 1,
+    "products": []
+  },
+  {
+    "collectionToken": "clcs_iAcpZKuoumcbo1t8",
+    "collectionName": "Pest Control",
+    "collectionDefaultSort": "",
+    "collectionSlug": "pest-control",
+    "collectionDescription": "",
+    "collectionImage": "3-3-2021\/1614788481890__48650__01035.jpg",
+    "archived": 0,
+    "hideCollection": 0,
+    "collectionMetaTitle": "",
+    "collectionMetaDescription": "",
+    "collectionSortOrder": 0,
+    "collectionBrand": "",
+    "createdAt": "2022-12-18 23:01:01",
+    "editedAt": "2023-11-10 14:06:59",
+    "active": 1,
     "products": []
   }
 ]
@@ -70,6 +95,8 @@ This endpoint retrieves a specified collection and its products.
 | collectionToken | string | Token of the Collection, Or |
 | collectionSlug  | string | Slug of the collection      |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/collections/[collectiontoken||collectionSlug] \
@@ -80,7 +107,7 @@ curl --request GET \
 
 ```json
 {
-  "collectionToken": "clcs_xxxxxxxxxxxx",
+  "collectionToken": "clcs_9hOv0qbYj0eOkngC",
   "collectionName": "Drywall Sheetrock",
   "collectionDefaultSort": "",
   "collectionSlug": "drywall-sheetrock",
@@ -98,8 +125,8 @@ curl --request GET \
   "products": [
     {
       "id": 2996,
-      "prodToken": "prod_xxxxxxxxxxxxx",
-      "collectionToken": "clcs_xxxxxxxxxxxxx",
+      "prodToken": "prod_TY4oklRsQol0JywZ",
+      "collectionToken": "clcs_9hOv0qbYj0eOkngC",
       "sortOrder": 0,
       "createdAt": "2022-12-18 23:01:00",
       "editedAt": "2022-12-18 23:01:00",
@@ -141,8 +168,8 @@ curl --request GET \
       "backOrderWarning": 0,
       "variants": [
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_TY4oklRsQol0JywZ",
+          "variantToken": "vrnt_GPg5LJe0Wuaz5zJ7",
           "variantName": "",
           "variantImage": {
             "file": "9-25-2022\/1664125155630__176320__40073.jpg",
@@ -188,8 +215,8 @@ curl --request GET \
           "variantInStock": true
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_TY4oklRsQol0JywZ",
+          "variantToken": "vrnt_NdF6kTIB2zQogFZg",
           "variantName": "",
           "variantImage": {
             "file": "9-25-2022\/1664125155630__176320__40073.jpg",
@@ -235,15 +262,15 @@ curl --request GET \
           "variantInStock": true,
           "variantOptions": [
             {
-              "optionToken": "optn_xxxxxxxxxxxxx",
+              "optionToken": "optn_aBRKypaZbIARGzuI0V8l",
               "optionValue": "1\/4 INCH",
               "optionName": "Size"
             }
           ]
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_TY4oklRsQol0JywZ",
+          "variantToken": "vrnt_iOhY0yeHbw8p4i51",
           "variantName": "",
           "variantImage": {
             "file": "2-15-2021\/1613417239722__39450__40075a.jpg",
@@ -289,15 +316,15 @@ curl --request GET \
           "variantInStock": true,
           "variantOptions": [
             {
-              "optionToken": "optn_xxxxxxxxxxxxx",
+              "optionToken": "optn_aBRKypaZbIARGzuI0V8l",
               "optionValue": "1\/2 INCH",
               "optionName": "Size"
             }
           ]
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_TY4oklRsQol0JywZ",
+          "variantToken": "vrnt_NnOkjVwdFBRtUcnk",
           "variantName": "",
           "variantImage": {
             "file": "9-25-2022\/1664125155630__176320__40073.jpg",
@@ -368,7 +395,6 @@ curl --request GET \
       "sortOrder": 0,
       "createdAt": "2022-12-18 23:01:00",
       "editedAt": "2022-12-18 23:01:00",
-      "companyToken": "comp_fxJJZhdcNMfRF9m",
       "prodName": "Sheetrock ",
       "prodImage": {
         "file": "9-25-2022\/1664124035325__1400__45009.jpg",
@@ -407,8 +433,8 @@ curl --request GET \
       "backOrderWarning": 0,
       "variants": [
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_uKN0NqmLoxMAeJhw",
+          "variantToken": "vrnt_s3RnObyCq7rcMHNa",
           "variantName": "",
           "variantImage": {
             "file": "9-25-2022\/1664124035325__1400__45009.jpg",
@@ -456,8 +482,8 @@ curl --request GET \
           "variantInStock": true
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx,
+          "prodToken": "prod_uKN0NqmLoxMAeJhw",
+          "variantToken": "vrnt_scs2KS6VOamCGwl4",
           "variantName": "",
           "variantImage": {
             "file": "9-25-2022\/1664124035325__1400__45009.jpg",
@@ -503,15 +529,15 @@ curl --request GET \
           "variantInStock": true,
           "variantOptions": [
             {
-              "optionToken": "optn_xxxxxxxxxxxxx",
+              "optionToken": "optn_jFC5ujTDDDGEnCbKWMeS",
               "optionValue": "4 x 8 x 3\/8",
               "optionName": "Size"
             }
           ]
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_uKN0NqmLoxMAeJhw",
+          "variantToken": "vrnt_EPCQiYEbkBd5zzbU",
           "variantName": "",
           "variantImage": {
             "file": "9-25-2022\/1664124035325__1400__45009.jpg",
@@ -557,18 +583,18 @@ curl --request GET \
           "variantInStock": true,
           "variantOptions": [
             {
-              "optionToken": "optn_xxxxxxxxxxxxx",
+              "optionToken": "optn_jFC5ujTDDDGEnCbKWMeS",
               "optionValue": "4 x 8 x 1\/2 ",
               "optionName": "Size"
             }
           ]
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_uKN0NqmLoxMAeJhw",
+          "variantToken": "vrnt_y3aAGgQKuVObY50h",
           "variantName": "",
           "variantImage": {
-            "file": "9-25-2024\/1664124035325__1400__45009.jpg",
+            "file": "9-25-2022\/1664124035325__1400__45009.jpg",
             "type": ""
           },
           "variantImages": [],
@@ -611,7 +637,7 @@ curl --request GET \
           "variantInStock": true,
           "variantOptions": [
             {
-              "optionToken": "optn_xxxxxxxxxxxxx",
+              "optionToken": "optn_jFC5ujTDDDGEnCbKWMeS",
               "optionValue": "4 x 8 x 5\/8 ",
               "optionName": "Size"
             }
@@ -626,14 +652,14 @@ curl --request GET \
     },
     {
       "id": 3034,
-      "prodToken": "prod_xxxxxxxxxxxxx",
-      "collectionToken": "clcs_xxxxxxxxxxxxx",
+      "prodToken": "prod_StL7XOFhnqqDM5U3",
+      "collectionToken": "clcs_9hOv0qbYj0eOkngC",
       "sortOrder": 0,
       "createdAt": "2022-12-18 23:01:00",
       "editedAt": "2022-12-18 23:01:00",
       "prodName": "Sheetrock Waterproof Green 4\"X8\"",
       "prodImage": {
-        "file": "9-25-2024\/1664124434665__1521__45011.jpg",
+        "file": "9-25-2022\/1664124434665__1521__45011.jpg",
         "type": ""
       },
       "prodImages": [],
@@ -669,11 +695,11 @@ curl --request GET \
       "backOrderWarning": 0,
       "variants": [
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_StL7XOFhnqqDM5U3",
+          "variantToken": "vrnt_eoPmuZuTQ2kOTkHR",
           "variantName": "",
           "variantImage": {
-            "file": "9-25-2024\/1664124434665__1521__45011.jpg",
+            "file": "9-25-2022\/1664124434665__1521__45011.jpg",
             "type": "",
             "id": "z8t3qir6",
             "status": "poolImages"
@@ -713,16 +739,16 @@ curl --request GET \
           "dateCreated": "1664124261",
           "deleted": 0,
           "backOrderWarning": 0,
-          "createdAt": "2024-12-18 23:01:04",
-          "editedAt": "2024-12-18 23:01:04",
+          "createdAt": "2022-12-18 23:01:04",
+          "editedAt": "2022-12-18 23:01:04",
           "variantInStock": true
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_StL7XOFhnqqDM5U3",
+          "variantToken": "vrnt_FOK50zfqqUGrahC1",
           "variantName": "",
           "variantImage": {
-            "file": "9-25-2024\/1664124434665__1521__45011.jpg",
+            "file": "9-25-2022\/1664124434665__1521__45011.jpg",
             "type": ""
           },
           "variantImages": [],
@@ -760,23 +786,23 @@ curl --request GET \
           "dateCreated": "1610561625",
           "deleted": 0,
           "backOrderWarning": 0,
-          "createdAt": "2024-12-18 23:01:04",
-          "editedAt": "2024-12-18 23:01:04",
+          "createdAt": "2022-12-18 23:01:04",
+          "editedAt": "2022-12-18 23:01:04",
           "variantInStock": true,
           "variantOptions": [
             {
-              "optionToken": "optn_xxxxxxxxxxxxx",
+              "optionToken": "optn_1WZCeAn1lqFpHEXpVuaj",
               "optionValue": "1\/2 INCH",
               "optionName": "Size"
             }
           ]
         },
         {
-          "prodToken": "prod_xxxxxxxxxxxxx",
-          "variantToken": "vrnt_xxxxxxxxxxxxx",
+          "prodToken": "prod_StL7XOFhnqqDM5U3",
+          "variantToken": "vrnt_EbfXjPaHYwUx6DZX",
           "variantName": "",
           "variantImage": {
-            "file": "9-25-2024\/1664124434665__1521__45011.jpg",
+            "file": "9-25-2022\/1664124434665__1521__45011.jpg",
             "type": ""
           },
           "variantImages": [],
@@ -814,12 +840,12 @@ curl --request GET \
           "dateCreated": "1610561660",
           "deleted": 0,
           "backOrderWarning": 0,
-          "createdAt": "2024-12-18 23:01:04",
-          "editedAt": "2024-12-18 23:01:04",
+          "createdAt": "2022-12-18 23:01:04",
+          "editedAt": "2022-12-18 23:01:04",
           "variantInStock": true,
           "variantOptions": [
             {
-              "optionToken": "optn_xxxxxxxxxxxxx",
+              "optionToken": "optn_1WZCeAn1lqFpHEXpVuaj",
               "optionValue": "5\/8 INCH",
               "optionName": "Size"
             }

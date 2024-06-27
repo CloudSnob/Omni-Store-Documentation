@@ -17,7 +17,7 @@ Content-Type: application/json
 ###
 
 ## doesn't work
-## @name get_all_products
+## name get_all_products
 #GET {{baseStoreUrl}}/products
 #token: {{siteToken}}
 #Content-Type: application/json
@@ -44,7 +44,7 @@ Content-Type: application/json
 ## CA: I do not know what this is used for - it can't be to set the inventory as that is only done Admin side and this
 ## is not affecting the DB inventory count. It also can't be for cart as products are not used in cart.
 ## Leaving for now
-## @name update_inventory_count
+## name update_inventory_count
 #POST {{baseStoreUrl}}/products/{{productToken1}}
 #token: {{siteToken}}
 #Content-Type: application/json

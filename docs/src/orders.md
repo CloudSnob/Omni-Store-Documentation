@@ -1,7 +1,6 @@
 # Orders
 
 ## Get all orders by customer
-
 This endpoint retrieves orders for a specified customer
 
 
@@ -14,11 +13,12 @@ This endpoint retrieves orders for a specified customer
 | siteToken     | true     | string | Site ID token     |
 | customerToken | true     | string | Customer ID token |
 
+Sample in Shell:
 
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/orders \
-  --header 'token: cs_xxxxxxxxxxxxxxx'\
+  --header 'token: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi'\
   --header 'token: site_xxxxxxxxxxxxxx
 ```
 
@@ -458,14 +458,16 @@ This endpoint retrieves a specific order by order token
 |------------|------------------------------------|
 | orderToken | ID token of the Order to retrieve. |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
   --url https://storeapi.csomni.com/orders/{orderToken} \
-  --header 'token: site_xxxxxxxxxx', 'customerToken: cs_xxxxxxxxxxx'/
+  --header 'token: site_xxxxxxxxxx', 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi'/
 ```
 
 > The above command returns JSON structured like this:
-
+> 
 ```json
 {
   "orderToken": "ordr_4xCT42nj1QKZjSVbPvj6XE1X",
@@ -609,7 +611,7 @@ curl --request GET \
   "orderEmail": "chris@chris.com",
   "orderNotePublic": "",
   "cartToken": "cart_Q0eM8x84bURo3tPUmm8fBKsH",
-  "orderPaymentMethod": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"10032644615\",\"xExp\":\"0126\",\"xAuthCode\":\"xxxxxxx\",\"xBatch\":\"xxxxxxxx\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.15\",\"xMaskedCardNumber\":\"4xxxxxxxxxxxxxxxx\",\"xCardType\":\"Visa\",\"xName\":\"Sarah Jones\",\"xToken\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"xMID\":\"xxxxxxxxxxxxxx\",\"xTID\":\"xxxxxxxxx\",\"xCurrency\":\"USD\",\"xDate\":\"6\\\/19\\\/2024 6:10:30 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_FJDJ7aboPYqH\"}",
+  "orderPaymentMethod": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"10032644615\",\"xExp\":\"0126\",\"xAuthCode\":\"xxxxxxx\",\"xBatch\":\"xxxxxxxx\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.15\",\"xMaskedCardNumber\":\"4xxxxxxxxxxxxxxxx\",\"xCardType\":\"Visa\",\"xName\":\"Sarah Jones\",\"xToken\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"xMID\":\"xxxxxxxxxxxxxx\",\"xTID\":\"xxxxxxxxx\",\"xCurrency\":\"USD\",\"xDate\":\"6\\\/19\\\/2024 6:10:30 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_xxxxxxxxxxx\"}",
   "checkoutObject": {
     "id": 31083,
     "cartToken": "cart_Q0eM8x84bURo3tPUmm8fBKsH",
@@ -734,7 +736,7 @@ curl --request GET \
       "transactionType": null,
       "transactionDetails": null,
       "dateTime": "1718791832",
-      "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"10032644615\",\"xExp\":\"0126\",\"xAuthCode\":\"53783A\",\"xBatch\":\"5150840\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.15\",\"xMaskedCardNumber\":\"4xxxxxxxxxxx2438\",\"xCardType\":\"Visa\",\"xName\":\"Sarah Jones\",\"xToken\":\"3hnqh1559n21007288643251pn17h5m4\",\"xMID\":\"xxxxxxxxxx9999\",\"xTID\":\"xxxxx6789\",\"xCurrency\":\"USD\",\"xDate\":\"6\\\/19\\\/2024 6:10:30 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_FJDJ7aboPYqH\"}",
+      "paymentObject": "{\"xResult\":\"A\",\"xStatus\":\"Approved\",\"xError\":\"\",\"xErrorCode\":\"00000\",\"xRefNum\":\"10032644615\",\"xExp\":\"0126\",\"xAuthCode\":\"53783A\",\"xBatch\":\"5150840\",\"xAvsResultCode\":\"NNN\",\"xAvsResult\":\"Address: No Match & 5 Digit Zip: No Match\",\"xCvvResultCode\":\"\",\"xCvvResult\":\"No CVV data available\",\"xAuthAmount\":\"0.15\",\"xMaskedCardNumber\":\"4xxxxxxxxxxx2438\",\"xCardType\":\"Visa\",\"xName\":\"Sarah Jones\",\"xToken\":\"3hnqh1559n21007288643251pn17h5m4\",\"xMID\":\"xxxxxxxxxx9999\",\"xTID\":\"xxxxx6789\",\"xCurrency\":\"USD\",\"xDate\":\"6\\\/19\\\/2024 6:10:30 AM\",\"xEntryMethod\":\"Keyed\",\"cardToken\":\"cc_xxxxxxx\"}",
       "cardToken": "cc_xxxxxxxxxxxxxxxx",
       "void": 0,
       "userToken": "omni",

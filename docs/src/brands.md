@@ -1,17 +1,17 @@
 # Brands
 
 ## Get Brands
-
 This endpoint retrieves all brands 
 
 ### HTTP Request
-
 `GET https://storeapi.csomni/brands`
 
 ### Header Parameters
 | Parameter     | Required | Type   | Description      |
 |---------------|----------|--------|------------------|
 | siteToken     | true     | string | Unique siteToken |
+
+Sample in Shell:
 
 ```shell
 curl --request GET \
@@ -24,28 +24,25 @@ curl --request GET \
 ```json
 [
   {
-    "companyToken": "comp_xxxxxxxxxxxxx",
-    "brandToken": "brnd_xxxxxxxxxxxxx",
-    "brandName": "Elph & Rand",
-    "brandImage": "",
-    "createdAt": "2021-12-16 18:45:21",
-    "editedAt": "2021-12-16 18:45:21"
+    "brandToken": "brnd_70i7N4YSnlijPyyiTlzN",
+    "brandName": "zero",
+    "brandImage": "Kiribati",
+    "createdAt": "2024-06-04 10:55:13",
+    "editedAt": "2024-06-04 10:55:13"
   },
   {
-    "companyToken": "comp_xxxxxxxxxxxxx",
-    "brandToken": "brnd_xxxxxxxxxxxxx",
-    "brandName": "Kite Bulls",
+    "brandToken": "brnd_hQczGAFxeJllqFeodca4",
+    "brandName": "Green Cert",
     "brandImage": "",
-    "createdAt": "2021-12-16 18:45:21",
-    "editedAt": "2021-12-16 18:45:21"
+    "createdAt": "2022-11-08 10:14:50",
+    "editedAt": "2022-11-08 10:14:50"
   },
   {
-    "companyToken": "comp_xxxxxxxxxxxxx",
-    "brandToken": "brnd_xxxxxxxxxxxxx",
-    "brandName": "Rock-a-bye",
-    "brandImage": "",
-    "createdAt": "2021-12-16 18:45:21",
-    "editedAt": "2021-12-16 18:45:21"
+    "brandToken": "brnd_LSpy0mTUWXfVEqpmkCHy",
+    "brandName": "Zep",
+    "brandImage": "6-3-2021\/1622735483066__58533__zep_logo.png",
+    "createdAt": "2022-11-08 10:14:50",
+    "editedAt": "2022-11-08 10:14:50"
   }
 ]
 ```
@@ -63,9 +60,11 @@ This endpoint retrieves a Specific brand.
 |---------------|----------|--------|------------------|
 | siteToken     | true     | string | Unique siteToken |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
-  --url https://storeapi.csomni/brands/{}brandToken} \
+  --url https://storeapi.csomni/brands/brnd_70i7N4YSnlijPyyiTlzN \
   --header 'token: site_xxxxxxxxxxxxx'
 ```
 
@@ -73,10 +72,10 @@ curl --request GET \
 
 ```json
 {
-  "brandToken": "brnd_xxxxxxxxxxxxx",
-  "brandName": "Rock-a-bye",
-  "brandImage": "",
-  "createdAt": "2021-12-16 18:45:21",
-  "editedAt": "2021-12-16 18:45:21"
+  "brandToken": "brnd_70i7N4YSnlijPyyiTlzN",
+  "brandName": "zero",
+  "brandImage": "Kiribati",
+  "createdAt": "2024-06-04 10:55:13",
+  "editedAt": "2024-06-04 10:55:13"
 }
 ```

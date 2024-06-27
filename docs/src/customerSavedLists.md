@@ -4,11 +4,9 @@
 ## Create New List
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/customeritemlist`
 
 ### Header Requirements
-
 | Parameter     | Required | Unique | Description |
 |---------------|----------|--------|-------------|
 | token         | true     | true   | site id     |
@@ -16,7 +14,6 @@
 
 
 ### Data Parameters
-
 | Parameter        | Required | Type   | Description               |
 |------------------|----------|--------|---------------------------|
 | listReadableName | true     | string | Title for the list        |
@@ -242,6 +239,8 @@ Response:
 | listReadableName | true     | string | Title for the list       |
 | sortOrder        | true     | int    | Sort Order for this list |
 
+Sample in Shell:
+
 ```shell
 curl --request PUT \
   --url https://storeapi.csomni.com/customeritemlist/{listToken} \
@@ -288,6 +287,8 @@ Response:
 |------------------|----------|--------|------------------------------------|
 | sortOrder        | false    | false  | The sort order for the entire list |
 | listReadableName | false    | false  | The name of the list               |
+
+Sample in Shell:
 
 ```shell
 curl --request PUT \

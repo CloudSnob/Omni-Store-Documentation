@@ -1,6 +1,6 @@
 #@name create_customer
 POST {{baseStoreUrl}}/customers
-token: {{siteToken}}
+token: site_KCDlSRZWaIotet0v
 Content-Type: application/json
 
 {

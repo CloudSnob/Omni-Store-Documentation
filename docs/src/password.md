@@ -5,7 +5,6 @@ This endpoint triggers a reset email to the customers email address. The email c
 Be careful, it always returns success even if email is not in our system vd"l
 
 ### HTTP Request
-
 `POST https://storeapi.csomni.com/password/forgot`
 
 ### Header Parameters
@@ -19,6 +18,7 @@ Be careful, it always returns success even if email is not in our system vd"l
 | customerEmail | true     | string | Email of account to reset password |
 | siteToken     | true     | string | Site ID token                      |
 
+Sample in Shell:
 
 ```shell
 curl --request POST \
@@ -30,7 +30,6 @@ curl --request POST \
 ```
 
 > The above command returns JSON structured like this:
-
 ```json
 {
   "status": "success"
@@ -38,7 +37,7 @@ curl --request POST \
 ```
 
 ## Restore Password (from hash)
-This endpoint resets a customers password. It requires a unique hash that is sent in the initial reset email
+This endpoint resets a customers' password. It requires a unique hash that is sent in the initial reset email
 
 ### HTTP Request
 
@@ -54,6 +53,8 @@ This endpoint resets a customers password. It requires a unique hash that is sen
 |---------------|----------|--------|------------------------------------|
 | customerEmail | true     | string | Email of account to reset password |
 | siteToken     | true     | string | Site ID token                      |
+
+Sample in Shell:
 
 ```shell
 curl --request POST \

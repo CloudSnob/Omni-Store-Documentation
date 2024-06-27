@@ -9,10 +9,11 @@ GET https://storeapi.csomni.com/paymentmanager/cards
 | customerToken | true     | string | Customer Token   |
 | siteToken     | true     | string | Unique siteToken |
 
+Sample in Shell:
 
 ```shell
 curl --location 'https://storeapi.csomni.com/paymentmanager/cards' \
---header 'customerToken: cs_xxxxxxxxxxxxxxxxxx' \
+--header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
 --header 'token: site_xxxxxxxxxx'
 ```
 
@@ -39,7 +40,7 @@ curl --location 'https://storeapi.csomni.com/paymentmanager/cards' \
         "zipMatched": null,
         "avsMatched": null,
         "companyToken": "",
-        "customerToken": "cs_xxxxxxxxxxxxxxxxxxxxxx",
+        "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
         "isDefault": 0,
         "createdAt": "2024-05-20 11:05:59",
         "editedAt": "2024-05-20 11:05:59"
@@ -63,7 +64,7 @@ curl --location 'https://storeapi.csomni.com/paymentmanager/cards' \
         "zipMatched": 0,
         "avsMatched": 0,
         "companyToken": "",
-        "customerToken": "cs_xxxxxxxxxxxxxxxxxxxxxxx",
+        "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
         "isDefault": 0,
         "createdAt": "2024-06-18 12:31:11",
         "editedAt": "2024-06-18 12:31:11"
@@ -80,10 +81,11 @@ GET https://storeapi.csomni.com/paymentmanager/cards/{cardToken}
 | customerToken | true     | string | Customer Token   |
 | siteToken     | true     | string | Unique siteToken |
 
+Sample in Shell:
 
 ```shell
 curl --location 'https://storeapi.csomni.com/paymentmanager/cards/{cardToken}' \
---header 'customerToken: cs_xxxxxxxxxxxxxxxxxx' \
+--header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
 --header 'token: site_xxxxxxxxxx'
 ```
 
@@ -109,7 +111,7 @@ curl --location 'https://storeapi.csomni.com/paymentmanager/cards/{cardToken}' \
   "zipMatched": null,
   "avsMatched": null,
   "companyToken": "",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxxxxxxx",
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
   "isDefault": 0,
   "createdAt": "2024-05-20 11:05:59",
   "editedAt": "2024-05-20 11:05:59"
@@ -132,7 +134,7 @@ curl --location 'https://storeapi.csomni.com/paymentmanager/cards/{cardToken}' \
 | billingAddress  | true     | false  | Billing Address                                                      |
 | billingAddress2 | false    | false  | Billing Address Line 2                                               |
 | billingZip      | true     | false  | Billing Zip                                                          |
-| billingCity     | true     | false  | Biling City                                                          |
+| billingCity     | true     | false  | Billing City                                                         |
 | billingState    | true     | false  | Billing State                                                        |
 | billingCountry  | true     | false  | Billing country                                                      |
 | billingPhone    | true     | false  | Billing Phone                                                        |
@@ -141,10 +143,11 @@ curl --location 'https://storeapi.csomni.com/paymentmanager/cards/{cardToken}' \
 | expMonth        | true     | false  | Card expiry Month                                                    |
 | expYear         | true     | false  | Card expiry Year                                                     |
 
+Sample in Shell:
 
 ```shell
 curl --location POST 'https://storeapi.csomni.com/paymentmanager/addcard' \
---header 'customerToken: cs_xxxxxxxxxxxxxxxx' \
+--header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
 --header 'token: site_xxxxxxxxx' \
 --data '{
     "cardNumbers": "11111111111111111",
@@ -186,7 +189,7 @@ curl --location POST 'https://storeapi.csomni.com/paymentmanager/addcard' \
     "billingCountry": "United States",
     "zipMatched": null,
     "avsMatched": null,
-    "companyToken": "cs_xxxxxxxxxxxxxxxxxxxxxx",
+    "companyToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
     "customerToken": "",
     "isDefault": 1,
     "archived": 0,
@@ -221,10 +224,11 @@ curl --location POST 'https://storeapi.csomni.com/paymentmanager/addcard' \
 | expMonth        | true     | false  | Card expiry Month                                                    |
 | expYear         | true     | false  | Card expiry Year                                                     |
 
+Sample in Shell:
 
 ```shell
 curl --location PUT 'https://storeapi.csomni.com/paymentmanager/{{cardToken}}' \
---header 'customerToken: cs_xxxxxxxxxxxxxxxx' \
+--header 'customerToken: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
 --header 'token: site_xxxxxxxxx' \
 --data '{
     "cardNumbers": "11111111111111111",
@@ -245,7 +249,6 @@ curl --location PUT 'https://storeapi.csomni.com/paymentmanager/{{cardToken}}' \
 ```
 
 > The above command returns JSON structured like this
-
 ```json
 {
     "cardToken": "cc_xxxxxxxxx",

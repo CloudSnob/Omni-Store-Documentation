@@ -4,10 +4,10 @@
 
 ```shell
 # With shell, you can just pass the correct header with each request
-  --header 'token: site_123'
+  --header 'token: site_xxxxxxxxxxxxxxx'
 ```
 
-> Make sure to replace `site_123` with your API site-token key.
+> Make sure to replace `site_xxxxxxxxxxxxxxxx` with your API site-token key.
 
 Omni Store Front uses API Token to allow access to the API.
 
@@ -16,5 +16,5 @@ Omni Store Front expects for the API Token to be included in all API requests th
 `header 'token: site_123'`
 
 <aside class="notice">
-You must replace <code>123</code> with your personal site-token API key.
+You must replace <code>xxxxxxxx</code> with your personal site-token API key.
 </aside>

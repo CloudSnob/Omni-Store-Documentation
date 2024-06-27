@@ -38,13 +38,13 @@ Content-Type: application/json
 
 # @name edit_cart_product
 POST {{baseStoreUrl}}/cartprods/{{cartToken}}/{{cartProdToken}}
-token: {{siteToken}}
+token: {{siteTokenBrooklynGifting}}
 customerToken: {{customerPublicToken}}
 Content-Type: application/json
 
 {
  "cartProdQuantity": 5,
-  "prodToken" : "{{variantToken1}}"
+  "prodToken" : "{{variantToken1-BrooklyGifting}}"
 }
 
 > {%
@@ -59,7 +59,7 @@ Content-Type: application/json
 
 # @name get_a_cart_product
 GET {{baseStoreUrl}}/cartprods/{{cartProdToken}}
-token: {{siteToken}}
+token: {{siteTokenBrooklynGifting}}
 customerToken: {{customerPublicToken}}
 Content-Type: application/json
 
@@ -75,7 +75,7 @@ Content-Type: application/json
 
 # @name delete_a_cart_product
 DELETE {{baseStoreUrl}}/cartprods/{{cartProdToken}}
-token: {{siteToken}}
+token: {{siteTokenBrooklynGifting}}
 customerToken: {{customerPublicToken}}
 Content-Type: application/json
 

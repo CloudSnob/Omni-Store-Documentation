@@ -10,30 +10,33 @@
 
 
 ### Data Parameters
-
 | Parameter        | Required | Type   | Description                       |
 |------------------|----------|--------|-----------------------------------|
 | prodToken        | true     | string | Variant Token to be added to cart |
 | cartProdQuantity | true     | int    | Quantity to add to cart           |
 
+Sample in Shell:
+
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/cartprods \
-  --header 'token: site_xxxxxxxx' \
-  --data '{ "cartProdQuantity" : 1, "prodToken" : "vrnt_xxxxxxxxxxxxx" }'
+  --header 'token: site_xxxxxxxxxxx' \
+  --data '{ 
+            "cartProdQuantity" : 1, 
+            "prodToken" : "vrnt_nhX0NJqewTbyBPjS" 
+          }'
 
 ```
 
 > The above command returns JSON structured like this for a new product to cart
-
 ```json
 {
-  "cartToken": "cart_xxxxxxxxxxxxxxxx",
-  "cartProdToken": "cp_xxxxxxxxxxxxxxxxxxxx",
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "cartProdToken": "cp_Ygj5uVE5Jqaqc4ah4wTFvBWO",
   "cartProdQuantity": "1",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxxxxxxx",
-  "prodToken": "prod_xxxxxxxxxxxxxxxx",
-  "cartAddedQuantity": "3",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+  "prodToken": "vrnt_nhX0NJqewTbyBPjS",
+  "cartAddedQuantity": "1",
   "status": "Prod Added"
 }
 ```
@@ -42,19 +45,18 @@ curl --request POST \
 
 ```json
 {
-  "cartToken": "cart_xxxxxxxxxxxxx",
-  "prodToken": "prod_xxxxxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxx",
-  "cartProdQuantity": 23,
-  "cartProdToken": "cp_xxxxxxxxxxxxxxxxxx",
-  "cartAddedQuantity": "8",
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "prodToken": "vrnt_nhX0NJqewTbyBPjS",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+  "cartProdQuantity": 1,
+  "cartProdToken": "cp_Ygj5uVE5Jqaqc4ah4wTFvBWO",
+  "cartAddedQuantity": 1,
   "status": "Prod Updated"
 }
 ```
 
 ## Edit cart product
-
-This endpoint Edits a cart product item
+This endpoint Edits a cart product item, for example the quantity
 
 ### HTTP Request
 
@@ -67,41 +69,42 @@ This endpoint Edits a cart product item
 | siteToken     | true     | string    | Unique siteToken |
 
 ### Query Parameters
-
 | Parameter        | Required | Type   | Description                 |
 |------------------|----------|--------|-----------------------------|
 | cartProdQuantity | true     | int    | Quantity to add to cart     |
 | prodToken        | true     | string | variant targeted for change |
 
+Sample in Shell:
+
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/cartprods/{cartProdToken} \
   --header 'token: site_xxxxxxxxxxx' \
-  -- header 'customerToken : cs _xxxxxxxxxxxxxxxx'\
-  --data '{ "cartProdQuantity" : 1, "prodToken", "vrnt_xxxxxxxxxxxxx"}'
+  -- header 'customerToken : cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7'\
+  --data '{ 
+            "cartProdQuantity" : 1, 
+            "prodToken", "vrnt_nhX0NJqewTbyBPjS"
+          }'
 
 ```
 
 > The above command returns JSON structured like this
-
 ```json
 {
-  "cartToken": "cart_xxxxxxxxxxxxxxxxxxx",
-  "prodToken": "vrnt_xxxxxxxxxxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxxxxxxx",
-  "cartProdQuantity": 7,
-  "cartProdToken": "cp_xxxxxxxxxxxxxxxxxx",
-  "cartAddedQuantity": 1,
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "prodToken": "vrnt_nhX0NJqewTbyBPjS",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+  "cartProdQuantity": 5,
+  "cartProdToken": "cp_Ygj5uVE5Jqaqc4ah4wTFvBWO",
+  "cartAddedQuantity": 5,
   "status": "Prod Updated"
 }
 ```
 
 ## Get A Cart Product
-This endpoint retrieves a cart products
-
+This endpoint retrieves a single cart item - a single item within the cart
 
 ### HTTP Request
-
 `GET https://storeapi.csomni.com/cartprods/{cartProdToken}`
 
 ### Header Parameters
@@ -110,91 +113,85 @@ This endpoint retrieves a cart products
 | customerToken | true     | string | Customer Token   |
 | siteToken     | true     | string | Unique siteToken |
 
+Sample in Shell:
+
 ```shell
 curl --request GET \
-  --url https://storeapi.csomni.com/cartprods/[cartProdToken] \
+  --url https://storeapi.csomni.com/cartprods/cp_Ygj5uVE5Jqaqc4ah4wTFvBWO \
   --header 'token: site_xxxxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxxxxxx'
+  --header 'customerToken: cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "cartToken": "cart_xxxxxxxxxxxxxxxxxx",
-  "cartProdToken": "cp_xxxxxxxxxxxxxxxxxxxx",
-  "cartProdQuantity": 8,
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "cartProdToken": "cp_Ygj5uVE5Jqaqc4ah4wTFvBWO",
+  "cartProdQuantity": 5,
   "addOnToProdToken": "",
   "addOnProdTokens": null,
-  "prodToken": "vrnt_xxxxxxxxxxxxxxx",
+  "prodToken": "vrnt_nhX0NJqewTbyBPjS",
   "deleted": 0,
-  "createdAt": "2024-05-20 11:07:33",
-  "editedAt": "2024-05-20 11:07:33",
-  "siteToken": "site_xxxxxxxxxxxxxx",
-  "customerToken": "cs_xxxxxxxxxxxxxxxxxxxxxxx",
-  "cartCreated": "1716203253",
-  "cartLastTouched": "1716203253",
-  "prodStaticCollections": [
-    "clcs_xxxxxxxxxxxx"
-  ],
+  "createdAt": "2024-06-27 09:41:47",
+  "editedAt": "2024-06-27 09:41:47",
+  "siteToken": "site_KCDlSRZWaIotet0v",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+  "cartCreated": "1719481308",
+  "cartLastTouched": "1719481308",
+  "prodStaticCollections": [],
   "specialValues": [],
   "product": {
-    "prodToken": "prod_xxxxxxxxxxxxxxxx",
-    "variantToken": "vrnt_xxxxxxxxxxxxx",
-    "variantName": "",
-    "variantImage": {
-      "file": "11-25-2022\/1669391493868__30709__NS-35859.jpg",
-      "type": "",
-      "id": "cjoqzz33",
-      "status": "poolImages"
-    },
+    "prodToken": "prod_vGBKFHP3wwH3Hs4r",
+    "variantToken": "vrnt_nhX0NJqewTbyBPjS",
+    "variantName": "Long sleeve",
+    "variantImage": [],
     "variantImages": [],
-    "variantWeight": "0",
-    "variantDimW": "0",
-    "variantDimL": "0",
-    "variantDimH": "0",
-    "variantUpc": "",
-    "variantNumber": "NS-35859",
-    "manufacturerPartNumber": "",
-    "variantPrice": 0.1,
-    "variantMapPrice": 0,
-    "variantMsrpPrice": 0,
-    "variantDisplayPrice": 0,
-    "variantDescription": "",
-    "variantAlert": "",
-    "variantLowlevel": "",
-    "variantSlug": "",
+    "variantWeight": null,
+    "variantDimW": null,
+    "variantDimL": null,
+    "variantDimH": null,
+    "variantUpc": null,
+    "variantNumber": "123-789",
+    "manufacturerPartNumber": null,
+    "variantPrice": 0.2,
+    "variantMapPrice": null,
+    "variantMsrpPrice": null,
+    "variantDisplayPrice": null,
+    "variantDescription": null,
+    "variantAlert": null,
+    "variantLowlevel": null,
+    "variantSlug": null,
     "variantVisible": 1,
-    "taxType": "",
+    "taxType": null,
     "hideGoogleData": 0,
-    "google_variantCategory": "",
-    "google_variantType": "",
-    "google_variantCondition": "",
+    "google_variantCategory": null,
+    "google_variantType": null,
+    "google_variantCondition": null,
     "taxable": 1,
     "variantAllowCheckout": 0,
     "variantCheckInvetory": 0,
     "variantTrackInventory": 0,
     "inventoryCount": 0,
     "shippingProduct": 0,
-    "variantMetaTitle": "",
-    "variantMetaDescription": "",
-    "variantBrand": "",
+    "variantMetaTitle": null,
+    "variantMetaDescription": null,
+    "variantBrand": null,
     "sortOrder": 0,
-    "dateCreated": "1669391499",
+    "dateCreated": "1719481982",
     "deleted": 0,
     "backOrderWarning": 0,
-    "createdAt": "2022-12-18 23:01:04",
-    "editedAt": "2024-06-17 13:24:13",
+    "createdAt": "2024-06-27 09:53:02",
+    "editedAt": "2024-06-27 09:53:02",
     "variantInStock": true,
-    "prodName": "3\/4 IN. O.D. SATIN NICKEL DRIVE-IN, SPRING LOADED, BALL STYLE, CABINET DOOR LATCH WITH STRIKE\t",
+    "prodName": "T-shirts",
     "prodImage": {
-      "file": "11-25-2022\/1669391493868__30709__NS-35859.jpg",
       "type": ""
     }
   },
   "addOnProducts": [],
   "pricing": {
-    "total": 0.8
+    "total": 1
   },
   "shipping": {
     "totalWeight": 0
@@ -207,7 +204,6 @@ curl --request GET \
 This endpoint deletes (archives) a cart product
 
 ### HTTP Request
-
 `DELETE https://storeapi.csomni.com/cartprods/{cartProdToken}`
 
 ### Header Parameters
@@ -222,18 +218,19 @@ This endpoint deletes (archives) a cart product
 |---------------|----------|--------|------------------------|
 | cartProdToken | true     | string | The cart product token |
 
+Sample in Shell:
+
 ```shell
 curl --request DELETE \
-  --url https://storeapi.csomni.com/cartprods/{cartProdToken} \
+  --url https://storeapi.csomni.com/cartprods/cp_Ygj5uVE5Jqaqc4ah4wTFvBWO \
   --header 'token: site_xxxxxxxxxxx' \
-  --header 'customerToken: cs_xxxxxxxxxxxxxx'
+  --header 'customerToken: cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7'
 ```
 
 > The above command returns JSON structured like this:
-
 ```json
 {
-  "token": "cp_xxxxxxxxxxxxx",
+  "token": "cp_Ygj5uVE5Jqaqc4ah4wTFvBWO",
   "deleted": true
 }
 ```
