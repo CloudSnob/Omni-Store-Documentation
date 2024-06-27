@@ -1,5 +1,12 @@
 # Customers
 
+<!-- Previous Customer Creation Scenario -->
+
+In the past, customer creation occurred via MYSQL.
+
+<!-- Updated Changes Implemented as of April 4, 2024 by Baseer -->
+
+Customer creation is facilitated through MYSQL and Solr (Apache Solr). Consequently, any time a customer is created or edited, it is mandatory to update the customer's information in the Solr database.
 
 ## Create Customer
 This endpoint creates a customer
@@ -189,3 +196,4 @@ curl --request DELETE \
   "deleted": "true"
 }
 ```
+

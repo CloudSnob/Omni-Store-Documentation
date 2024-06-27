@@ -538,6 +538,33 @@ This endpoint processes an order without payment.
 | orderNotePublic     | false    | string | false  | Order Note submitted by the customer which will be visible to the customer                                                                                                                               |
 
 Sample in Shell:
+=======
+`POST https://apistore.csomni.com/checkout/payment`
+
+### Query Parameters
+
+| Parameter           | Required             | Unique | Description                                                                                                                                                                                         |
+| ------------------- | -------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| cardNumbers         | true(if no card token)    | false  | Card Numbers                                                                                                                                                                                        |
+| expMonth            | true (if no card token)   | false  | Card Exp Month                                                                                                                                                                                      |
+| expYear             | true (if no card token)   | false  | Card Exp Year                                                                                                                                                                                       |
+| cvv                 | true (if no card token)   | false  | Card CVV                                                                                                                                                                                            |
+| cardToken           | false  | false  | cardToken. If card has billing address, and you do not send sameAsShipping: false, it will take shipping address for billing address                                                                |
+| billingAddressLine2 | false                | false  | Billing Address Line 2                                                                                                                                                                              |
+| billingZip          | false                | false  | Billing Address Zip                                                                                                                                                                                 |
+| billingAddress      | false                | false  | Billing Address                                                                                                                                                                                     |
+| billingCity         | false                | false  | Billing Address City                                                                                                                                                                                |
+| billingState        | false                | false  | Billing Address State                                                                                                                                                                               |
+| billingName         | false                | false  | Billing Address Name                                                                                                                                                                                |
+| billingPhone        | false                | false  | Billing Phone Number                                                                                                                                                                                |
+| billingMobile       | false                | false  | Billing Mobile Number                                                                                                                                                                               |
+| billingCountry      | false                | false  | Billing Address Country                                                                                                                                                                             |
+| sameAsShipping      | true                 | false  | Will set billing address same as shipping even if cardToken is provided (see above)                                                                                                                 |
+| billingAddressToken | false                | false  | Billing Address Token                                                                                                                                                                               |
+| PO                  | false                | fasle  | Identifying Purchase Order number. Can include digits, letters (which will be converted to upper case), dashes and dots. All other characters will not be procesed and will return an error message |
+| orderNotePublic     | false                | fasle  | Order Note Public                                                                                                                                                                                   |
+
+
 
 ```shell
 curl --request POST \
