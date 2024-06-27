@@ -1,9 +1,5 @@
 # Customer Login
 
-## NOTE: 
-1. isLoggedIn and Guest columns in CUSTOMER table are no longer supported and will be phased out. Look for isLoggedIn in loginToken table for logged in status of a session
-2. When a customer logs into a Store account, both Customer table and loginToken table set their records column 'isLoggedIn' to 'true'. When a customer logs out their account, only that specific session is logged out. Only when all sessions belonging to a customer are logged out, does the customer table 'isLoggedIn' change to 'false'.
-3. When a customer accounts' 'status' is listed as 'cs_awaiting_approval', only the customerToken, customerStatus, Email and First Name are returned.
 
 
 ## Login
@@ -13,40 +9,34 @@ This endpoint returns logged in user.
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/login`
+`POST https://storeapi.csomni.com/login`
 
 ### Request Headers (to combine existing cart)
+| Parameter     | Required | Type   | Description          |
+|---------------|----------|--------|----------------------|
+| customerToken | true     | string | Customer Guest Token |
+| siteToken     | true     | string | Site Token           |
 
-| Parameter     | Required | Description                    |
-| ------------- | -------- | ------------------------------ |
-| customerToken | true     | Current (Guest) Customer Token |
 
-### Query Parameters
+### Data Parameters
+| Parameter        | Required | Description       |
+|------------------|----------|-------------------|
+| customerEmail    | true     | Customer Email    |
+| customerPassword | true     | Customer Password |
 
-| Parameter        | Required | Description        |
-| ---------------- | -------- | ------------------ |
-| customerEmail    | true     | Customer Email.    |
-| customerPassword | true     | Customer Password. |
+Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/login \
-  --header 'cache-control: no-cache' \
-  --header 'token: 123' \
-  --data '{\n "customerEmail" : "tesst@gmail.com",\n  "customerPassword" : "Abc12345"\n}'
+  --url https://storeapi.csomni.com/login \
+  --header 'token: cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi' \
+  --data '{
+            "customerEmail" : "tesst@gmail.com",
+             "customerPassword" : "Abc12345"
+          }'
 ```
+> The above command returns JSON structured like this:
 
-> If the 'customerStatus' is 'cs_awaiting_approval' The above command returns JSON structured like this:
-```json
-{
-    "customerToken": "cs_123456",
-    "customerStatus": "cs_awaiting_approval",
-    "customerEmail": "123456@evelt.com",
-    "customerFirstName": "Sarah"
-}
-```
-
-> If the 'customerStatus' is NOT 'cs_awaiting_approval' The above command returns JSON structured like this:
 
 ```json
 {
@@ -66,7 +56,17 @@ curl --request POST \
   "taxExemptID": null,
   "createdAt": "2021-12-01 10:12:01",
   "editedAt": "2021-12-01 13:42:53",
-  "customerToken": "cs_123456"
+  "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi"
+}
+```
+> If a company setting requires a customer to be approved, until the customer is approved a limited response is provided and login is not initiated
+
+```json
+{
+    "customerToken": "cs_3C04TQd6OSkDNFa90UyYAUaD1Lq8NcQbHjQi",
+    "customerStatus": "cs_awaiting_approval",
+    "customerEmail": "123456@evelt.com",
+    "customerFirstName": "Sarah"
 }
 ```
 
@@ -74,21 +74,20 @@ curl --request POST \
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/login/logout`
-
-### Request Headers (to combine existing cart)
-
-| Parameter     | Required | Description                    |
-| ------------- | -------- | ------------------------------ |
-| customerToken | true     | Current (Guest) Customer Token |
-| token         | true     | Site Token                     |
+`POST https://storeapi.csomni.com/login/logout`
 
 
+### Request Headers 
+| Parameter     | Required | Type   | Description          |
+|---------------|----------|--------|----------------------|
+| siteToken     | true     | string | Site Token           |
+
+Sample in Shell:
 
 ```shell
-curl --location --request POST 'https://apistore.csomni.com/V1.10/login/logout' \
---header 'token: site_123456' \
---header 'customerToken: cs_123456'
+curl --location POST 'https://storeapi.csomni.com/login/logout' \
+--header 'token: site_xxxxxxxxxxxxx' \
+--header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
 > The above command returns JSON structured like this:

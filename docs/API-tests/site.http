@@ -1,0 +1,6 @@
+# @name get_site_settings
+GET {{baseStoreUrl}}/sites
+token: {{siteToken}}
+Content-Type: application/json
+
+###

@@ -1,0 +1,28 @@
+// shift f10 to run an API call
+
+# @name authentication
+POST {{baseStoreUrl}}/login/ HTTP/1.1
+Accept: application/json
+token: {{siteToken}}
+Content-Type: application/json
+
+{
+  "customerEmail": "{{customerEmail}}",
+  "customerPassword": "{{customerPassword}}"
+
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    // client.test("Response content-type is json", function() {
+    //     var $type = response.contentType.mimeType;
+    //     client.assert($type === "application/json", "Expected 'application/json' but received '" + type + "'");
+    // });
+    client.global.set("customerPublicToken", response.body.customerToken);
+%}
+
+###
+
+

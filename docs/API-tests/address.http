@@ -1,0 +1,86 @@
+
+# @name create_address_and_new_customer
+POST {{baseStoreUrl}}/addresses/ HTTP/1.1
+token: {{siteToken}}
+Content-Type: application/json
+
+{
+  "address" : "123 Main street",
+  "address2": "Unit 4",
+  "addressCity" : "NY",
+  "addressState" : "NY",
+  "addressZip" : "10952",
+  "addressLabel" : "Home Address",
+  "addressFirstName" : "Jane",
+  "addressLastName" : "Foster",
+  "phoneNumber" : "03356705565",
+  "mobileNumber" : "45678945666"
+}
+
+###
+
+# @name create_address_for_existing_customer
+POST {{baseStoreUrl}}/addresses/ HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "address" : "123 Main street",
+  "address2": "Unit 4",
+  "addressCity" : "NY",
+  "addressState" : "NY",
+  "addressZip" : "10952",
+  "addressLabel" : "Home Address",
+  "addressFirstName" : "Jane",
+  "addressLastName" : "Foster",
+  "phoneNumber" : "03356705565",
+  "mobileNumber" : "45678945666"
+}
+
+> {%
+    client.global.set("addressToken", response.body.addressToken);
+    client.global.set("customerPublicToken", response.body.customerToken);
+
+%}
+
+###
+# @name edit_address
+POST {{baseStoreUrl}}/addresses/{{addressToken}} HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "addressLabel": "Home Address - Edited",
+  "addressFirstName": "Brando",
+  "addressLastName": "Grady",
+  "address": "19 High Street",
+  "address2": "Unit 4",
+  "addressCity": "Leifchester",
+  "addressState": "NY",
+  "addressZip": "10952",
+  "addressCountry": "US",
+  "addressDefault": "1",
+  "phoneNumber": "6338526379",
+  "mobileNumber": "3034465487"
+}
+
+###
+# @name get_address_by_customer
+GET {{baseStoreUrl}}/addresses/ HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+
+###
+# @name get_address_by_address_token
+GET {{baseStoreUrl}}/addresses/{{addressToken}} HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+
+###
+# @name delete_address
+DELETE {{baseStoreUrl}}/addresses/{{addressToken}} HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+

@@ -1,17 +1,22 @@
 # Brands
 
-## Get All Brands
-
-This endpoint retrieves all brands
+## Get Brands
+This endpoint retrieves all brands 
 
 ### HTTP Request
+`GET https://storeapi.csomni/brands`
 
-`GET https://api.omnifront.cloudsnob.com/brands`
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| siteToken     | true     | string | Unique siteToken |
+
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://api.omnifront.cloudsnob.com/brands \
-  --header 'token: 123'
+  --url https://storeapi.csomni/brands \
+  --header 'token: site_xxxxxxxxxxxx'
 ```
 
 > The above command returns JSON structured like this:
@@ -19,61 +24,58 @@ curl --request GET \
 ```json
 [
   {
-    "companyToken": "comp_123456",
-    "brandToken": "brnd_123456",
-    "brandName": "aaaaaaaaaa",
-    "brandImage": "",
-    "createdAt": "2021-12-16 18:45:21",
-    "editedAt": "2021-12-16 18:45:21"
+    "brandToken": "brnd_70i7N4YSnlijPyyiTlzN",
+    "brandName": "zero",
+    "brandImage": "Kiribati",
+    "createdAt": "2024-06-04 10:55:13",
+    "editedAt": "2024-06-04 10:55:13"
   },
   {
-    "companyToken": "comp_123456",
-    "brandToken": "brnd_123456",
-    "brandName": "Second brand test",
+    "brandToken": "brnd_hQczGAFxeJllqFeodca4",
+    "brandName": "Green Cert",
     "brandImage": "",
-    "createdAt": "2021-12-16 18:45:21",
-    "editedAt": "2021-12-16 18:45:21"
+    "createdAt": "2022-11-08 10:14:50",
+    "editedAt": "2022-11-08 10:14:50"
   },
   {
-    "companyToken": "comp_123456",
-    "brandToken": "brnd_123456",
-    "brandName": "newbrnaad",
-    "brandImage": "",
-    "createdAt": "2021-12-16 18:45:21",
-    "editedAt": "2021-12-16 18:45:21"
+    "brandToken": "brnd_LSpy0mTUWXfVEqpmkCHy",
+    "brandName": "Zep",
+    "brandImage": "6-3-2021\/1622735483066__58533__zep_logo.png",
+    "createdAt": "2022-11-08 10:14:50",
+    "editedAt": "2022-11-08 10:14:50"
   }
 ]
 ```
 
-## Get a Specific Brand
+## Get a Brand by brandToken
 
 This endpoint retrieves a Specific brand.
 
 ### HTTP Request
 
-`GET https://api.omnifront.cloudsnob.com/brands/[brandToken]`
+`GET https://storeapi.csomni/brands/{brandToken}`
 
-### URL Parameters
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| siteToken     | true     | string | Unique siteToken |
 
-| Parameter  | Description        |
-| ---------- | ------------------ |
-| brandToken | Token of the Brand |
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://api.omnifront.cloudsnob.com/brands/[brandToken] \
-  --header 'token: 123'
+  --url https://storeapi.csomni/brands/brnd_70i7N4YSnlijPyyiTlzN \
+  --header 'token: site_xxxxxxxxxxxxx'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "companyToken": "comp_123456",
-  "brandToken": "brnd_123456",
-  "brandName": "newbrnaad",
-  "brandImage": "",
-  "createdAt": "2021-12-16 18:45:21",
-  "editedAt": "2021-12-16 18:45:21"
+  "brandToken": "brnd_70i7N4YSnlijPyyiTlzN",
+  "brandName": "zero",
+  "brandImage": "Kiribati",
+  "createdAt": "2024-06-04 10:55:13",
+  "editedAt": "2024-06-04 10:55:13"
 }
 ```

@@ -1,0 +1,83 @@
+#@name create_customer
+POST {{baseStoreUrl}}/customers
+token: site_KCDlSRZWaIotet0v
+Content-Type: application/json
+
+{
+  "customerEmail": "chayelle{{$randomInt}}{{$randomInt}}{{$randomInt}}@evelt.com",
+  "customerFirstName": "Chayelle_{{$randomInt}}{{$randomInt}}{{$randomInt}}",
+  "customerLastName": "Altmann_{{$randomInt}}{{$randomInt}}{{$randomInt}}",
+  "customerPhone": "5619980301",
+  "customerPassword": "test123!"
+}
+
+> {%
+    client.global.set("customerPublicToken3", response.body.customerToken);
+%}
+###
+
+#@name edit_customer
+POST {{baseStoreUrl}}/customers
+token: {{siteToken}}
+customerToken: {{customerPublicToken3}}
+Content-Type: application/json
+
+{
+  "customerPhone": "1234567890123"
+}
+
+> {%
+    client.global.set("customerPublicToken3", response.body.customerToken);
+
+%}
+###
+
+# @name get_a_customer_by_customer_token
+GET {{baseStoreUrl}}/customers/{{customerPublicToken3}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken3}}
+Content-Type: application/json
+
+> {%
+    client.global.set("customerPublicToken3", response.body.customerToken)
+    %}
+
+###
+
+# @name getCustomerPrivateToken
+GET {{baseAdminUrl}}/customers/exchangeLoginToken/{{customerPublicToken3}}
+token: {{userPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("customerPrivateToken", response.body.trim);
+    //client.global.set("customerPrivateToken", trim('"', customerPrivateToken))
+%}
+
+###
+
+// Is not working because the previous response.body.trim is not working and I need to
+// figure out how to trim off the string characters from the begining and end of the customer token
+# @name approveCustomer
+POST {{baseAdminUrl}}/customers/{{customerPrivateToken}}
+token: {{userPublicToken}}
+Content-Type: application/json
+
+{
+  "customerStatus" : "cs_approved"
+}
+###
+
+
+# @name archive_customer
+DELETE {{baseStoreUrl}}/customers/{{customerPublicToken3}}
+token: {{siteToken}}
+customerToken: {{customerPublicToken3}}
+Content-Type: application/json
+
+> {%
+    //client.global.set("customerPrivateToken", response.body.trim);
+    //client.global.set("customerPrivateToken", trim('"', customerPrivateToken))
+%}
+
+###

@@ -1,60 +1,94 @@
 # Cart
 
-## New Cart
-
-This endpoint creates a cart
+## New Cart for existing customer
+This endpoint creates a cart for a customer, or retrieves the cart if the customer has a cart
 
 ### HTTP Request
+`POST https://storeapi.csomni.com/cart`
 
-`POST https://apistore.csomni.com/cart`
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
 
-### Query Parameters
-
-| Parameter     | Required | Unique | Description                                 |
-| ------------- | -------- | ------ | ------------------------------------------- |
-| customerToken | false    | -      | Customer Token (creates a new one if empty) |
+Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/cart/ \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123' \
-  --data '{"customerToken" : "cusst444"}'
-
+  --url https://storeapi.csomni.com/cart/ \
+  --header 'token: site-xxxxxxxxx'\
+  --header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
-> The above command returns JSON structured like this
-
+> If a new cart is created, the above command returns a JSON structured like this:
 ```json
 {
-  "cartToken": "cart_123456",
-  "companyToken": "comp_123456",
-  "siteToken": "site_123",
-  "customerToken": "cust_123456",
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "siteToken": "site_KCDlSRZWaIotet0v",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
   "status": "cart created"
 }
 ```
 
-## Get A Cart
+> If customer has an existing cart, the above command returns a JSON structure like this:
+```json
+{
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "siteToken": "site_KCDlSRZWaIotet0v",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+  "status": "cart retrieved"
+}
+```
 
-This endpoint retrieves a cart by cart token or customer token
+## New Cart and new customer
+This endpoint creates a new guest customer and a new cart for the guest customer
 
 ### HTTP Request
+`POST https://storeapi.csomni.com/cart`
 
-`GET https://apistore.csomni.com/cart`
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| siteToken     | true     | string | Unique siteToken |
 
-### URL Parameters
+Sample in Shell:
 
-| Parameter     | Required | Unique | Description                           |
-| ------------- | -------- | ------ | ------------------------------------- |
-| customerToken | true     | -      | Customer Token for this cart (header) |
+```shell
+curl --request POST \
+  --url https://storeapi.csomni.com/cart/ \
+  --header 'token: site_xxxxxxxxxxxx'
+```
+
+> The above command returns JSON structured like this
+```json
+{
+  "cartToken": "cart_E4LgT2xLYS3OJiN8pI8ZvBBB",
+  "siteToken": "site_xxxxxxxxxxxxx",
+  "customerToken": "cs_7WHuVUMDCt5dSmbTGaYSS4OAeT5l14YcGVPm",
+  "status": "cart created"
+}
+```
+
+## Get Cart By Customer
+This endpoint retrieves a cart by customer token
+
+### HTTP Request
+`GET https://storeapi.csomni.com/cart`
+
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
+
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/cart \
-  --header 'token: 123'
-  --header 'customerToken: cs_123456'
+  --url https://storeapi.csomni.com/cart \
+  --header 'token: site-xxxxxxxxx'\
+  --header 'customerToken: cs_7WHuVUMDCt5dSmbTGaYSS4OAeT5l14YcGVPm'
 
 ```
 
@@ -62,109 +96,87 @@ curl --request GET \
 
 ```json
 {
-  "companyToken": "comp_123456",
-  "siteToken": "site_123456",
-  "cartToken": "cart_123456",
-  "customerToken": "cust_123456",
-  "cartCreated": "1637945854",
-  "cartLastTouched": "1637945854",
+  "siteToken": "site_xxxxxxxxxxxxxxxx",
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+  "cartCreated": "1719481308",
+  "cartLastTouched": "1719481308",
   "deleted": 0,
-  "createdAt": "2021-12-17 15:37:57",
-  "editedAt": "2021-12-17 15:37:57",
+  "createdAt": "2024-06-27 09:41:47",
+  "editedAt": "2024-06-27 09:41:47",
   "pricing": {
-    "total": 34
+    "total": 0.2
   },
   "itemsInCart": 1,
   "cartWeight": 0,
   "cartProds": [
     {
-      "cartToken": "cart_123456",
-      "cartProdToken": "cp_123456",
-      "addOnToProdToken": "",
+      "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+      "cartProdToken": "cp_Ygj5uVE5Jqaqc4ah4wTFvBWO",
       "cartProdQuantity": 1,
+      "addOnToProdToken": "",
       "addOnProdTokens": null,
-      "prodToken": "vrnt_123456",
+      "prodToken": "vrnt_nhX0NJqewTbyBPjS",
       "deleted": 0,
-      "companyToken": "comp_123456",
-      "siteToken": "site_123456",
-      "customerToken": "cust_123456",
-      "cartCreated": "1637945854",
-      "cartLastTouched": "1637945854",
-      "prodStaticCollections": [
-        "clcs_123456",
-        "clcs_123456",
-        "clcs_123456",
-        ""
-      ],
+      "createdAt": "2024-06-27 09:41:47",
+      "editedAt": "2024-06-27 09:41:47",
+      "siteToken": "site_xxxxxxxxxxxxx",
+      "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+      "cartCreated": "1719481308",
+      "cartLastTouched": "1719481308",
+      "prodStaticCollections": [],
       "specialValues": [],
       "product": {
-        "prodToken": "prod_123456",
-        "variantToken": "vrnt_123456",
-        "companyToken": "comp_123456",
-        "variantName": "",
-        "variantImage": {
-          "file": "10-13-2021/1634136843403__65263__aron-yigin-epjvM-Ql5-Y-unsplash.jpg",
-          "type": "",
-          "id": "lwigs97k",
-          "status": "poolImages"
-        },
+        "prodToken": "prod_vGBKFHP3wwH3Hs4r",
+        "variantToken": "vrnt_nhX0NJqewTbyBPjS",
+        "variantName": "Long sleeve",
+        "variantImage": [],
         "variantImages": [],
-        "variantWeight": "0",
-        "variantDimW": "0",
-        "variantDimL": "0",
-        "variantDimH": "0",
-        "variantUpc": "",
-        "variantNumber": "",
-        "manufacturerPartNumber": "",
-        "variantPrice": 34,
-        "variantMapPrice": 0,
-        "variantMsrpPrice": 0,
-        "variantDisplayPrice": 32,
-        "variantDescription": "",
-        "variantAlert": "",
-        "variantLowlevel": "",
-        "variantSlug": "",
+        "variantWeight": null,
+        "variantDimW": null,
+        "variantDimL": null,
+        "variantDimH": null,
+        "variantUpc": null,
+        "variantNumber": "123-789",
+        "manufacturerPartNumber": null,
+        "variantPrice": 0.2,
+        "variantMapPrice": null,
+        "variantMsrpPrice": null,
+        "variantDisplayPrice": null,
+        "variantDescription": null,
+        "variantAlert": null,
+        "variantLowlevel": null,
+        "variantSlug": null,
         "variantVisible": 1,
+        "taxType": null,
+        "hideGoogleData": 0,
+        "google_variantCategory": null,
+        "google_variantType": null,
+        "google_variantCondition": null,
+        "taxable": 1,
         "variantAllowCheckout": 0,
         "variantCheckInvetory": 0,
         "variantTrackInventory": 0,
-        "taxType": "",
-        "taxable": 1,
+        "inventoryCount": 0,
         "shippingProduct": 0,
-        "variantMetaTitle": "",
-        "variantMetaDescription": "",
-        "variantBrand": "",
-        "google_variantCategory": "",
-        "google_variantType": "",
-        "google_variantCondition": "",
-        "hideGoogleData": 0,
+        "variantMetaTitle": null,
+        "variantMetaDescription": null,
+        "variantBrand": null,
         "sortOrder": 0,
-        "dateCreated": "1634137246",
+        "dateCreated": "1719481982",
         "deleted": 0,
         "backOrderWarning": 0,
+        "createdAt": "2024-06-27 09:53:02",
+        "editedAt": "2024-06-27 09:53:02",
         "variantInStock": true,
-        "variantOptions": [
-          {
-            "optionToken": "optn_123456",
-            "optionValue": "dsasda",
-            "optionName": "color"
-          },
-          {
-            "optionToken": "optn_123456",
-            "optionValue": "f",
-            "optionName": "size"
-          }
-        ],
-        "prodName": "dsadsadsads",
+        "prodName": "T-shirts",
         "prodImage": {
-          "file": "5-31-2021/1622471456251__6160299__jonah-brown-veEPQ7aOx8w-unsplash.jpg",
-          "name": "",
           "type": ""
         }
       },
       "addOnProducts": [],
       "pricing": {
-        "total": 34
+        "total": 0.2
       },
       "shipping": {
         "totalWeight": 0
@@ -174,142 +186,126 @@ curl --request GET \
 }
 ```
 
-## Add cart to customer
 
+## Combine Carts
 This endpoint Adds a user to a cart
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/cart/combine/[cartToken]/[customerToken cs_]/`
+`POST https://storeapi.csomni.com/cart/combine/[cartToken]/[customerToken]/`
 
 ### URL Parameters
 
-| Parameter | Required | Unique | Description        |
-| --------- | -------- | ------ | ------------------ |
-| combine   | true     | -      | To combine 2 carts |
-| cartToken | true     | -      | Cart to transfer   |
+| Parameter     | Required | Unique | Description                                                      |
+|---------------|----------|--------|------------------------------------------------------------------|
+| cartToken     | true     | true   | Cart Token for the cart that should be transferred               |
+| customerToken | true     | true   | Customer Token for the account the cart should be transferred to |
+
+### Header Parameters
+| Parameter     | Required | Unique | Description                                                           |
+|---------------|----------|--------|-----------------------------------------------------------------------|
+| customerToken | true     | -      | Customer Token for account that the cart is currently associated with |
+| siteToken     | true     | -      | Unique site token                                                     |
+
+Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/cart/combine/[cartToken]/[customerToken cs_] \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123, customertoken : cs_123' \
-```
-
-Another example:
-
-```shell
-curl --request POST \
-  --url 'https://apistore.csomni.com/cart/combine/cart_123456/cs_123456' \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123, customertoken : cs_123456' \
+  --url https://storeapi.csomni.com/cart/combine/[cartToken]/[customerToken] \
+  --header 'token: site_xxxxxxxxx' \
+  --header 'customerToken : cs_xxxxxxxxxxxxxxxx' 
 ```
 
 > The above command returns JSON structured like this
 
 ```json
 {
-  "companyToken": "comp_123456",
-  "siteToken": "site_123",
-  "cartToken": "cart_123456",
-  "customerToken": "cust_123456",
-  "cartCreated": "1638346960",
-  "cartLastTouched": "1638346960",
+  "siteToken": "site_KCDlSRZWaIotet0v",
+  "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+  "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+  "cartCreated": "1719481308",
+  "cartLastTouched": "1719481308",
   "deleted": 0,
+  "createdAt": "2024-06-27 09:41:47",
+  "editedAt": "2024-06-27 09:41:47",
   "pricing": {
-    "total": 12
+    "total": 0.2
   },
-  "itemsInCart": 4,
-  "cartWeight": 4,
+  "itemsInCart": 1,
+  "cartWeight": 0,
   "cartProds": [
     {
-      "cartToken": "cart_123456",
-      "cartProdToken": "cp_123456",
+      "cartToken": "cart_UGfpkwcZ8OCdCxNHJK007uk6",
+      "cartProdToken": "cp_Ygj5uVE5Jqaqc4ah4wTFvBWO",
+      "cartProdQuantity": 1,
       "addOnToProdToken": "",
-      "cartProdQuantity": 4,
       "addOnProdTokens": null,
-      "prodToken": "vrnt_123456",
+      "prodToken": "vrnt_nhX0NJqewTbyBPjS",
       "deleted": 0,
-      "companyToken": "comp_123456",
-      "siteToken": "site_123",
-      "customerToken": "cust_123456",
-      "cartCreated": "1638346960",
-      "cartLastTouched": "1638346960",
+      "createdAt": "2024-06-27 09:41:47",
+      "editedAt": "2024-06-27 09:41:47",
+      "siteToken": "site_KCDlSRZWaIotet0v",
+      "customerToken": "cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7",
+      "cartCreated": "1719481308",
+      "cartLastTouched": "1719481308",
       "prodStaticCollections": [],
       "specialValues": [],
       "product": {
-        "prodToken": "prod_123456",
-        "variantToken": "vrnt_123456",
-        "companyToken": "comp_123456",
-        "variantName": "",
-        "variantImage": {
-          "file": ""
-        },
+        "prodToken": "prod_vGBKFHP3wwH3Hs4r",
+        "variantToken": "vrnt_nhX0NJqewTbyBPjS",
+        "variantName": "Long sleeve",
+        "variantImage": [],
         "variantImages": [],
-        "variantWeight": "1",
-        "variantDimW": "0",
-        "variantDimL": "0",
-        "variantDimH": "0",
-        "variantUpc": "",
-        "variantNumber": "",
-        "manufacturerPartNumber": "",
-        "variantPrice": 3,
-        "variantMapPrice": 0,
-        "variantMsrpPrice": 0,
-        "variantDisplayPrice": 0,
-        "variantDescription": "",
-        "variantAlert": "",
-        "variantLowlevel": "",
-        "variantSlug": "",
+        "variantWeight": null,
+        "variantDimW": null,
+        "variantDimL": null,
+        "variantDimH": null,
+        "variantUpc": null,
+        "variantNumber": "123-789",
+        "manufacturerPartNumber": null,
+        "variantPrice": 0.2,
+        "variantMapPrice": null,
+        "variantMsrpPrice": null,
+        "variantDisplayPrice": null,
+        "variantDescription": null,
+        "variantAlert": null,
+        "variantLowlevel": null,
+        "variantSlug": null,
         "variantVisible": 1,
-        "variantAllowCheckout": 1,
-        "variantCheckInvetory": 1,
-        "variantTrackInventory": 0,
-        "taxType": "",
-        "taxable": 1,
-        "shippingProduct": 1,
-        "variantMetaTitle": "",
-        "variantMetaDescription": "",
-        "variantBrand": "",
+        "taxType": null,
+        "hideGoogleData": 0,
         "google_variantCategory": null,
         "google_variantType": null,
         "google_variantCondition": null,
-        "hideGoogleData": 1,
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": 0,
+        "shippingProduct": 0,
+        "variantMetaTitle": null,
+        "variantMetaDescription": null,
+        "variantBrand": null,
         "sortOrder": 0,
-        "dateCreated": "1606236358",
+        "dateCreated": "1719481982",
         "deleted": 0,
         "backOrderWarning": 0,
+        "createdAt": "2024-06-27 09:53:02",
+        "editedAt": "2024-06-27 09:53:02",
         "variantInStock": true,
-        "prodName": "Yes",
+        "prodName": "T-shirts",
         "prodImage": {
-          "file": "11-24-2020/1606236354284__36278__GUEST_1e09d33a-dc4e-4ff2-8640-7540993a94ae.jpg"
+          "type": ""
         }
       },
       "addOnProducts": [],
       "pricing": {
-        "total": 12
+        "total": 0.2
       },
       "shipping": {
-        "totalWeight": 4
+        "totalWeight": 0
       }
     }
   ]
 }
 ```
-
-This endpoint Adds a user to a cart
-
-### HTTP Request
-
-`POST https://apistore.csomni.com/cart/combine/[cartToken]/[customerToken]`
-
-### URL Parameters
-
-| Parameter             | Required | Unique | Description                                                                                    |
-| --------------------- | -------- | ------ | ---------------------------------------------------------------------------------------------- |
-| combine               | true     | -      | To combine 2 carts                                                                             |
-| cartToken             | true     | -      | Cart to transfer                                                                               |
-| customerToken         | true     | -      | Customer login Token associated with the previously used cartToken                             |
-| HEADER: customerToken | true     | -      | Customer Login Token of account you would like to send the cart content in Http request URL to |

@@ -1,0 +1,60 @@
+# @name customer_login_to_combine_existing_cart
+POST {{baseStoreUrl}}/login
+Accept: application/json
+token: {{siteToken}}
+customerToken: {{customerGuestToken}}
+Content-Type: application/json
+
+{
+  "customerEmail": "{{customerEmail}}",
+  "customerPassword": "{{customerPassword}}"
+
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.global.set("customerPublicToken2", response.body.customerToken);
+%}
+
+###
+
+# @name customer_login
+POST {{baseStoreUrl}}/login
+Accept: application/json
+token: {{siteToken}}
+Content-Type: application/json
+
+{
+  "customerEmail": "{{customerEmail}}",
+  "customerPassword": "{{customerPassword}}"
+
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.global.set("customerPublicToken2", response.body.customerToken);
+%}
+
+###
+
+
+# @name customer_logout
+POST {{baseStoreUrl}}/login/logout
+Accept: application/json
+token: {{siteToken}}
+customerToken: {{customerPublicToken2}}
+Content-Type: application/json
+
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.global.set("customerPublicToken2", response.body.customerToken);
+%}
+
+###

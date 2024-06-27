@@ -1,0 +1,55 @@
+# @name get_products_by_solr
+GET {{baseStoreUrl}}/products/solr?parsedQ=&rows=20
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_products_by_solr_with_parsedQ
+GET {{baseStoreUrl}}/products/solr?parsedQ=flapper&fq={}&rows=20&start=0&responseData=firstVariant,variantAggregates&facets=1
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_products_by_solr_with_a_face_range_specified_by_customer
+GET {{baseStoreUrl}}/products/solr?parsedQ=flapper&fq={"variantPrice":"[* TO 100]"}&rows=20&start=0&responseData=firstVariant,variantAggregates&facets=1
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+## doesn't work
+## name get_all_products
+#GET {{baseStoreUrl}}/products
+#token: {{siteToken}}
+#Content-Type: application/json
+####
+
+# @name get_product_by_product_token
+GET {{baseStoreUrl}}/products/{{productToken1}}
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_product_by_slug
+GET {{baseStoreUrl}}/products/{{productSlug1}}
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+# @name get_full_product_with_options_and_variants_by_product_token
+GET {{baseStoreUrl}}/products/{{productToken1}}/full
+token: {{siteToken}}
+Content-Type: application/json
+###
+
+## CA: I do not know what this is used for - it can't be to set the inventory as that is only done Admin side and this
+## is not affecting the DB inventory count. It also can't be for cart as products are not used in cart.
+## Leaving for now
+## name update_inventory_count
+#POST {{baseStoreUrl}}/products/{{productToken1}}
+#token: {{siteToken}}
+#Content-Type: application/json
+#
+#{
+#  "count": 25
+#}
+####

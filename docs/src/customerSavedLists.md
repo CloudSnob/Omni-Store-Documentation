@@ -4,31 +4,33 @@
 ## Create New List
 
 ### HTTP Request
-
-`POST https://apistore.csomni.com/customeritemlist`
+`POST https://storeapi.csomni.com/customeritemlist`
 
 ### Header Requirements
-
 | Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
+|---------------|----------|--------|-------------|
+| token         | true     | true   | site id     |
+| customerToken | true     | true   | customer id |
 
 
-&nbsp;
+### Data Parameters
+| Parameter        | Required | Type   | Description               |
+|------------------|----------|--------|---------------------------|
+| listReadableName | true     | string | Title for the list        |
+| sortOrder        | true     | int    | Sort Order listing number |
+
 
 Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/customeritemlist \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: site_123', 'customerToken: cs_123' \
+  --url https://storeapi.csomni.com/customeritemlist \
+  --header 'token: site_xxxxxxxxxxx' \
+   --header'customerToken: cs_xxxxxxxxxxxxxxx' 
   --data   '{
-               "listReadableName":"{{$randomAdjective}}",
+               "listReadableName":"Summer Holiday List",
                "sortOrder" : 0
-           }'
+             }'
 
 ```
 
@@ -36,33 +38,33 @@ Response:
 
 ```json
 {
-    "listToken": "custList_123456",
-    "listReadableName": "wireless"
+    "listToken": "custList_xxxxxxxxxxxxxxxxxxxxxx",
+    "listReadableName": "Summer Holiday List"
 }
 ```
 
-## Add items to List (Not for editing)
+## Add items to List
 
 ### HTTP Request
 
-`POST https://apistore.csomni.com/customeritemlist/[custListToken]`
+`POST https://storeapi.csomni.com/customeritemlist/{custListToken}`
 
 ### Header Requirements
 
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
+| Parameter     | Required | Type   | Unique | Description |
+|---------------|----------|--------|--------|-------------|
+| token         | true     | string | true   | site ID     |
+| customerToken | true     | string | true   | login ID    |
 
 ### Data Requirements
 
 Expects an array of objects. 'listItems' includes multiple objects, each representing a list item to be added to the list. Requirements for list objects:
 
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| listItem:variantToken  | true     | true   | variantToken   |
-| listItem:quantity | true     | false   | quantity for variant  |
-| listItem:sortOrder | true     | false   | Order in which this list item should appear  |
+| Parameter             | Required | Type   | Unique | Description                                 |
+|-----------------------|----------|--------|--------|---------------------------------------------|
+| listItem:variantToken | true     | string | true   | variantToken                                |
+| listItem:quantity     | true     | string | false  | quantity for variant                        |
+| listItem:sortOrder    | true     | string | false  | Order in which this list item should appear |
 
 &nbsp;
 
@@ -70,19 +72,17 @@ Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/customeritemlist/{custListToken}
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: site_123', 'customerToken: cs_123' \
+  --url https://storeapi.csomni.com/customeritemlist/{custListToken}
+  --header 'token: site_xxxxxxxxxx', 'customerToken: cs_xxxxxxxxxxxxxxxxxx' \
   --data '{
             "listItems": [
                 {
-                    "variantToken": "vrnt_123456",
+                    "variantToken": "vrnt_1xxxxxxxxxxxxx",
                     "quantity": 1,
                     "sortOrder": 0
                 },
                 {
-                    "variantToken": "vrnt_123456",
+                    "variantToken": "vrnt_2xxxxxxxxxxxxx",
                     "quantity": 2,
                     "sortOrder": 1
                 }
@@ -95,80 +95,120 @@ Response:
 
 ```json
 {
-    "listToken": "custList_123456",
-    "listReadableName": "haptic",
-    "sortOrder": 0,
-    "listItems": [
-        {
-            "variantToken": "vrnt_123456",
-            "quantity": 1,
-            "sortOrder": 0,
-            "variantDetails": {
-                "prodToken": "prod_123456",
-                "variantToken": "vrnt_123456",
-                "companyToken": "comp_123456",
-                "variantName": "Vortex Optics Raptor 8.5x32 Binocular",
-                "variantImage": {
-                    "file": "11-7-2021/1636320272462__115916__vtx_bin_raptor_32_f_w.jpg"
-                },
-                "variantImages": [
-                    {
-                        "file": "11-7-2021/1636320332525__115691__vtx_bin_raptor_32_b_w.jpg"
-                    },
-                    {
-                        "file": "11-7-2021/1636320336111__89446__vtx_bin_raptor_32_fl_w.jpg"
-                    },
-                    {
-                        "file": "11-7-2021/1636320339109__92611__vtx_bin_raptor_32_fr_w.jpg"
-                    }
-                ],
-                "variantWeight": "2",
-                "variantDimW": "10",
-                "variantDimL": "8",
-                "variantDimH": "3",
-                "variantUpc": "875874001862",
-                "variantNumber": "VXR385",
-                "manufacturerPartNumber": "R385",
-                "variantPrice": 0.1,
-                "variantMapPrice": 0,
-                "variantMsrpPrice": 0,
-                "variantDisplayPrice": 129,
-                "variantDescription": "<p>Porro prism performance in a mid-size, wide-angle design, Raptor binoculars offer bright, crisp images with excellent color fidelity, even in low-light conditions. The design accommodates a wide range of interpupillary distances to fit everyone in the family.</p><p><strong>Included in the Box</strong></p><ul><li>Rainguard Eyepiece Cover</li><li>Tethered objective lens covers</li><li>Comfort neck strapSoft carry case</li></ul>",
-                "variantAlert": "1",
-                "variantLowlevel": "0",
-                "variantSlug": "vortex-optics-raptor-8-5x32-binocular",
-                "variantVisible": 1,
-                "taxType": "",
-                "hideGoogleData": 0,
-                "google_variantCategory": null,
-                "google_variantType": null,
-                "google_variantCondition": null,
-                "taxable": 1,
-                "variantAllowCheckout": 1,
-                "variantCheckInvetory": 1,
-                "variantTrackInventory": 0,
-                "inventoryCount": 20000,
-                "shippingProduct": 1,
-                "variantMetaTitle": "",
-                "variantMetaDescription": "",
-                "variantBrand": "",
-                "sortOrder": 0,
-                "dateCreated": "1636320488",
-                "deleted": 0,
-                "backOrderWarning": 0,
-                "createdAt": "2021-12-15 13:23:54",
-                "editedAt": "2022-07-04 21:51:14",
-                "variantInStock": true
-            }
+  "listToken": "custList_xxxxxxxxxxxxxxx",
+  "sortOrder": 0,
+  "listReadableName": "Autumn List",
+  "listItems": [
+    {
+      "itemToken": "listItem_xxxxxxxxxxx",
+      "variantToken": "vrnt_1xxxxxxxxxxxxxxx",
+      "quantity": 1,
+      "sortOrder": 0,
+      "variantDetails": {
+        "prodToken": "prod_xxxxxxxxxxxxxxxxxxxxx",
+        "variantToken": "vrnt_xxxxxxxxxxxxxxx",
+        "variantName": "",
+        "variantImage": {
+          "file": "11-25-2022\/1669391493868__30709__NS-35859.jpg",
+          "type": "",
+          "id": "srn5s4aj",
+          "status": "poolImages"
         },
-        {
-            "variantToken": "vrnt_123456",
-            "quantity": 2,
-            "sortOrder": 1,
-            "variantDetails": null
-        }
-    ],
-    "totalItemsCount": 3
+        "variantImages": [],
+        "variantWeight": "1",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "NS-35859",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0.3,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": -17,
+        "shippingProduct": 1,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1669391499",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-06-19 10:10:30",
+        "variantInStock": true
+      }
+    },
+    {
+      "itemToken": "listItem_xxxxxxxxxxxxxx",
+      "variantToken": "vrnt_2xxxxxxxxxxxxx",
+      "quantity": 2,
+      "sortOrder": 1,
+      "variantDetails": {
+        "prodToken": "prod_xxxxxxxxxxxxxxxxxx",
+        "variantToken": "vrnt_xxxxxxxxxxxxx",
+        "variantName": "31\" WHITE CHINA SINK",
+        "variantImage": {
+          "file": "10-2-2022\/1664742840284__7264__VE3118W.jpg",
+          "type": ""
+        },
+        "variantImages": [],
+        "variantWeight": "0",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "VE3118W",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0.25,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "31-white-china-sink",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": 180,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1661531956",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-06-20 08:41:56",
+        "variantInStock": true
+      }
+    }
+  ],
+  "totalItemsCount": 3
 }
 ```
 
@@ -177,48 +217,50 @@ Response:
 
 ### HTTP Request
 
-`PUT https://apistore.csomni.com/customeritemlist/[custListToken]`
+`PUT https://storeapi.csomni.com/customeritemlist/{listToken}`
 
-### Header Requirements
+### Header Parameters
 
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
+| Parameter     | Required | Type   | Unique | Description |
+|---------------|----------|--------|--------|-------------|
+| token         | true     | string | true   | Site ID     |
+| customerToken | true     | string | true   | Customer ID |
 
-### Data 
+### URL Parameters
 
-| Parameter              | Required | Unique  | Description |
-| -------------          | -------  | ------  | ----------- |
-| sortOrder              | false    | false   | The sort order for the entire list   |
-| listReadableName       | false    | false   | The name of the list  |
+| Parameter | Required | Type   | Unique | Description  |
+|-----------|----------|--------|--------|--------------|
+| listToken | true     | string | true   | The lists ID |
+
+### Data Parameters
+
+| Parameter        | Required | Type   | Description              |
+|------------------|----------|--------|--------------------------|
+| listReadableName | true     | string | Title for the list       |
+| sortOrder        | true     | int    | Sort Order for this list |
+
+Sample in Shell:
 
 ```shell
 curl --request PUT \
-  --url https://apistore.csomni.com/customeritemlist/[custListToken] \
-  --header 'customerToken: [cs_token]'\
+  --url https://storeapi.csomni.com/customeritemlist/{listToken} \
+  --header 'customerToken: cs_xxxxxxxxxxxxxxx', 'site :site_xxxxxxxxxxxx'\
   --data-raw '{
-    "sortOrder": 0,
-    "listReadableName": "test 1",
-    "listItems": [
-        {
-            "variantToken": "vrnt_123456",
-            "quantity": 1
-        }
-    ]
+      "listReadableName":"Autumn List - Edited",
+      "sortOrder" : 0
 }'
 ```
 Response:
 
 ```json
 {
-    "listToken": "custList_123456",
+    "listToken": "custList_xxxxxxxxxxxxxx",
     "sortOrder": 1,
-    "listReadableName": "fjyyds",
+    "listReadableName": "Autumn List - Edited",
     "listItems": [
         {
-            "itemToken": "listItem_123456",
-            "variantToken": "vrnt_123456",
+            "itemToken": "listItem_xxxxxxxxxxxxx",
+            "variantToken": "vrnt_xxxxxxxxxxxxxxxx",
             "quantity": 5,
             "sortOrder": 0
         }
@@ -231,31 +273,31 @@ Response:
 
 ### HTTP Request
 
-`PUT https://apistore.csomni.com/customeritemlist/[custListToken]/[listItem]`
+`PUT https://storeapi.csomni.com/customeritemlist/{custListToken}/{listItem}`
 
 ### Header Requirements
+| Parameter     | Required | Type   | Unique | Description |
+|---------------|----------|--------|--------|-------------|
+| token         | true     | string | true   | site ID     |
+| customerToken | true     | string | true   | customer ID |
 
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
 
-### Data 
+### Data
+| Parameter        | Required | Unique | Description                        |
+|------------------|----------|--------|------------------------------------|
+| sortOrder        | false    | false  | The sort order for the entire list |
+| listReadableName | false    | false  | The name of the list               |
 
-| Parameter              | Required | Unique  | Description |
-| -------------          | -------  | ------  | ----------- |
-| sortOrder              | false    | false   | The sort order for the entire list   |
-| listReadableName       | false    | false   | The name of the list  |
+Sample in Shell:
 
 ```shell
 curl --request PUT \
-  --url https://apistore.csomni.com/customeritemlist/[custListToken] \
-  --header 'token: site_########' \
-  --header 'customerToken: cs_#########' \
-  --header 'Content-Type: application/json' \
+  --url https://storeapi.csomni.com/customeritemlist/{custListToken} \
+  --header 'token: site_xxxxxxxxxxx' \
+  --header 'customerToken: cs_xxxxxxxxx' \
   --data-raw '{
       "sortOrder" : 1,
-      "variantToken": "vrnt_########",
+      "variantToken": "vrnt_xxxxxxxxxxxxxx",
       "quantity" : 2
   }'
 ```
@@ -263,18 +305,120 @@ Response:
 
 ```json
 {
-    "listToken": "custList_123456",
-    "sortOrder": 1,
-    "listReadableName": "fjyyds",
-    "listItems": [
-        {
-            "itemToken": "listItem_123456",
-            "variantToken": "vrnt_123456",
-            "quantity": 2,
-            "sortOrder": 1
-        }
-    ],
-    "totalItemsCount": 2
+  "listToken": "custList_ees8AFYk97OgMSqu",
+  "sortOrder": 0,
+  "listReadableName": "Autumn List 727",
+  "listItems": [
+    {
+      "itemToken": "listItem_kmutOL7B3eaD",
+      "variantToken": "vrnt_KUr95fEklBxa57vb",
+      "quantity": 2,
+      "sortOrder": 1,
+      "variantDetails": {
+        "prodToken": "prod_H8ZYrzUz2kRyWWIl",
+        "variantToken": "vrnt_KUr95fEklBxa57vb",
+        "variantName": "",
+        "variantImage": {
+          "file": "10-19-2022\/1666195672309__9424__33392.jpg",
+          "type": "",
+          "id": "h32jwrpf",
+          "status": "poolImages"
+        },
+        "variantImages": [],
+        "variantWeight": "0",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "33392",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0.12,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": 0,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1666195683",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-06-20 09:11:28",
+        "variantInStock": true
+      }
+    },
+    {
+      "itemToken": "listItem_SoQt5zCOOo1r",
+      "variantToken": "vrnt_OYIwevfBUfxErFG3",
+      "quantity": 2,
+      "sortOrder": 1,
+      "variantDetails": {
+        "prodToken": "prod_FgNybasFJG4YUJ4h",
+        "variantToken": "vrnt_OYIwevfBUfxErFG3",
+        "variantName": "31\" WHITE CHINA SINK",
+        "variantImage": {
+          "file": "10-2-2022\/1664742840284__7264__VE3118W.jpg",
+          "type": ""
+        },
+        "variantImages": [],
+        "variantWeight": "0",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "VE3118W",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0.25,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "31-white-china-sink",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": 180,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1661531956",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-06-20 08:41:56",
+        "variantInStock": true
+      }
+    }
+  ],
+  "totalItemsCount": 4
 }
 ```
 
@@ -283,111 +427,146 @@ Response:
 
 ### HTTP Request
 
-`GET https://apistore.csomni.com/customeritemlist/[custListToken]`
+`GET https://storeapi.csomni.com/customeritemlist/{custListToken}`
 
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
+### Header Parameters
+| Parameter     | Required | Type   | Unique | Description |
+|---------------|----------|--------|--------|-------------|
+| token         | true     | string | true   | siteToken   |
+| customerToken | true     | string | true   | loginToken  |
+
 
 Response:
 
 ```json
-[
+{
+  "listToken": "custList_ees8AFYk97OgMSqu",
+  "sortOrder": 0,
+  "listReadableName": "Autumn List 727",
+  "listItems": [
     {
-        "listToken": "custList_123456",
+      "itemToken": "listItem_kmutOL7B3eaD",
+      "variantToken": "vrnt_KUr95fEklBxa57vb",
+      "quantity": 2,
+      "sortOrder": 1,
+      "variantDetails": {
+        "prodToken": "prod_H8ZYrzUz2kRyWWIl",
+        "variantToken": "vrnt_KUr95fEklBxa57vb",
+        "variantName": "",
+        "variantImage": {
+          "file": "10-19-2022\/1666195672309__9424__33392.jpg",
+          "type": "",
+          "id": "h32jwrpf",
+          "status": "poolImages"
+        },
+        "variantImages": [],
+        "variantWeight": "0",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "33392",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0.12,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": 0,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
         "sortOrder": 0,
-        "listReadableName": "haptic",
-        "listItems": [
-            {
-                "variantToken": "vrnt_123456",
-                "quantity": 1,
-                "sortOrder": 0,
-                "variantDetails": {
-                    "prodToken": "prod_123456",
-                    "variantToken": "vrnt_123456",123456123456
-                    "companyToken": "comp_123456",
-                    "variantName": "Vortex Optics Raptor 8.5x32 Binocular",
-                    "variantImage": {
-                        "file": "11-7-2021/1636320272462__115916__vtx_bin_raptor_32_f_w.jpg"
-                    },
-                    "variantImages": [
-                        {
-                            "file": "11-7-2021/1636320332525__115691__vtx_bin_raptor_32_b_w.jpg"
-                        },
-                        {
-                            "file": "11-7-2021/1636320336111__89446__vtx_bin_raptor_32_fl_w.jpg"
-                        },
-                        {
-                            "file": "11-7-2021/1636320339109__92611__vtx_bin_raptor_32_fr_w.jpg"
-                        }
-                    ],
-                    "variantWeight": "2",
-                    "variantDimW": "10",
-                    "variantDimL": "8",
-                    "variantDimH": "3",
-                    "variantUpc": "875874001862",
-                    "variantNumber": "VXR385",
-                    "manufacturerPartNumber": "R385",
-                    "variantPrice": 0.1,
-                    "variantMapPrice": 0,
-                    "variantMsrpPrice": 0,
-                    "variantDisplayPrice": 129,
-                    "variantDescription": "<p>Porro prism performance in a mid-size, wide-angle design, Raptor binoculars offer bright, crisp images with excellent color fidelity, even in low-light conditions. The design accommodates a wide range of interpupillary distances to fit everyone in the family.</p><p><strong>Included in the Box</strong></p><ul><li>Rainguard Eyepiece Cover</li><li>Tethered objective lens covers</li><li>Comfort neck strapSoft carry case</li></ul>",
-                    "variantAlert": "1",
-                    "variantLowlevel": "0",
-                    "variantSlug": "vortex-optics-raptor-8-5x32-binocular",
-                    "variantVisible": 1,
-                    "taxType": "",
-                    "hideGoogleData": 0,
-                    "google_variantCategory": null,
-                    "google_variantType": null,
-                    "google_variantCondition": null,
-                    "taxable": 1,
-                    "variantAllowCheckout": 1,
-                    "variantCheckInvetory": 1,
-                    "variantTrackInventory": 0,
-                    "inventoryCount": 20000,
-                    "shippingProduct": 1,
-                    "variantMetaTitle": "",
-                    "variantMetaDescription": "",
-                    "variantBrand": "",
-                    "sortOrder": 0,
-                    "dateCreated": "1636320488",
-                    "deleted": 0,
-                    "backOrderWarning": 0,
-                    "createdAt": "2021-12-15 13:23:54",
-                    "editedAt": "2022-07-04 21:51:14",
-                    "variantInStock": true
-                }
-            },
-            {
-                "variantToken": "vrnt_123456123456",
-                "quantity": 2,
-                "sortOrder": 1,
-                "variantDetails": null
-            }
-        ],
-        "createdAt": "2022-07-05 11:47:37",
-        "editedAt": "2022-07-05 12:01:13",
-        "totalItemsCount": 3
+        "dateCreated": "1666195683",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-06-20 09:11:28",
+        "variantInStock": true
+      }
+    },
+    {
+      "itemToken": "listItem_SoQt5zCOOo1r",
+      "variantToken": "vrnt_OYIwevfBUfxErFG3",
+      "quantity": 2,
+      "sortOrder": 1,
+      "variantDetails": {
+        "prodToken": "prod_FgNybasFJG4YUJ4h",
+        "variantToken": "vrnt_OYIwevfBUfxErFG3",
+        "variantName": "31\" WHITE CHINA SINK",
+        "variantImage": {
+          "file": "10-2-2022\/1664742840284__7264__VE3118W.jpg",
+          "type": ""
+        },
+        "variantImages": [],
+        "variantWeight": "0",
+        "variantDimW": "0",
+        "variantDimL": "0",
+        "variantDimH": "0",
+        "variantUpc": "",
+        "variantNumber": "VE3118W",
+        "manufacturerPartNumber": "",
+        "variantPrice": 0.25,
+        "variantMapPrice": 0,
+        "variantMsrpPrice": 0,
+        "variantDisplayPrice": 0,
+        "variantDescription": "",
+        "variantAlert": "",
+        "variantLowlevel": "",
+        "variantSlug": "31-white-china-sink",
+        "variantVisible": 1,
+        "taxType": "",
+        "hideGoogleData": 0,
+        "google_variantCategory": "",
+        "google_variantType": "",
+        "google_variantCondition": "",
+        "taxable": 1,
+        "variantAllowCheckout": 0,
+        "variantCheckInvetory": 0,
+        "variantTrackInventory": 0,
+        "inventoryCount": 180,
+        "shippingProduct": 0,
+        "variantMetaTitle": "",
+        "variantMetaDescription": "",
+        "variantBrand": "",
+        "sortOrder": 0,
+        "dateCreated": "1661531956",
+        "deleted": 0,
+        "backOrderWarning": 0,
+        "createdAt": "2022-12-18 23:01:04",
+        "editedAt": "2024-06-20 08:41:56",
+        "variantInStock": true
+      }
     }
-]
+  ],
+  "totalItemsCount": 4
+}
 ```
 
 ## Get Lists by customer
 
 ### HTTP Request
+`GET https://storeapi.csomni.com/customeritemlist/`
 
-### Header Requirements
-
-
-`GET https://apistore.csomni.com/customeritemlist/`
-
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
+### Header Parameters
+| Parameter     | Required | Type   | Unique | Description |
+|---------------|----------|--------|--------|-------------|
+| token         | true     | string | true   | Site ID     |
+| customerToken | true     | string | true   | Login ID    |
 
 &nbsp;
 
@@ -395,126 +574,127 @@ Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/customeritemlist/ \
-   --header 'token: site_123', 'customerToken: cs_123' \
+  --url https://storeapi.csomni.com/customeritemlist/ \
+   --header 'token: site_xxxxxxxxxx', 'customerToken: cs_xxxxxxxxxxxxxxx' 
 ```
 
 Response:
 
 ```json
 [
-    {
-        "ID": 7,
-        "listToken": "custList_123456123456",
-        "sortOrder": 0,
-        "customerToken": "cust_123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "digital",
-        "listItems": []
-    },
-    {
-        "ID": 4,
-        "listToken": "custList_123456123456",
-        "sortOrder": 0,
-        "customerToken": "cust_123456123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "solid state",
-        "listItems": [
-            {
-                "itemToken": "listItem_123456123456",
-                "variantToken": "vrnt_123456123456",
-                "quantity": 5,
-                "sortOrder": 0
-            },
-            {
-                "itemToken": "listItem_123456",
-                "variantToken": "vrnt_123456",
-                "quantity": 5,
-                "sortOrder": 0
-            }
-        ]
-    },
-    {
-        "ID": 9,
-        "listToken": "custList_123456",
-        "sortOrder": 0,
-        "customerToken": "cust_123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "bluetooth",
-        "listItems": []
-    },
-    {
-        "ID": 10,
-        "listToken": "custList_123456",
-        "sortOrder": 0,
-        "customerToken": "cust_123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "bluetooth",
-        "listItems": []
-    },
-    {
-        "ID": 11,
-        "listToken": "custList_123456",
-        "sortOrder": 0,
-        "customerToken": "cust_123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "primary",
-        "listItems": []
-    },
-    {
-        "ID": 12,
-        "listToken": "custList_123456",
-        "sortOrder": 0,
-        "customerToken": "cust_123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "1080p",
-        "listItems": []
-    },
-    {
-        "ID": 8,
-        "listToken": "custList_123456",
-        "sortOrder": 1,
-        "customerToken": "cust_123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "fds",
-        "listItems": [
-            {
-                "itemToken": "listItem_123456",
-                "variantToken": "vrnt_123456",
-                "quantity": 5,
-                "sortOrder": 0
-            }
-        ]
-    },
-    {
-        "ID": 13,
-        "listToken": "custList_123456",123456
-        "sortOrder": 1,
-        "customerToken": "cust_123456",
-        "companyToken": "comp_123456",
-        "listReadableName": "fjyyds",
-        "listItems": [
-            {
-                "itemToken": "listItem_123456",
-                "variantToken": "vrnt_123456",
-                "quantity": 2,
-                "sortOrder": 1
-            }
-        ]
-    }
+  {
+    "listToken": "custList_xqWY7ytHKoAokQbq",
+    "sortOrder": 0,
+    "listReadableName": "Winter Holiday List",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_h7rDA9SJj79G76xk",
+    "sortOrder": 0,
+    "listReadableName": "Summer Holiday List",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_79jrJQX2o91nxAAj",
+    "sortOrder": 0,
+    "listReadableName": "Winter Holiday List1",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_s7kO5X1HgCU7o9qc",
+    "sortOrder": 0,
+    "listReadableName": "New List",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_IXbiidCVgG8L80rK",
+    "sortOrder": 0,
+    "listReadableName": "",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_wG1KKhiOiYFBiciH",
+    "sortOrder": 0,
+    "listReadableName": "Autumn List",
+    "listItems": [
+      {
+        "itemToken": "listItem_n30YaGtnphNm",
+        "variantToken": "vrnt_EvonkJQsR6fRbDtm",
+        "quantity": 1,
+        "sortOrder": 0
+      },
+      {
+        "itemToken": "listItem_tizrDDXD6zbm",
+        "variantToken": "vrnt_EvonkJQsR6fRbDtm",
+        "quantity": 1,
+        "sortOrder": 0
+      },
+      {
+        "itemToken": "listItem_7lT2rMJ4nEU4",
+        "variantToken": "vrnt_OYIwevfBUfxErFG3",
+        "quantity": 2,
+        "sortOrder": 1
+      },
+      {
+        "itemToken": "listItem_ROnad63u8oeX",
+        "variantToken": "vrnt_OYIwevfBUfxErFG3",
+        "quantity": 2,
+        "sortOrder": 1
+      }
+    ]
+  },
+  {
+    "listToken": "custList_xxCAxI6seenzz6h4",
+    "sortOrder": 0,
+    "listReadableName": "Autumn List 160",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_r2bv0zhhgXZgI1M1",
+    "sortOrder": 0,
+    "listReadableName": "Autumn List1",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_bWUic9qhWdjieg3M",
+    "sortOrder": 0,
+    "listReadableName": "Autumn List 876",
+    "listItems": []
+  },
+  {
+    "listToken": "custList_ees8AFYk97OgMSqu",
+    "sortOrder": 0,
+    "listReadableName": "Autumn List 727",
+    "listItems": [
+      {
+        "itemToken": "listItem_kmutOL7B3eaD",
+        "variantToken": "vrnt_KUr95fEklBxa57vb",
+        "quantity": 2,
+        "sortOrder": 1
+      },
+      {
+        "itemToken": "listItem_SoQt5zCOOo1r",
+        "variantToken": "vrnt_OYIwevfBUfxErFG3",
+        "quantity": 2,
+        "sortOrder": 1
+      }
+    ]
+  }
 ]
 ```
 
-## Delete a Full List (List and its List Items)
+## Delete a Full List
+This endpoint deletes a list in its entirety, including all list items within it
 
 ### HTTP Request
 
-`DELETE https://apistore.csomni.com/customeritemlist/[listToken]`
+`DELETE https://storeapi.csomni.com/customeritemlist/[listToken]`
 
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
+### Header Parameters
+| Parameter     | Required | Type   | Unique | Description |
+|---------------|----------|--------|--------|-------------|
+| token         | true     | string | true   | Site ID     |
+| customerToken | true     | string | true   | Login ID    |
 
 &nbsp;
 
@@ -522,9 +702,8 @@ Sample in Shell:
 
 ```shell
 curl --request DELETE \
-  --url https://apistore.csomni.com/customeritemlist/[listToken] \
-  --header 'content-type: application/json' \
-  --header 'token: 123', 'customerToken: cs_123'
+  --url https://storeapi.csomni.com/customeritemlist/{listToken} \
+  --header 'token: site_xxxxxxxxxx', 'customerToken: cs_xxxxxxxxxxxxxx'
 ```
 
 Respose:
@@ -535,16 +714,18 @@ Respose:
 }
 ```
 
-## Delete a Full List (List and its List Items)
+## Delete a List Item
+This endpoint deletes an item in a list by list and item ID.
 
 ### HTTP Request
 
-`DELETE https://apistore.csomni.com/customeritemlist/[listToken]/[listItemToken]`
+`DELETE https://storeapi.csomni.com/customeritemlist/{listToken}/{listItemToken}`
 
-| Parameter     | Required | Unique | Description |
-| ------------- | -------- | ------ | ----------- |
-| token         | true     | true   | siteToken   |
-| customerToken | true     | true   | loginToken  |
+### Header Parameters
+| Parameter     | Required | Type   | Unique | Description |
+|---------------|----------|--------|--------|-------------|
+| token         | true     | string | true   | Site ID     |
+| customerToken | true     | string | true   | Login ID    |
 
 &nbsp;
 
@@ -552,12 +733,11 @@ Sample in Shell:
 
 ```shell
 curl --request DELETE \
-  --url https://apistore.csomni.com/customeritemlist/[listToken]/[listItemToken] \
-  --header 'content-type: application/json' \
-  --header 'token: 123', 'customerToken: cs_123'
+  --url https://storeapi.csomni.com/customeritemlist/{listToken}/{listItemToken} \
+  --header 'token: site_xxxxxxxxx', 'customerToken: cs_1xxxxxxxxxx'
 ```
 
-Respose:
+Response:
 
 ```json
 {

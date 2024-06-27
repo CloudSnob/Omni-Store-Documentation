@@ -1,0 +1,162 @@
+# @name create_quote
+POST {{baseStoreUrl}}/quotes/ HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+ "quoteItems": [
+        {
+            "variantToken" : "{{variantToken1}}",
+            "quantity" : 2
+        }
+    ],
+    "shippingAddress" : "{{addressToken}}",
+    "contactDetails" : {
+        "firstName" : "Sharon",
+        "lastName" : "Doe",
+        "email" : "chayelle+quoteDetails@evelt.com",
+        "phoneNumber" : "987657489",
+        "companyName" : "Techo"
+    }
+
+}
+
+> {%
+    client.global.set("quoteToken", response.body.quoteToken);
+
+%}
+###
+
+# @name get_customer_private_token
+GET {{baseAdminUrl}}/customers/exchangeLoginToken/{{customerPublicToken}} HTTP/1.1
+token: {{userPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("customerPrivateToken", response.body);
+
+%}
+###
+
+##note this next api is through admin, but is necessary as part of the quotes flow
+# @name insert_shipping_options
+POST {{baseAdminUrl}}/quotes/{{quoteToken}}/shipping-quote HTTP/1.1
+token: {{userPublicToken}}
+customerToken: {{customerPrivateToken}}
+Content-Type: application/json
+
+{
+  "shippingQuote" : [
+    {
+      "carrier": "UPS",
+      "methodName":"Next Day Air",
+      "deliveryDays" : "0.1",
+      "rate": 0.01
+    },
+    {
+      "carrier":"Fedex",
+      "methodName":"Ground Express",
+      "deliveryDays" : "0.2",
+      "rate": 0.02
+    }
+  ]
+}
+
+> {%
+        client.global.set("shippingQuoteToken", response.body.shippingQuotes[0].quote_shippingQuoteToken);
+%}
+###
+
+## Needs manual entry of shippingQuoteToken
+# @name approve_shipping_quote
+POST {{baseStoreUrl}}/quotes/shippingQuoteToken_VZnDY5fLbkWx/approve-shipping HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "approved": true,
+  "approvedBy": "Sharon Doe"
+}
+
+> {%
+   // client.global.set("quoteToken", response.body.quoteToken);
+%}
+###
+
+# @name get_quote_by_quote_token
+GET {{baseStoreUrl}}/quotes/{{quoteToken}} HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("quoteToken", response.body.quoteToken);
+    client.global.set("shippingQuoteToken", response.body.shippingQuote[0].quote_shippingQuoteToken);
+
+%}
+###
+
+# @name get_all_quotes_by_customer
+GET {{baseStoreUrl}}/quotes HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+> {%
+    client.global.set("quoteToken", response.body[0].quoteToken);
+%}
+###
+
+# @name quote_checkout_pay_now
+POST {{baseStoreUrl}}/checkout/payment/{{quoteToken}} HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "nameOnCard": "Jay Klein",
+  "cardNumbers": "4354780010152438",
+  "expMonth": "01",
+  "expYear": "26",
+  "cvv": "732",
+  "billingAddress": "10 Eros Drive",
+  "billingCity": "Airmont",
+  "billingState": "NY",
+  "billingZip": "10952",
+  "billingCountry": "United States",
+  "billingPhone": "000000",
+  "orderNotePublic": "this is a public note I wrote and submited through payment checkout api call",
+  "po": "1234"
+}
+
+> {%
+    //client.global.set("quoteToken", response.body.quoteToken);
+%}
+###
+
+# @name quote_checkout_pay_later
+POST {{baseStoreUrl}}/checkout/po/{{quoteToken}} HTTP/1.1
+token: {{siteToken}}
+customerToken: {{customerPublicToken}}
+Content-Type: application/json
+
+{
+  "po": "123-P9ojd",
+  "billingName": "431 Systems LLC",
+  "billingAddress": "10 Seller Drive",
+  "billingCity": "Airmont",
+  "billingState": "NY",
+  "billingZip": "10952",
+  "billingCountry": "United States",
+  "billingPhone": "000000",
+  "orderNotePublic": ""
+}
+
+> {%
+   // client.global.set("quoteToken2", response.body.quoteToken);
+%}
+###
+
+

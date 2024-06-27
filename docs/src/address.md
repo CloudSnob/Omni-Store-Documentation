@@ -1,22 +1,127 @@
 # Addresses
 
-## Add/Edit Address
+## Create New Address
+This endpoint creates a new address. If the customerToken parameter is empty, a new customer is created
+
+### HTTP Request
+`POST https://storeapi.csomni.com/addresses`
+
+### Header Parameters
+| Parameter     | Required | Type   | Description          |
+|---------------|----------|--------|----------------------|
+| siteToken     | true     | string | Unique API siteToken |
+
+### Data Parameters
+
+| Parameter        | Required            | Unique | Type   | Description                                  |
+|------------------|---------------------|--------|--------|----------------------------------------------|
+| addressLabel     | false               | false  | string | Address Label (home,work)                    |
+| addressFirstName | false               | false  | string | Address First Name (first name of recipient) |
+| addressLastName  | false               | false  | string | Address Last Name (last name of recipient)   |
+| address          | true                | false  | string | Address Line 1                               |
+| address2         | false               | false  | string | Address Line 2                               |
+| addressCity      | true                | false  | string | City                                         |
+| addressState     | true                | false  | string | State                                        |
+| addressZip       | true                | false  | string | Zip Code                                     |
+| addressCountry   | false, default = US | false  | string | Country                                      |
+| addressDefault   | false               | false  | bool   | Mark as default address                      |
+| phoneNumber      | false               | false  | string | Phone Number                                 |
+| mobileNumber     | false               | false  | string | Mobile/Cell Number                           |
+
+Sample in Shell:
+
+```shell
+curl request POST https://storeapi.csomni.com/addresses \
+  --header 'token: site_xxxxxxxxxxxx' \
+  --data-raw '{ 
+      "address" : "123 Main street",
+      "address2": "Unit 4",
+      "addressCity" : "NY",
+      "addressState" : "NY",
+      "addressZip" : "10952",
+      "addressLabel" : "Home Address",
+      "addressFirstName" : "Jane",
+      "addressLastName" : "Foster",
+      "phoneNumber" : "03356705565",
+      "mobileNumber" : "45678945666"
+}'
+
+
+```
+
+> The above commands both return JSON structured like this
+```json
+{
+  "address": "123 Main street",
+  "address2": "Unit 4",
+  "addressLabel": "Home Address",
+  "addressCity": "NY",
+  "addressState": "NY",
+  "addressZip": "10952",
+  "addressFirstName": "Jane",
+  "addressLastName": "Foster",
+  "phoneNumber": "03356705565",
+  "mobileNumber": "45678945666",
+  "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
+  "addressCountry": "United States",
+  "addressToken": "adrs_gQcx91rPcNCGrVkhqADvYtY1",
+  "specialValues": ""
+}
+```
+
+
+## Edit Address
+This endpoint edits an existing address
+
+### HTTP Request
+`POST https://storeapi.csomni.com/addresses/{addressToken}`
+
+
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
+
+### Query Parameters
+
+| Parameter        | Required                                | Unique | Type   | Description                                  |
+|------------------|-----------------------------------------|--------|--------|----------------------------------------------|
+| customerToken    | true                                    | false  | string | Customer Public Token                        |
+| addressLabel     | false                                   | false  | string | Address Label (home,work)                    |
+| addressFirstName | false                                   | false  | string | Address First Name (first name of recipient) |
+| addressLastName  | false                                   | false  | string | Address Last Name (last name of recipient)   |
+| address          | true                                    | false  | string | Address                                      |
+| address2         | false                                   | false  | string | Address Line 2                               |
+| addressCity      | true                                    | false  | string | City                                         |
+| addressState     | true                                    | false  | string | State                                        |
+| addressZip       | true                                    | false  | string | Zip Code                                     |
+| addressCountry   | true (If empty it enters United States) | false  | string | Country                                      |
+| addressDefault   | false                                   | false  | bool   | Mark as default address                      |
+| phoneNumber      | false                                   | false  | string | Phone Number                                 |
+
+Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/addresses/{addressToken} \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123' \
-  --data '{ "customerToken" : "cust_123456",
-   "address" : "123 Main street","addressCity" : "Monsey",
-    "addressState" : "NY",
-    "addressZip" : "10952",
-    "addressLabel" : "My Address",
-    "addressFirstName" : "My address first",
-    "addressLastName" : "My Address Last Name",
-    "phoneNumber" : "03356705565"
-}'
+  --url https://storeapi.csomni.com/addresses/adrs_Ny13sCIcZRFJD7edR5Dwo6J8 \
+  --header 'token: site_xxxxxxxxxxx' \
+  --header 'customerToken: "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK"
+  --data 
+  '{ 
+      "addressLabel": "Home Address - Edited",
+      "addressFirstName": "Brando",
+      "addressLastName": "Grady",
+      "address": "19 High Street",
+      "address2": "Unit 4",
+      "addressCity": "Leifchester",
+      "addressState": "NY",
+      "addressZip": "10952",
+      "addressCountry": "US",
+      "addressDefault": "1",
+      "phoneNumber": "6338526379",
+      "mobileNumber": "3034465487"
+  }'
 
 ```
 
@@ -24,120 +129,111 @@ curl --request POST \
 
 ```json
 {
-  "customerToken": "cust_123456",
-  "address": "123 Main street",
-  "address2": "unit 4",
-  "addressCity": "Monsey",
+  "addressLabel": "Home Address - Edited",
+  "addressFirstName": "Brando",
+  "addressLastName": "Grady",
+  "address": "19 High Street",
+  "address2": "Unit 4",
+  "addressCity": "Leifchester",
   "addressState": "NY",
   "addressZip": "10952",
-  "addressCountry": "USA",
-  "addressLabel": "My Address",
-  "addressFirstName": "My address first",
-  "addressLastName": "My Address Last Name",
-  "phoneNumber": "03356705565",
-  "addressToken": "adrs_123456",
+  "addressCountry": "US",
+  "addressDefault": "1",
+  "phoneNumber": "6338526379",
+  "mobileNumber": "3034465487",
+  "addressToken": "adrs_Ny13sCIcZRFJD7edR5Dwo6J8",
+  "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
   "specialValues": ""
 }
 ```
 
-This endpoint for Add/Edit an address
+
+## Get Address By Customer
+This endpoint returns an array of a customer's addresses
 
 ### HTTP Request
+`GET https://storeapi.csomni.com/addresses`
 
-`POST https://apistore.csomni.com/addresses/{addressToken}`
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
 
-### Query Parameters
-
-| Parameter        | Required                                | Unique | Description                                  |
-| ---------------- | --------------------------------------- | ------ | -------------------------------------------- |
-| customerToken    | true                                    | false  | Customer Token                               |
-| addressLabel     | false                                   | false  | Address Label (home,work)                    |
-| addressFirstName | false                                   | false  | Address First Name (first name of recipient) |
-| addressLastName  | false                                   | false  | Address Last Name (last name of recipient)   |
-| address          | true                                    | false  | Address                                      |
-| address2         | false                                   | false  | Address Line 2                               |
-| addressCity      | true                                    | false  | City                                         |
-| addressState     | true                                    | false  | State                                        |
-| addressZip       | true                                    | false  | Zip Code                                     |
-| addressCountry   | true (If empty it enters United States) | false  | Country                                      |
-| addressDefault   | false                                   | false  | Mark as default address                      |
-| phoneNumber      | false                                   | false  | Phone Number                                 |
-| specialValues    | false                                   | false  | Special values against address token         |
-
-### URL Parameters (for edit)
-
-| Parameter    | Required | Unique | Description           |
-| ------------ | -------- | ------ | --------------------- |
-| addressToken | true     | false  | Address Token to edit |
-
-## Get All Addresses for Customer
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/addresses \
-  --header 'token: 123'
+  --url https://storeapi.csomni.com/addresses \
+  --header 'token: site_xxxxxxxxxxxxx' \
+  --header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
 > The above command returns JSON structured like this:
-
 ```json
 [
   {
-    "addressToken": "adrs_123456",
-    "addressLabel": "",
-    "address": "abcd",
-    "address2": "",
-    "addressCity": "lahore",
-    "addressState": "Punjab",
+    "addressToken": "adrs_W20sV9PC4vVgVDXKnR736YKL",
+    "addressLabel": "Home",
+    "address": "10 Highfield Park",
+    "address2": "Unit 6",
+    "addressCity": "New York",
+    "addressState": "NY",
     "addressZip": "54000",
-    "addressFirstName": "test12",
-    "addressLastName": "test123",
+    "addressFirstName": "Joe",
+    "addressLastName": "Baldly",
     "phoneNumber": "0313445214",
     "mobileNumber": "",
     "addressCountry": "United States",
     "addressDefault": 0,
-    "customerToken": "cust_123456",
+    "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
     "specialValues": []
   },
   {
-    "addressToken": "adrs_123456",
-    "addressLabel": "My Address",
+    "addressToken": "adrs_CJO9LkwmNJqSQmOBtaTsGE1w",
+    "addressLabel": "Office ",
     "address": "123 Main street",
-    "address2": "unit 4",
+    "address2": "Unit 4",
     "addressCity": "Monsey",
     "addressState": "NY",
     "addressZip": "10952",
-    "addressFirstName": "My address first",
-    "addressLastName": "My Address Last Name",
+    "addressFirstName": "John",
+    "addressLastName": "Doesky",
     "phoneNumber": "03356705565",
     "mobileNumber": "",
     "addressCountry": "USA",
     "addressDefault": 0,
-    "customerToken": "cust_123456",
+    "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
     "specialValues": []
   }
 ]
 ```
 
-This endpoint retrieves all addresses for a specific customer
 
-### HTTP Request
+## Get Address by address token
+This endpoint retrieves a specific address by searching for 'addressToken'
 
-`GET https://apistore.csomni.com/addresses`
 
-## Get A Specific Address
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
+
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/addresses/{addressToken} \
-  --header 'token: 123'
+  --url https://storeapi.csomni.com/addresses/adrs_CJO9LkwmNJqSQmOBtaTsGE1w \
+  --header 'token: site_xxxxxxxxxx' \
+  --header 'customerToken: cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "addressToken": "adrs_123456",
+  "addressToken": "adrs_CJO9LkwmNJqSQmOBtaTsGE1w",
   "addressLabel": "My Address",
   "address": "123 Main street",
   "address2": "unit 4",
@@ -150,40 +246,39 @@ curl --request GET \
   "mobileNumber": "",
   "addressCountry": "USA",
   "addressDefault": 0,
-  "customerToken": "cust_123456",
+  "customerToken": "cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK",
   "specialValues": []
 }
 ```
 
-This endpoint retrieves a specific address
+
+## Delete Address
+This endpoint deletes (archives) an address
 
 ### HTTP Request
+`DELETE https://storeapi.csomni.com/addresses/{addressToken}`
 
-`GET https://apistore.csomni.com/addresses/{addressToken}`
 
-### URL Parameters
+### Header Parameters
+| Parameter     | Required | Type   | Description      |
+|---------------|----------|--------|------------------|
+| customerToken | true     | string | Customer Token   |
+| siteToken     | true     | string | Unique siteToken |
 
-| Parameter    | Required | Unique | Description          |
-| ------------ | -------- | ------ | -------------------- |
-| AddressToken | true     | -      | Token of the Address |
-
-## Delete a Address
+Sample in Shell:
 
 ```shell
 curl --request DELETE \
-  --url https://apistore.csomni.com/addresses/{addressToken} \
-  --header 'content-type: application/json' \
-  --header 'token: 123'
+  -- https://storeapi.csomni.com/addresses/adrs_CJO9LkwmNJqSQmOBtaTsGE1w \
+  --header 'token: site_xxxxxxxxxx'\
+  --header 'customerToken:cs_GWdE9xY2dcL9qqBmNKx7WXivTh73nJtGH4NK'
 ```
 
-This endpoint deletes (archives) a address
+> The above command returns JSON structured like this:
 
-### HTTP Request
-
-`DELETE https://apistore.csomni.com/addresses/{addressToken}`
-
-### URL Parameters
-
-| Parameter | Description                        |
-| --------- | ---------------------------------- |
-| Token     | The Token of the address to delete |
+```json
+{
+  "token": "adrs_CJO9LkwmNJqSQmOBtaTsGE1w",
+  "deleted": "true"
+}
+```

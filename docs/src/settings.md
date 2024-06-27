@@ -1,25 +1,25 @@
 # Settings
 
 
-## GET settings 
+## Get settings 
+This endpoint retrieves the sites settings
 
 ### HTTP Request
+`GET https://storeapi.csomni.com/settings`
 
-`GET https://apistore.csomni.com/settings`
+### Header Parameters
+| Parameter     | Type   | Description       |
+|---------------|--------|-------------------|
+| token         | string | Site Token ID     |
 
-## Get A Specific Site
+Sample in Shell:
 
 ```shell
 curl --request GET \
-  --url https://apistore.csomni.com/sites/ \
-  --header 'token: [site_token]'
+  --url https://storeapi.csomni.com/settings \
+  --header 'token: site_xxxxxxxxxx'
 ```
-Note: The response includes 2 positions:
-1. 'settings' is pulling the response from 'settings' table which 
-saves each setting in a separate row. This table is being phased out, but its data is included here until
-its data is dynamically transfered to settingsSite/settingsCompany on migration
-2. 'settingsSite' is pulling the response from 'settingsSite' table which uses one row per siteToken
-This will be the table for all site based enquiries
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -63,9 +63,8 @@ This will be the table for all site based enquiries
     ],
     "settingssite": {
         "settingToken": "stngSite_123456",
-        "companyToken": "comp_123456",
-        "siteToken": "site_123456",
-        "baseUrl": "https://optics.evelt.dev/",
+        "siteToken": "site_xxxxxxxxxxxxxxx",
+        "baseUrl": "https://website.com",
         "cartQuantityCombine": 1,
         "collectionUrl": "",
         "googleSheetId": "",
