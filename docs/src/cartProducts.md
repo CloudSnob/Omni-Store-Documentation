@@ -62,10 +62,8 @@ curl --request POST \
 
 ```shell
 curl --request POST \
-  --url https://apistore.csomni.com/cartprods/[cartToken] \
-  --header 'cache-control: no-cache' \
-  --header 'postman-token: 1234567890' \
-  --header 'token: 123' \
+  --url https://apistore.csomni.com/cartprods/cart_2EwMrNJlBqndLlDr9LLP24VU \
+  --header 'token: site_xxxxxxxxxxxxx' \
   --data '{
             "cartProdQuantity" : "1",
             "prodToken" : "vrnt_yqktptPndobaaR86
@@ -150,7 +148,7 @@ Sample in Shell:
 
 ```shell
 curl --request POST \
-  --url https://storeapi.csomni.com/cartprods/{cartProdToken} \
+  --url https://storeapi.csomni.com/cartprods/cp_Ygj5uVE5Jqaqc4ah4wTFvBWO \
   --header 'token: site_xxxxxxxxxxx' \
   -- header 'customerToken : cs_P0NW9KYnw061h3PTiUMFl2twP1UscyEt6HF7'\
   --data '{ 
