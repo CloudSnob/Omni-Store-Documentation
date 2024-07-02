@@ -900,7 +900,7 @@ This endpoint retrieves a full product and all its information.
 | responseData  | string | comma delimited list of response data (full,fullAccessories,specialValues,specs,firstVariant) |
 
 
-### Data Parameters
+### Response data option breakdown:
 | Parameter       | Description                                                  |
 |-----------------|--------------------------------------------------------------|
 | full            | Returns All variants on the product                          |
@@ -908,6 +908,8 @@ This endpoint retrieves a full product and all its information.
 | specialValues   | Returns Special Values on the product and variant            |
 | firstVariant    | Returns only the first variant on the product (as an object) |
 | fullAccessories | Returns array of accessory products                          |
+
+#### Example 1: Get full basic product
 
 Sample in Shell:
 
@@ -1018,5 +1020,259 @@ curl --request GET \
       "variantInStock": true
     }
   ]
+}
+```
+
+#### Example 2: Get full detailed product with specs, special values and all variant details
+
+Sample in Shell:
+
+```shell
+curl --request GET \
+  --url https://storeapi.csomni.com/products/clariti-1-day?responseData=specialValues,specs,full \
+  --header 'token: site_xxxxxxxxx'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "prodToken": "prod_i3tYFqL7jkfHiYIz",
+    "prodName": "clariti 1 day",
+    "prodImage": {
+        "type": ""
+    },
+    "prodImages": [],
+    "prodWeight": 0,
+    "prodDimW": "",
+    "prodDimL": "",
+    "prodDimH": "",
+    "prodUpc": "",
+    "prodNumber": "3",
+    "prodPrice": ".00",
+    "prodDescription": "",
+    "prodHighlights": "",
+    "prodAlert": "",
+    "prodLowlevel": "",
+    "prodSlug": "clariti-1-day",
+    "prodVisible": 1,
+    "prodAllowCheckout": 0,
+    "prodCheckInvetory": 0,
+    "prodTrackInventory": 0,
+    "inventoryCount": 0,
+    "shippingProduct": 0,
+    "prodMetaTitle": "",
+    "prodMetaDescription": "",
+    "prodBrand": "brnd_vi1w38EXkr4gjKs0hzVB",
+    "prodType": null,
+    "prodTemplate": "",
+    "prodAccessories": "",
+    "google_prodCategory": "",
+    "google_prodType": "",
+    "google_prodCondition": "",
+    "archived": 0,
+    "backOrderWarning": 0,
+    "createdAt": "2024-05-02 14:27:03",
+    "editedAt": "2024-05-02 14:27:03",
+    "prodCollections": [
+        "clcs_nOF2XKA3QUrOEGB3"
+    ],
+    "variantInfo": {
+        "priceTo": 60,
+        "priceFrom": 60,
+        "variantCount": 3
+    },
+    "specialValues": [
+        {
+            "valueName": "BC",
+            "value": "8.6",
+            "sortOrder": 0,
+            "createdAt": "2024-05-02 14:27:03",
+            "editedAt": "2024-05-02 14:27:03"
+        },
+        {
+            "valueName": "DIA",
+            "value": "14.1",
+            "sortOrder": 1,
+            "createdAt": "2024-05-02 14:27:03",
+            "editedAt": "2024-05-02 14:27:03"
+        }
+    ],
+    "specs": [],
+    "prodOptions": [
+        {
+            "optionToken": "optn_YTDIRwX2IEVVlACreuiV",
+            "optionName": "Power",
+            "optionOrder": "0",
+            "values": [
+                "+125",
+                "+150",
+                "+175"
+            ]
+        }
+    ],
+    "variants": [
+        {
+            "prodToken": "prod_i3tYFqL7jkfHiYIz",
+            "variantToken": "vrnt_G9hzpmT6SFdxPLho",
+            "variantName": "power: +125",
+            "variantImage": [],
+            "variantImages": [],
+            "variantWeight": "",
+            "variantDimW": "",
+            "variantDimL": "",
+            "variantDimH": "",
+            "variantUpc": "",
+            "variantNumber": "3-p125",
+            "manufacturerPartNumber": "",
+            "variantPrice": 60,
+            "variantMapPrice": 0,
+            "variantMsrpPrice": 0,
+            "variantDisplayPrice": 0,
+            "variantDescription": "",
+            "variantAlert": "",
+            "variantLowlevel": "",
+            "variantSlug": "",
+            "variantVisible": 1,
+            "taxType": "",
+            "hideGoogleData": 0,
+            "google_variantCategory": null,
+            "google_variantType": null,
+            "google_variantCondition": null,
+            "taxable": 1,
+            "variantAllowCheckout": 0,
+            "variantCheckInvetory": 0,
+            "variantTrackInventory": 0,
+            "inventoryCount": 0,
+            "shippingProduct": 0,
+            "variantMetaTitle": "",
+            "variantMetaDescription": "",
+            "variantBrand": "",
+            "sortOrder": 0,
+            "dateCreated": "1714660161",
+            "deleted": 0,
+            "backOrderWarning": 0,
+            "createdAt": "2024-05-02 14:29:21",
+            "editedAt": "2024-05-02 14:29:21",
+            "variantInStock": true,
+            "specialValues": [],
+            "specs": [],
+            "variantOptions": [
+                {
+                    "optionToken": "optn_YTDIRwX2IEVVlACreuiV",
+                    "optionValue": "+125",
+                    "optionName": "Power"
+                }
+            ]
+        },
+        {
+            "prodToken": "prod_i3tYFqL7jkfHiYIz",
+            "variantToken": "vrnt_NSSjHV6l8ZdGmWGM",
+            "variantName": "power: +150",
+            "variantImage": {
+                "file": "[]"
+            },
+            "variantImages": [],
+            "variantWeight": "",
+            "variantDimW": "",
+            "variantDimL": "",
+            "variantDimH": "",
+            "variantUpc": "",
+            "variantNumber": "3-p150",
+            "manufacturerPartNumber": "",
+            "variantPrice": 60,
+            "variantMapPrice": 0,
+            "variantMsrpPrice": 0,
+            "variantDisplayPrice": -1,
+            "variantDescription": "",
+            "variantAlert": "",
+            "variantLowlevel": "3",
+            "variantSlug": "power-150",
+            "variantVisible": 1,
+            "taxType": "",
+            "hideGoogleData": 0,
+            "google_variantCategory": "",
+            "google_variantType": "",
+            "google_variantCondition": "",
+            "taxable": 1,
+            "variantAllowCheckout": 0,
+            "variantCheckInvetory": 1,
+            "variantTrackInventory": 0,
+            "inventoryCount": 10,
+            "shippingProduct": 0,
+            "variantMetaTitle": "",
+            "variantMetaDescription": "",
+            "variantBrand": "",
+            "sortOrder": 1,
+            "dateCreated": "1714660163",
+            "deleted": 0,
+            "backOrderWarning": 0,
+            "createdAt": "2024-05-02 14:29:23",
+            "editedAt": "2024-05-02 14:30:40",
+            "variantInStock": true,
+            "specialValues": [],
+            "specs": [],
+            "variantOptions": [
+                {
+                    "optionToken": "optn_YTDIRwX2IEVVlACreuiV",
+                    "optionValue": "+150",
+                    "optionName": "Power"
+                }
+            ]
+        },
+        {
+            "prodToken": "prod_i3tYFqL7jkfHiYIz",
+            "variantToken": "vrnt_PqHLi55RksmPISZj",
+            "variantName": "power: +175",
+            "variantImage": [],
+            "variantImages": [],
+            "variantWeight": "",
+            "variantDimW": "",
+            "variantDimL": "",
+            "variantDimH": "",
+            "variantUpc": "",
+            "variantNumber": "3-p175",
+            "manufacturerPartNumber": "",
+            "variantPrice": 60,
+            "variantMapPrice": 0,
+            "variantMsrpPrice": 0,
+            "variantDisplayPrice": 0,
+            "variantDescription": "",
+            "variantAlert": "",
+            "variantLowlevel": "",
+            "variantSlug": "",
+            "variantVisible": 1,
+            "taxType": "",
+            "hideGoogleData": 0,
+            "google_variantCategory": null,
+            "google_variantType": null,
+            "google_variantCondition": null,
+            "taxable": 1,
+            "variantAllowCheckout": 0,
+            "variantCheckInvetory": 0,
+            "variantTrackInventory": 0,
+            "inventoryCount": 0,
+            "shippingProduct": 0,
+            "variantMetaTitle": "",
+            "variantMetaDescription": "",
+            "variantBrand": "",
+            "sortOrder": 2,
+            "dateCreated": "1714663171",
+            "deleted": 0,
+            "backOrderWarning": 0,
+            "createdAt": "2024-05-02 15:19:31",
+            "editedAt": "2024-05-02 15:19:31",
+            "variantInStock": true,
+            "specialValues": [],
+            "specs": [],
+            "variantOptions": [
+                {
+                    "optionToken": "optn_YTDIRwX2IEVVlACreuiV",
+                    "optionValue": "+175",
+                    "optionName": "Power"
+                }
+            ]
+        }
+    ]
 }
 ```
