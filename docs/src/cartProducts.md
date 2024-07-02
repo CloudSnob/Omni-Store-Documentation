@@ -18,7 +18,7 @@
 Sample in Shell:
 
 
-#### Example 1: Only adding item to cart
+#### Example 1: Adding item to cart
 ```shell
 curl --request POST \
   --url https://storeapi.csomni.com/cartprods \
