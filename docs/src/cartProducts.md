@@ -68,7 +68,7 @@ curl --request POST \
   --header 'token: 123' \
   --data '{
             "cartProdQuantity" : "1",
-            "prodToken" : "vrnt_##############",
+            "prodToken" : "vrnt_yqktptPndobaaR86
             "specialValues": [
                     {
                         "valueName": "dog",
